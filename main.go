@@ -30,8 +30,8 @@ func main() {
 
 	h := socket.NewHandler()
 
-	r.HandleFunc("/stream", h.ServeWs)
-	r.HandleFunc("/echo", echo)
+	r.HandleFunc("/{stream:stream\\/?}", h.ServeWs)
+	r.HandleFunc("/{echo:echo\\/?}", echo)
 	r.HandleFunc("/", home)
 
 	n.Use(c)
@@ -44,6 +44,7 @@ func main() {
 var upgrader = websocket.Upgrader{} // use default options
 
 func echo(w http.ResponseWriter, r *http.Request) {
+	log.Info("Hello ")
 	c, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		log.Print("upgrade:", err)
@@ -51,7 +52,9 @@ func echo(w http.ResponseWriter, r *http.Request) {
 	}
 	defer c.Close()
 	for {
+		log.Info("waiting for message")
 		mt, message, err := c.ReadMessage()
+		log.Info(message)
 		if err != nil {
 			log.Println("read:", err)
 			break

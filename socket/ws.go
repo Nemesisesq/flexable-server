@@ -44,12 +44,15 @@ func (h Handler) recieveData(ws *websocket.Conn) {
 	ws.SetReadLimit(maxMessageSize)
 	ws.SetReadDeadline(time.Now().Add(pongWait))
 	ws.SetPongHandler(func(string) error { ws.SetReadDeadline(time.Now().Add(pongWait)); return nil })
+
+	log.Info("Connecting to recieve data")
 	for {
 
 		// read messages
 
-		messageType, message, err := ws.ReadMessage()
-		log.Info(messageType)
+		_, message, err := ws.ReadMessage()
+		log.Info("got a message")
+		log.Info(string(message))
 		if err != nil {
 			break
 		}
@@ -144,7 +147,7 @@ func (h Handler) ServeWs(w http.ResponseWriter, r *http.Request) {
 
 	// blocking with receive data
 	h.recieveData(ws)
-
+	log.Info("exiting")
 	select {
 	case <-stdoutDone:
 	case <-time.After(time.Second):
