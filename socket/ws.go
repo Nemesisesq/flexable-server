@@ -44,6 +44,10 @@ func (h Handler) recieveData(ws *websocket.Conn) {
 	ws.SetReadLimit(maxMessageSize)
 	ws.SetReadDeadline(time.Now().Add(pongWait))
 	ws.SetPongHandler(func(string) error { ws.SetReadDeadline(time.Now().Add(pongWait)); return nil })
+	ws.SetPingHandler(func(appData string) error {
+		ws.WriteControl(websocket.PongMessage, []byte("__pong__"), time.Now().Add(time.Second*10))
+		return nil
+	})
 
 	log.Info("Connecting to recieve data")
 	for {
@@ -51,25 +55,31 @@ func (h Handler) recieveData(ws *websocket.Conn) {
 		// read messages
 
 		_, message, err := ws.ReadMessage()
-		log.Info("got a message")
-		log.Info(string(message))
-		if err != nil {
-			break
-		}
 
-		// Do stuff
+		if string(message) == "__ping__" {
+			ws.WriteMessage(websocket.TextMessage, []byte("__pong__"))
+		} else {
 
-		go func() {
-
-			message, err = json.Marshal(time.Now())
+			log.Info("got a message")
+			log.Info(string(message))
 			if err != nil {
-				log.Error(err)
+				break
 			}
 
-			h.out <- message
-		}()
+			// Do stuff
 
-		// Write message out to app
+			go func() {
+				log.Info("sending message")
+				message, err = json.Marshal(time.Now())
+				if err != nil {
+					log.Error(err)
+				}
+
+				h.out <- message
+			}()
+
+			// Write message out to app
+		}
 
 	}
 }
@@ -84,6 +94,7 @@ func (h Handler) sendData(ws *websocket.Conn, done chan struct{}) {
 
 		select {
 		case m := <-h.out:
+			log.Info("writing message from channel")
 			if err := ws.WriteMessage(websocket.TextMessage, m); err != nil {
 				h.internalError("something has gone wrong", err)
 				close(h.out)
