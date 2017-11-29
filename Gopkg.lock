@@ -2,6 +2,12 @@
 
 
 [[projects]]
+  branch = "master"
+  name = "github.com/golang/protobuf"
+  packages = ["proto"]
+  revision = "1e59b77b52bf8e4b449a57e6f79f21226d571845"
+
+[[projects]]
   name = "github.com/gorilla/context"
   packages = ["."]
   revision = "1ea25387ff6f684839d82767c1733ff4d4d15d0a"
@@ -24,6 +30,12 @@
   name = "github.com/heroku/x"
   packages = ["hmetrics","hmetrics/onload"]
   revision = "705849e307dd75c91728463dea5bfd08ef493e64"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/manveru/faker"
+  packages = ["."]
+  revision = "9fbc68a78c4dbc7914e1a23f88f126bea4383b97"
 
 [[projects]]
   name = "github.com/rs/cors"
@@ -58,6 +70,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "44ba9fe961b82df3c243b1c9b9f4807dd93b31a1936b15183988a62fbe50f589"
+  inputs-digest = "fb101bb5f3c355a9dcac2f910cee82e0e52c22c914b825eed275b95173344e23"
   solver-name = "gps-cdcl"
   solver-version = 1

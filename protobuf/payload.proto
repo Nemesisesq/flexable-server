@@ -1,0 +1,11 @@
+syntax="proto3";
+
+message Payload {
+    enum Type {
+
+        OPEN_SHIFTS = 0;
+    };
+
+    Type type = 1;
+    string data = 2;
+}
