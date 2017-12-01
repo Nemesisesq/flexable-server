@@ -1,0 +1,9 @@
+{
+  "name": "flexable-protobuf",
+  "version": "1.0.4",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "google-protobuf": "^3.5.0"
+  }
+}
