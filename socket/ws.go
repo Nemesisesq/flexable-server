@@ -1,8 +1,9 @@
 package socket
 
 import (
-	"encoding/json"
+	"fmt"
 	"net/http"
+	"sync"
 	"time"
 
 	"github.com/gorilla/websocket"
@@ -29,64 +30,94 @@ const (
 type Handler struct {
 	//messages to the client
 	out chan []byte
-
-	ws *websocket.Conn
+	mu  sync.Mutex
+	ws  *websocket.Conn
 }
 
 func NewHandler() *Handler {
+
+	defer func() {
+		if r := recover(); r != nil {
+			log.Info("Recovered in f", r)
+		}
+	}()
+
 	return &Handler{
 		out: make(chan []byte),
 	}
 }
 
 func (h Handler) recieveData(ws *websocket.Conn) {
-	defer ws.Close()
+
+	//defer ws.Close()
 	ws.SetReadLimit(maxMessageSize)
-	ws.SetReadDeadline(time.Now().Add(pongWait))
-	ws.SetPongHandler(func(string) error { ws.SetReadDeadline(time.Now().Add(pongWait)); return nil })
-	ws.SetPingHandler(func(appData string) error {
-		ws.WriteControl(websocket.PongMessage, []byte("__pong__"), time.Now().Add(time.Second*10))
+	err := ws.SetReadDeadline(time.Now().Add(pongWait))
+
+	if err != nil {
+		panic(err)
+	}
+	ws.SetPongHandler(func(string) error {
+		err := addPongWait(ws)
+
+		if err != nil {
+			return err
+		}
 		return nil
 	})
 
-	log.Info("Connecting to recieve data")
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in f", r)
+		}
+	}()
+
+	//log.Info("Connecting to recieve data")
 	for {
 
 		// read messages
 
 		_, message, err := ws.ReadMessage()
 
-		if string(message) == "__ping__" {
-			ws.WriteMessage(websocket.TextMessage, []byte("__pong__"))
-		} else {
+		if err != nil {
+			break
+		}
 
-			log.Info("got a message")
+		if string(message) == "__ping__" {
+			log.Info("__pong__")
+			h.out <- []byte("__pong__")
+		} else if len(message) != 0 {
+
+			log.Info("got a message", string(message))
 			log.Info(string(message))
-			if err != nil {
-				break
-			}
 
 			// Do stuff
 
-			go func() {
-				log.Info("sending message")
-				message, err = json.Marshal(time.Now())
-				if err != nil {
-					log.Error(err)
-				}
+			func() {
+				log.Info("Handling message")
 
-				h.out <- message
+				//res := HandleMessage(message)
+				log.Info("I get here")
+				//h.out <- res
 			}()
 
 			// Write message out to app
 		}
 
 	}
+
+	log.Info("exiting recieveData")
+}
+func addPongWait(ws *websocket.Conn) error {
+	return ws.SetReadDeadline(time.Now().Add(pongWait))
+}
+
+func (h *Handler) send(v interface{}) error {
+	h.mu.Lock()
+	defer h.mu.Unlock()
+	return h.ws.WriteJSON(v)
 }
 
 func (h Handler) sendData(ws *websocket.Conn, done chan struct{}) {
-	defer func() {
-	}()
 
 	// blocking until error
 	for {
@@ -95,37 +126,27 @@ func (h Handler) sendData(ws *websocket.Conn, done chan struct{}) {
 		select {
 		case m := <-h.out:
 			log.Info("writing message from channel")
-			if err := ws.WriteMessage(websocket.TextMessage, m); err != nil {
+
+			if err := h.send(m); err != nil {
 				h.internalError("something has gone wrong", err)
-				close(h.out)
-				ws.Close()
-				break
+				//close(h.out)
 			}
 
 		}
 	}
 
-	close(done)
+	//close(done)
 
 	ws.SetWriteDeadline(time.Now().Add(writeWait))
 	ws.WriteMessage(websocket.CloseMessage, websocket.FormatCloseMessage(websocket.CloseNormalClosure, ""))
 	time.Sleep(closeGracePeriod)
-	ws.Close()
-}
+	//ws.Close()
 
-func ping(ws *websocket.Conn, done chan struct{}) {
-	ticker := time.NewTicker(pingPeriod)
-	defer ticker.Stop()
-	for {
-		select {
-		case <-ticker.C:
-			if err := ws.WriteControl(websocket.PingMessage, []byte{}, time.Now().Add(writeWait)); err != nil {
-				log.Println("ping:", err)
-			}
-		case <-done:
-			return
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in f", r)
 		}
-	}
+	}()
 }
 
 func (h Handler) internalError(msg string, err error) {
@@ -142,7 +163,10 @@ var upgrader = websocket.Upgrader{
 }
 
 func (h Handler) ServeWs(w http.ResponseWriter, r *http.Request) {
+
 	ws, err := upgrader.Upgrade(w, r, nil)
+
+	log.Info("connecting")
 
 	if err != nil {
 		log.Println("upgrade:", err)
@@ -150,11 +174,10 @@ func (h Handler) ServeWs(w http.ResponseWriter, r *http.Request) {
 	}
 
 	h.ws = ws
-	defer ws.Close()
+	//defer ws.Close()
 
 	stdoutDone := make(chan struct{})
 	go h.sendData(ws, stdoutDone)
-	go ping(ws, stdoutDone)
 
 	// blocking with receive data
 	h.recieveData(ws)
@@ -168,5 +191,9 @@ func (h Handler) ServeWs(w http.ResponseWriter, r *http.Request) {
 		//}
 		<-stdoutDone
 	}
-
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in f", r)
+		}
+	}()
 }

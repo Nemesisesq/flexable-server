@@ -38,6 +38,18 @@
   revision = "9fbc68a78c4dbc7914e1a23f88f126bea4383b97"
 
 [[projects]]
+  name = "github.com/nats-io/go-nats"
+  packages = [".","encoders/builtin","util"]
+  revision = "29f9728a183bf3fa7e809e14edac00b33be72088"
+  version = "v1.3.0"
+
+[[projects]]
+  name = "github.com/nats-io/nuid"
+  packages = ["."]
+  revision = "289cccf02c178dc782430d534e3c1f5b72af807f"
+  version = "v1.0.0"
+
+[[projects]]
   name = "github.com/rs/cors"
   packages = ["."]
   revision = "7af7a1e09ba336d2ea14b1ce73bf693c6837dbf6"
@@ -56,6 +68,12 @@
   version = "v0.3.0"
 
 [[projects]]
+  name = "github.com/vmihailenco/msgpack"
+  packages = [".","codes"]
+  revision = "2fd97bb3583931cdf0d123f255ceb6e58649279e"
+  version = "v3.2.2"
+
+[[projects]]
   branch = "master"
   name = "golang.org/x/crypto"
   packages = ["ssh/terminal"]
@@ -63,13 +81,25 @@
 
 [[projects]]
   branch = "master"
+  name = "golang.org/x/net"
+  packages = ["context"]
+  revision = "a8b9294777976932365dabb6640cf1468d95c70f"
+
+[[projects]]
+  branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix","windows"]
   revision = "a204229cd828a74741ee7b5da9bf4794497f85ed"
 
+[[projects]]
+  name = "google.golang.org/appengine"
+  packages = [".","datastore","internal","internal/app_identity","internal/base","internal/datastore","internal/log","internal/modules","internal/remote_api"]
+  revision = "150dc57a1b433e64154302bdc40b6bb8aefa313a"
+  version = "v1.0.0"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "fb101bb5f3c355a9dcac2f910cee82e0e52c22c914b825eed275b95173344e23"
+  inputs-digest = "e11b4f61994a195198ddbfccde6e44bb4278afe881184f621b341932987fd2a0"
   solver-name = "gps-cdcl"
   solver-version = 1

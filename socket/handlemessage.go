@@ -1,30 +1,39 @@
 package socket
 
 import (
-	"encoding/json"
 	"time"
 
-	"github.com/golang/protobuf/proto"
 	"github.com/manveru/faker"
 	payload2 "github.com/nemesisesq/flexable/protobuf"
+	log "github.com/sirupsen/logrus"
 )
 
-const (
-	OPEN_SHIFTS = iota
-)
-
-func HandleMessage(out chan []byte, in []byte) {
-
-	payload := &payload2.Payload{}
-
-	proto.Unmarshal(in, payload)
-
-	switch payload.Type {
-	case payload2.Payload_OPEN_SHIFTS:
-		out <- openShifts(payload)
-	}
-
-}
+//func HandleMessage(in []byte) []byte {
+//
+//	payload := &payload2.Payload{}
+//
+//	err := proto.Unmarshal(in, payload)
+//
+//	if err != nil {
+//		panic(err)
+//	}
+//	defer func() {
+//		if r := recover(); r != nil {
+//			log.Println("Recovered in f", r)
+//		}
+//	}()
+//
+//	switch payload.Type {
+//	case payload2.Payload_OPEN_SHIFTS:
+//		return OpenShifts(payload)
+//
+//	default:
+//		return nil
+//	}
+//
+//	return nil
+//
+//}
 
 type Location interface{}
 
@@ -75,8 +84,12 @@ type Shift struct {
 	DateTime  time.Time
 }
 
-func openShifts(p *payload2.Payload) (res []byte) {
-	fake, _ := faker.New("en")
+func OpenShifts(p *payload2.Payload) (res interface{}) {
+	fake, err := faker.New("en")
+
+	if err != nil {
+		panic(err)
+	}
 
 	mgr := Manager{
 		User{
@@ -85,7 +98,7 @@ func openShifts(p *payload2.Payload) (res []byte) {
 				fake.LastName(),
 				[]string{fake.JobTitle()},
 			},
-			fake.LastName(),
+			fake.Email(),
 			PhoneNumber{
 				Temp: fake.PhoneNumber(),
 			},
@@ -98,7 +111,6 @@ func openShifts(p *payload2.Payload) (res []byte) {
 	}
 
 	shifts := []Shift{}
-
 	for i := 0; i < 4; i++ {
 		s := Shift{
 			Employee: Employee{
@@ -108,7 +120,7 @@ func openShifts(p *payload2.Payload) (res []byte) {
 						fake.LastName(),
 						[]string{fake.JobTitle()},
 					},
-					fake.LastName(),
+					fake.Email(),
 					PhoneNumber{
 						Temp: fake.PhoneNumber(),
 					},
@@ -124,18 +136,29 @@ func openShifts(p *payload2.Payload) (res []byte) {
 			DateTime: time.Now().Add(time.Hour * 2),
 		}
 		shifts = append(shifts, s)
+
 	}
 
-	f, _ := json.Marshal(shifts)
-	open_shifts := payload2.Payload{
-		payload2.Payload_OPEN_SHIFTS,
-		string(f),
+	//f, err := json.Marshal(shifts)
+	if err != nil {
+		panic(err)
 	}
-
-	res, err := proto.Marshal(&open_shifts)
+	//open_shifts := payload2.Payload{
+	//	payload2.Payload_OPEN_SHIFTS,
+	//	f,
+	//}
+	//
+	//res, err = proto.Marshal(&open_shifts)
 
 	if err != nil {
 		panic(err)
 	}
-	return res
+
+	defer func() {
+		if r := recover(); r != nil {
+			log.Info("Recovered in f", r)
+		}
+	}()
+
+	return shifts
 }

@@ -1,16 +1,19 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"html/template"
 	"net/http"
+	"strconv"
 
+	"github.com/nemesisesq/flexable/protobuf"
 	"github.com/nemesisesq/flexable/socket"
 	log "github.com/sirupsen/logrus"
 
 	"github.com/gorilla/mux"
-	"github.com/gorilla/websocket"
 	_ "github.com/heroku/x/hmetrics/onload"
+	"github.com/nats-io/go-nats"
 	"github.com/rs/cors"
 	"github.com/urfave/negroni"
 )
@@ -28,44 +31,36 @@ func main() {
 
 	n := negroni.Classic()
 
-	h := socket.NewHandler()
-
-	r.HandleFunc("/{stream:stream\\/?}", h.ServeWs)
-	r.HandleFunc("/{echo:echo\\/?}", echo)
 	r.HandleFunc("/", home)
 
 	n.Use(c)
 	n.UseHandler(r)
+
+	NatsListen()
 	log.Print("Listening on port ", *addr)
 	log.Fatal(http.ListenAndServe(*addr, n))
 
 }
+func NatsListen() {
 
-var upgrader = websocket.Upgrader{} // use default options
+	nc, _ := nats.Connect(nats.DefaultURL)
 
-func echo(w http.ResponseWriter, r *http.Request) {
-	log.Info("Hello ")
-	c, err := upgrader.Upgrade(w, r, nil)
-	if err != nil {
-		log.Print("upgrade:", err)
-		return
-	}
-	defer c.Close()
-	for {
-		log.Info("waiting for message")
-		mt, message, err := c.ReadMessage()
-		log.Info(message)
+	nc.QueueSubscribe("flexable.data.service", FormQueue(payload.Payload_OPEN_SHIFTS), func(m *nats.Msg) {
+		log.Info("got request for open shifts")
+		p := &payload.Payload{}
+		shifts := socket.OpenShifts(p)
+		log.Info("send response for open shifts")
+
+		out, err := json.Marshal(&shifts)
 		if err != nil {
-			log.Println("read:", err)
-			break
+			panic(err)
 		}
-		log.Printf("recv: %s", message)
-		err = c.WriteMessage(mt, message)
-		if err != nil {
-			log.Println("write:", err)
-			break
-		}
-	}
+		nc.Publish(m.Reply, out)
+	})
+
+}
+func FormQueue(pt payload.Payload_Type) string {
+	return strconv.Itoa(int(pt))
 }
 
 func home(w http.ResponseWriter, r *http.Request) {

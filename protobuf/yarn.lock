@@ -2,6 +2,12 @@
 # yarn lockfile v1
 
 
+flexable-protobuf@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/flexable-protobuf/-/flexable-protobuf-1.0.4.tgz#3f77be444917bd0c53cc624e28c61fd1b7fc2719"
+  dependencies:
+    google-protobuf "^3.5.0"
+
 google-protobuf@^3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.5.0.tgz#b8cc63c74d83457bd8a9a904503c8efb26bca339"
