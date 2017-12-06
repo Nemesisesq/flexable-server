@@ -1,5 +1,5 @@
-var proto = require("./payload_pb")
+var proto = require("./payload_pb");
 
 module.exports ={
-    payload : proto
+    proto : proto
 }

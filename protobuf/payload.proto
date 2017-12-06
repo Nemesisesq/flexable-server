@@ -4,6 +4,10 @@ message Payload {
     enum Type {
 
         OPEN_SHIFTS = 0;
+        SHIFT_DETAILS = 1;
+        ACCEPT_SHIFT_SUBSTITUE = 2;
+        DENY_SHIFT_SUBSTITUTE = 3;
+        FIND_SHIFT_SUBSTITUTE = 4;
     };
 
     Type type = 1;

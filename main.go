@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"flag"
+	"fmt"
 	"html/template"
 	"net/http"
 	"strconv"
@@ -45,7 +46,7 @@ func NatsListen() {
 
 	nc, _ := nats.Connect(nats.DefaultURL)
 
-	nc.QueueSubscribe("flexable.data.service", FormQueue(payload.Payload_OPEN_SHIFTS), func(m *nats.Msg) {
+	nc.QueueSubscribe(fmt.Sprintf("flexable.data.service.%v", payload.Payload_OPEN_SHIFTS), FormQueue(payload.Payload_OPEN_SHIFTS), func(m *nats.Msg) {
 		log.Info("got request for open shifts")
 		p := &payload.Payload{}
 		shifts := socket.OpenShifts(p)
@@ -56,6 +57,17 @@ func NatsListen() {
 			panic(err)
 		}
 		nc.Publish(m.Reply, out)
+	})
+
+	nc.QueueSubscribe(fmt.Sprintf("flexable.comunication.service.%v", payload.Payload_FIND_SHIFT_SUBSTITUTE), FormQueue(payload.Payload_FIND_SHIFT_SUBSTITUTE), func(m *nats.Msg) {
+
+		log.Info("Got a request to find shift substitute")
+
+		accountSid := "AC8babac161b27ec214bed203884635819"
+		authToken := "5c575b32cf3208e7a86e849fd0cd697b"
+		//callSid := "PNbf2d127871ca9856d3d06e700edbf3a1"
+		urlStr := fmt.Sprintf("https://api.twilio.com/2010-04-01/Accounts/%v/Calls.json", accountSid)
+
 	})
 
 }

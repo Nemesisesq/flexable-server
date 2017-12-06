@@ -156,7 +156,11 @@ proto.Payload.serializeBinaryToWriter = function(message, writer) {
  * @enum {number}
  */
 proto.Payload.Type = {
-  OPEN_SHIFTS: 0
+  OPEN_SHIFTS: 0,
+  SHIFT_DETAILS: 1,
+  ACCEPT_SHIFT_SUBSTITUE: 2,
+  DENY_SHIFT_SUBSTITUTE: 3,
+  FIND_SHIFT_SUBSTITUTE: 4
 };
 
 /**
