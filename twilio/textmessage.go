@@ -2,16 +2,23 @@ package twilio
 
 import (
 	"bytes"
-	"fmt"
+	"encoding/json"
 	"html/template"
 	"net/http"
 	"net/url"
-	"os"
 	"strings"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
-func FindShiftReplacement(data map[string]interface{}) (*http.Response, error) {
+type SMSPayload struct {
+	To   string
+	From string
+	Body string
+}
+
+func SendSMSMessage(payload SMSPayload) (*http.Response, error) {
 	accountSid := "AC8babac161b27ec214bed203884635819"
 	authToken := "5c575b32cf3208e7a86e849fd0cd697b"
 	//callSid := "PNbf2d127871ca9856d3d06e700edbf3a1"
@@ -33,12 +40,9 @@ func FindShiftReplacement(data map[string]interface{}) (*http.Response, error) {
 	urlStr := buf.String()
 
 	v := url.Values{}
-	v.Set("To")
-	////logrus.Info(toNum)
-	v.Set("From", "+12164506822")
-	call_in_number := fmt.Sprintf("%v/twiml", os.Getenv("SELF_URL"))
-	////logrus.Info(call_in_number)
-	v.Set("Url", call_in_number)
+	v.Set("To", payload.To)
+	v.Set("From", payload.From)
+	v.Set("Body", payload.Body)
 	rb := *strings.NewReader(v.Encode())
 	// Create Client
 	client := &http.Client{
@@ -53,5 +57,16 @@ func FindShiftReplacement(data map[string]interface{}) (*http.Response, error) {
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	// make request
 	resp, err := client.Do(req)
+
+	if resp.StatusCode >= 200 && resp.StatusCode < 300 {
+		var data map[string]interface{}
+		decoder := json.NewDecoder(resp.Body)
+		err := decoder.Decode(&data)
+		if err == nil {
+			log.Info(data["sid"])
+		}
+	} else {
+		log.Error(resp.Status)
+	}
 	return resp, err
 }

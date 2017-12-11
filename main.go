@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/nemesisesq/flexable/employees"
 	"github.com/nemesisesq/flexable/protobuf"
 	"github.com/nemesisesq/flexable/socket"
 	log "github.com/sirupsen/logrus"
@@ -43,10 +44,16 @@ func main() {
 
 }
 func NatsListen() {
+	log.Info("star" +
+		"ting nats listener")
+	nc, err := nats.Connect(nats.DefaultURL)
 
-	nc, _ := nats.Connect(nats.DefaultURL)
+	if err != nil {
+		panic(err)
+	}
 
-	nc.QueueSubscribe(fmt.Sprintf("flexable.data.service.%v", payload.Payload_OPEN_SHIFTS), FormQueue(payload.Payload_OPEN_SHIFTS), func(m *nats.Msg) {
+	chan0 := fmt.Sprintf("flexable.data.service.%v", int(payload.Payload_OPEN_SHIFTS))
+	nc.QueueSubscribe(chan0, FormQueue(payload.Payload_OPEN_SHIFTS), func(m *nats.Msg) {
 		log.Info("got request for open shifts")
 		p := &payload.Payload{}
 		shifts := socket.OpenShifts(p)
@@ -63,10 +70,23 @@ func NatsListen() {
 
 		log.Info("Got a request to find shift substitute")
 
-		accountSid := "AC8babac161b27ec214bed203884635819"
-		authToken := "5c575b32cf3208e7a86e849fd0cd697b"
-		//callSid := "PNbf2d127871ca9856d3d06e700edbf3a1"
-		urlStr := fmt.Sprintf("https://api.twilio.com/2010-04-01/Accounts/%v/Calls.json", accountSid)
+		// Get Available Employees
+
+		shiftDetails := map[string]interface{}{}
+
+		err := json.Unmarshal(m.Data, shiftDetails)
+
+		if err != nil {
+			panic(err)
+		}
+
+		emps := employees.Employees{}
+
+		emps.GetAvailable()
+
+		for _, v := range emps {
+			v.Contact(shiftDetails)
+		}
 
 	})
 

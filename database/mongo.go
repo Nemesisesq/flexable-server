@@ -1,12 +1,8 @@
 package database
 
-import "gopkg.in/mgo.v2"
+import "github.com/nemesisesq/flexable/employees"
 
-func GetNumbers(busId string) []string {
-	url := "mongo://localhost:27017"
-	session, err := mgo.Dial(url)
+func GetAvailableEmployees(busId string) ([]employees.Employee, error) {
 
-	result := map[string]interface{}
-	c := session.DB("flexable").C("replacement_candidates")
-	err := c.Find(bson.M{}).All(&result)
+	return result, err
 }
