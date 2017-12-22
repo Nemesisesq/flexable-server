@@ -8,6 +8,8 @@ message Payload {
         ACCEPT_SHIFT_SUBSTITUE = 2;
         DENY_SHIFT_SUBSTITUTE = 3;
         FIND_SHIFT_SUBSTITUTE = 4;
+        GET_AVAILABLE_EMPLOYEES = 5;
+        GET_JOBS = 6;
     };
 
     Type type = 1;
