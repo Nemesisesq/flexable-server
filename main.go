@@ -66,7 +66,7 @@ func NatsListen() {
 		nc.Publish(m.Reply, out)
 	})
 
-	nc.QueueSubscribe(fmt.Sprintf("flexable.comunication.service.%v", payload.Payload_FIND_SHIFT_SUBSTITUTE), FormQueue(payload.Payload_FIND_SHIFT_SUBSTITUTE), func(m *nats.Msg) {
+	nc.QueueSubscribe(fmt.Sprintf("flexable.communication.service.%v", int(payload.Payload_FIND_SHIFT_SUBSTITUTE)), FormQueue(payload.Payload_FIND_SHIFT_SUBSTITUTE), func(m *nats.Msg) {
 
 		log.Info("Got a request to find shift substitute")
 
@@ -74,7 +74,7 @@ func NatsListen() {
 
 		shiftDetails := map[string]interface{}{}
 
-		err := json.Unmarshal(m.Data, shiftDetails)
+		err := json.Unmarshal(m.Data, &shiftDetails)
 
 		if err != nil {
 			panic(err)
@@ -91,6 +91,7 @@ func NatsListen() {
 	})
 
 }
+
 func FormQueue(pt payload.Payload_Type) string {
 	return strconv.Itoa(int(pt))
 }
