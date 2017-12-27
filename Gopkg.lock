@@ -2,12 +2,6 @@
 
 
 [[projects]]
-  name = "github.com/Sirupsen/logrus"
-  packages = ["."]
-  revision = "d682213848ed68c0a260ca37d6dd5ace8423f5ba"
-  version = "v1.0.4"
-
-[[projects]]
   name = "github.com/blang/semver"
   packages = ["."]
   revision = "2ee87856327ba09384cabd113bc6b5d174e9ec0f"
@@ -16,26 +10,13 @@
 [[projects]]
   name = "github.com/desertbit/glue"
   packages = [".","backend","backend/closer","backend/global","backend/sockets/ajaxsocket","backend/sockets/websocket","log","utils"]
-  revision = "a9786adb7e2ca6cdecbcf2bbfadd8a8bdbd9c5a7"
-  version = "1.9.1"
+  revision = "09c14070c2b18be76289ee6e7745772d39377776"
 
 [[projects]]
   branch = "master"
   name = "github.com/golang/protobuf"
   packages = ["proto"]
   revision = "1e59b77b52bf8e4b449a57e6f79f21226d571845"
-
-[[projects]]
-  name = "github.com/gorilla/context"
-  packages = ["."]
-  revision = "1ea25387ff6f684839d82767c1733ff4d4d15d0a"
-  version = "v1.1"
-
-[[projects]]
-  name = "github.com/gorilla/mux"
-  packages = ["."]
-  revision = "7f08801859139f86dfafd1c296e2cba9a80d292e"
-  version = "v1.6.0"
 
 [[projects]]
   name = "github.com/gorilla/websocket"
@@ -56,34 +37,10 @@
   revision = "9fbc68a78c4dbc7914e1a23f88f126bea4383b97"
 
 [[projects]]
-  name = "github.com/nats-io/go-nats"
-  packages = [".","encoders/builtin","util"]
-  revision = "29f9728a183bf3fa7e809e14edac00b33be72088"
-  version = "v1.3.0"
-
-[[projects]]
-  name = "github.com/nats-io/nuid"
-  packages = ["."]
-  revision = "289cccf02c178dc782430d534e3c1f5b72af807f"
-  version = "v1.0.0"
-
-[[projects]]
-  name = "github.com/rs/cors"
-  packages = ["."]
-  revision = "7af7a1e09ba336d2ea14b1ce73bf693c6837dbf6"
-  version = "v1.2"
-
-[[projects]]
   name = "github.com/sirupsen/logrus"
   packages = ["."]
   revision = "f006c2ac4710855cf0f916dd6b77acf6b048dc6e"
   version = "v1.0.3"
-
-[[projects]]
-  name = "github.com/urfave/negroni"
-  packages = ["."]
-  revision = "5dbbc83f748fc3ad38585842b0aedab546d0ea1e"
-  version = "v0.3.0"
 
 [[projects]]
   branch = "master"
@@ -106,6 +63,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "dbe9227cca0d9521564330c6ce6cef50c40702daec9a7ecc19cb8088402094c0"
+  inputs-digest = "211112132c522b605854a836ed842b26ea4db5a6f1d8aa7c1df06f1c3ca69563"
   solver-name = "gps-cdcl"
   solver-version = 1

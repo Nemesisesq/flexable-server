@@ -1,23 +1,12 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
-	"fmt"
-	"html/template"
-	"net/http"
-	"strconv"
 
-	"github.com/nemesisesq/flexable/employees"
-	"github.com/nemesisesq/flexable/protobuf"
-	"github.com/nemesisesq/flexable/socket"
+	"github.com/desertbit/glue"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/gorilla/mux"
 	_ "github.com/heroku/x/hmetrics/onload"
-	"github.com/nats-io/go-nats"
-	"github.com/rs/cors"
-	"github.com/urfave/negroni"
 )
 
 var addr = flag.String("addr", "localhost:8080", "http service address")
@@ -25,150 +14,55 @@ var addr = flag.String("addr", "localhost:8080", "http service address")
 func main() {
 	log.SetFormatter(&log.JSONFormatter{})
 
-	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"*"},
+	// Create a new glue server.
+	server := glue.NewServer(glue.Options{
+		HTTPListenAddress: ":8080",
 	})
 
-	r := mux.NewRouter()
+	// Release the glue server on defer.
+	// This will block new incoming connections
+	// and close all current active sockets.
+	defer server.Release()
 
-	n := negroni.Classic()
+	// Set the glue event function to handle new incoming socket connections.
+	server.OnNewSocket(onNewSocket)
 
-	r.HandleFunc("/", home)
+	//socket.OpenShifts()
 
-	n.Use(c)
-	n.UseHandler(r)
+	// Run the glue server.
 
-	NatsListen()
-	log.Print("Listening on port ", *addr)
-	log.Fatal(http.ListenAndServe(*addr, n))
-
-}
-func NatsListen() {
-	log.Info("star" +
-		"ting nats listener")
-	nc, err := nats.Connect(nats.DefaultURL)
-
+	log.Info("Running Glue server")
+	err := server.Run()
 	if err != nil {
-		panic(err)
+		log.Fatalf("Glue Run: %v", err)
 	}
 
-	chan0 := fmt.Sprintf("flexable.data.service.%v", int(payload.Payload_OPEN_SHIFTS))
-	nc.QueueSubscribe(chan0, FormQueue(payload.Payload_OPEN_SHIFTS), func(m *nats.Msg) {
-		log.Info("got request for open shifts")
-		p := &payload.Payload{}
-		shifts := socket.OpenShifts(p)
-		log.Info("send response for open shifts")
+}
+func OpenShiftsChan(s *glue.Socket) {
+	c := s.Channel("golang")
+	// Set the channel on read event function.
+	c.OnRead(func(data string) {
+		// ...
+		log.Info("new message from golang channel")
+	})
+	// Write to the channel.
+	c.Write("Hello Gophers!")
+}
 
-		out, err := json.Marshal(&shifts)
-		if err != nil {
-			panic(err)
-		}
-		nc.Publish(m.Reply, out)
+func onNewSocket(s *glue.Socket) {
+	// Set a function which is triggered as soon as the socket is closed.
+	s.OnClose(func() {
+		log.Printf("socket closed with remote address: %s", s.RemoteAddr())
 	})
 
-	nc.QueueSubscribe(fmt.Sprintf("flexable.communication.service.%v", int(payload.Payload_FIND_SHIFT_SUBSTITUTE)), FormQueue(payload.Payload_FIND_SHIFT_SUBSTITUTE), func(m *nats.Msg) {
+	OpenShiftsChan(s)
 
-		log.Info("Got a request to find shift substitute")
-
-		// Get Available Employees
-
-		shiftDetails := map[string]interface{}{}
-
-		err := json.Unmarshal(m.Data, &shiftDetails)
-
-		if err != nil {
-			panic(err)
-		}
-
-		emps := employees.Employees{}
-
-		emps.GetAvailable()
-
-		for _, v := range emps {
-			v.Contact(shiftDetails)
-		}
-
+	// Set a function which is triggered during each received message.
+	s.OnRead(func(data string) {
+		// Echo the received data back to the client.
+		s.Write(data)
 	})
 
+	// Send a welcome string to the client.
+	s.Write("Hello Client")
 }
-
-func FormQueue(pt payload.Payload_Type) string {
-	return strconv.Itoa(int(pt))
-}
-
-func home(w http.ResponseWriter, r *http.Request) {
-	homeTemplate.Execute(w, "ws://"+r.Host+"/stream")
-}
-
-var homeTemplate = template.Must(template.New("").Parse(`
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<script>
-window.addEventListener("load", function(evt) {
-    var output = document.getElementById("output");
-    var input = document.getElementById("input");
-    var ws;
-    var print = function(message) {
-        var d = document.createElement("div");
-        d.innerHTML = message;
-        output.appendChild(d);
-    };
-    document.getElementById("open").onclick = function(evt) {
-        if (ws) {
-            return false;
-        }
-        ws = new WebSocket("{{.}}");
-        ws.onopen = function(evt) {
-            print("OPEN");
-        }
-        ws.onclose = function(evt) {
-            print("CLOSE");
-            ws = null;
-        }
-        ws.onmessage = function(evt) {
-            print("RESPONSE: " + evt.data);
-        }
-        ws.onerror = function(evt) {
-            print("ERROR: " + evt.data);
-        }
-        return false;
-    };
-    document.getElementById("send").onclick = function(evt) {
-        if (!ws) {
-            return false;
-        }
-        print("SEND: " + input.value);
-        ws.send(input.value);
-        return false;
-    };
-    document.getElementById("close").onclick = function(evt) {
-        if (!ws) {
-            return false;
-        }
-        ws.close();
-        return false;
-    };
-});
-</script>
-</head>
-<body>
-<table>
-<tr><td valign="top" width="50%">
-<p>Click "Open" to create a connection to the server,
-"Send" to send a message to the server and "Close" to close the connection.
-You can change the message and send multiple times.
-<p>
-<form>
-<button id="open">Open</button>
-<button id="close">Close</button>
-<p><input id="input" type="text" value="Hello world!">
-<button id="send">Send</button>
-</form>
-</td><td valign="top" width="50%">
-<div id="output"></div>
-</td></tr></table>
-</body>
-</html>
-`))
