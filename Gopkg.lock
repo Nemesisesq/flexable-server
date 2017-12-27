@@ -2,6 +2,24 @@
 
 
 [[projects]]
+  name = "github.com/Sirupsen/logrus"
+  packages = ["."]
+  revision = "d682213848ed68c0a260ca37d6dd5ace8423f5ba"
+  version = "v1.0.4"
+
+[[projects]]
+  name = "github.com/blang/semver"
+  packages = ["."]
+  revision = "2ee87856327ba09384cabd113bc6b5d174e9ec0f"
+  version = "v3.5.1"
+
+[[projects]]
+  name = "github.com/desertbit/glue"
+  packages = [".","backend","backend/closer","backend/global","backend/sockets/ajaxsocket","backend/sockets/websocket","log","utils"]
+  revision = "a9786adb7e2ca6cdecbcf2bbfadd8a8bdbd9c5a7"
+  version = "1.9.1"
+
+[[projects]]
   branch = "master"
   name = "github.com/golang/protobuf"
   packages = ["proto"]
@@ -88,6 +106,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "5e17be383c94174a8ae52c11566cd64e1306140153c07b08527bfb84947913e1"
+  inputs-digest = "dbe9227cca0d9521564330c6ce6cef50c40702daec9a7ecc19cb8088402094c0"
   solver-name = "gps-cdcl"
   solver-version = 1
