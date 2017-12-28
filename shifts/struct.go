@@ -1,16 +1,18 @@
 package shifts
 
+import "gopkg.in/mgo.v2/bson"
+
 type Shift struct {
-	ID           string `json:"_id"`
-	Name         string `json:"name"`
+	ID           bson.ObjectId `json:"_id"`
+	Name         string        `json:"name"`
 	AbsentWorker struct {
-		Name string `json:"name"`
-		ID   string `json:"_id"`
+		Name string        `json:"name"`
+		ID   bson.ObjectId `json:"_id"`
 	} `json:"absentWorker"`
 	Job struct {
-		Title        string  `json:"title"`
-		Compensation float64 `json:"compensation"`
-		ID           string  `json:"_id"`
+		Title        string        `json:"title"`
+		Compensation float64       `json:"compensation"`
+		ID           bson.ObjectId `json:"_id"`
 	} `json:"job"`
 	Location   string        `json:"location"`
 	Date       string        `json:"date"`

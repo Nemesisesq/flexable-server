@@ -7,9 +7,12 @@ import (
 	"github.com/odknt/go-socket.io"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
+
+	port := os.Getenv("PORT")
 	server, err := socketio.NewServer(nil)
 	if err != nil {
 		log.Fatal(err)
@@ -62,5 +65,5 @@ func main() {
 	http.Handle("/socket.io/", server)
 	http.Handle("/", http.FileServer(http.Dir("./asset")))
 	log.Println("Serving at localhost:8080...")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
