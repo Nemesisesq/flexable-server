@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"net/http"
-
+	_ "github.com/heroku/x/hmetrics/onload"
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/odknt/go-socket.io"
+	"log"
+	"net/http"
 )
 
 func main() {
