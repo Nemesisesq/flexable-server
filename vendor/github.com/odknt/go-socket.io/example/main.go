@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/odknt/go-socket.io"
+	"github.com/googollee/go-socket.io"
 )
 
 func main() {
@@ -32,12 +32,7 @@ func main() {
 		s.Close()
 		return last
 	})
-
-	server.OnEvent("/", "socket0", func(s socketio.Conn) string {
-		fmt.Print("hello 0")
-		return "hello"
-	})
-	server.OnError("/", func(s socketio.Conn, e error) {
+	server.OnError("/", func(e error) {
 		fmt.Println("meet error:", e)
 	})
 	server.OnDisconnect("/", func(s socketio.Conn, msg string) {
@@ -48,6 +43,6 @@ func main() {
 
 	http.Handle("/socket.io/", server)
 	http.Handle("/", http.FileServer(http.Dir("./asset")))
-	log.Println("Serving at localhost:8080...")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Println("Serving at localhost:8000...")
+	log.Fatal(http.ListenAndServe(":8000", nil))
 }

@@ -2,21 +2,28 @@
 
 
 [[projects]]
-  name = "github.com/blang/semver"
-  packages = ["."]
-  revision = "2ee87856327ba09384cabd113bc6b5d174e9ec0f"
-  version = "v3.5.1"
-
-[[projects]]
-  name = "github.com/desertbit/glue"
-  packages = [".","backend","backend/closer","backend/global","backend/sockets/ajaxsocket","backend/sockets/websocket","log","utils"]
-  revision = "09c14070c2b18be76289ee6e7745772d39377776"
-
-[[projects]]
   branch = "master"
   name = "github.com/golang/protobuf"
   packages = ["proto"]
   revision = "1e59b77b52bf8e4b449a57e6f79f21226d571845"
+
+[[projects]]
+  branch = "v1.4"
+  name = "github.com/googollee/go-socket.io"
+  packages = ["parser"]
+  revision = "ab4816a1fbc58a94fb9e7a637d548bb4dbee6491"
+
+[[projects]]
+  name = "github.com/gorilla/context"
+  packages = ["."]
+  revision = "1ea25387ff6f684839d82767c1733ff4d4d15d0a"
+  version = "v1.1"
+
+[[projects]]
+  name = "github.com/gorilla/mux"
+  packages = ["."]
+  revision = "7f08801859139f86dfafd1c296e2cba9a80d292e"
+  version = "v1.6.0"
 
 [[projects]]
   name = "github.com/gorilla/websocket"
@@ -37,10 +44,28 @@
   revision = "9fbc68a78c4dbc7914e1a23f88f126bea4383b97"
 
 [[projects]]
+  branch = "v1.4"
+  name = "github.com/odknt/go-socket.io"
+  packages = ["."]
+  revision = "3a143c21204e244c4b66c945d12a6d84a3c53501"
+
+[[projects]]
+  name = "github.com/rs/cors"
+  packages = ["."]
+  revision = "7af7a1e09ba336d2ea14b1ce73bf693c6837dbf6"
+  version = "v1.2"
+
+[[projects]]
   name = "github.com/sirupsen/logrus"
   packages = ["."]
   revision = "f006c2ac4710855cf0f916dd6b77acf6b048dc6e"
   version = "v1.0.3"
+
+[[projects]]
+  name = "github.com/urfave/negroni"
+  packages = ["."]
+  revision = "5dbbc83f748fc3ad38585842b0aedab546d0ea1e"
+  version = "v0.3.0"
 
 [[projects]]
   branch = "master"
@@ -55,6 +80,12 @@
   revision = "a204229cd828a74741ee7b5da9bf4794497f85ed"
 
 [[projects]]
+  branch = "v1.4"
+  name = "gopkg.in/googollee/go-engine.io.v1"
+  packages = [".","base","packet","payload","transport","transport/polling","transport/websocket"]
+  revision = "eae2c0880dada5047d480f859eba0513e113e67f"
+
+[[projects]]
   branch = "v2"
   name = "gopkg.in/mgo.v2"
   packages = [".","bson","internal/json","internal/sasl","internal/scram"]
@@ -63,6 +94,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "211112132c522b605854a836ed842b26ea4db5a6f1d8aa7c1df06f1c3ca69563"
+  inputs-digest = "96411d4ef59e1627cd1b4e45837931d3c1b6d225cdde012125f2f42f0ed32a8a"
   solver-name = "gps-cdcl"
   solver-version = 1
