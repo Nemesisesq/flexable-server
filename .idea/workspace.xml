@@ -2,70 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96aabcfd-8c1d-44c0-9600-443c6db20f3c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/shifts/dao.go" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/shifts/struct.go" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Gopkg.lock" afterPath="$PROJECT_DIR$/Gopkg.lock" />
+      <change beforePath="$PROJECT_DIR$/company/company.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/database/mongo.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/employees/employee.go" afterPath="" />
       <change beforePath="$PROJECT_DIR$/main.go" afterPath="$PROJECT_DIR$/main.go" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/blang/semver/.gx/lastpubver" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/blang/semver/.travis.yml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/blang/semver/LICENSE" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/blang/semver/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/blang/semver/examples/main.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/blang/semver/json.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/blang/semver/json_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/blang/semver/package.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/blang/semver/range.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/blang/semver/range_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/blang/semver/semver.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/blang/semver/semver_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/blang/semver/sort.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/blang/semver/sort_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/blang/semver/sql.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/blang/semver/sql_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/.gitignore" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/AUTHORS" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/CHANGELOG.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/LICENSE" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/TODO.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/backend/closer/closer.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/backend/global/global.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/backend/server.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/backend/socket.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/backend/sockets/ajaxsocket/server.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/backend/sockets/ajaxsocket/socket.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/backend/sockets/websocket/server.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/backend/sockets/websocket/socket.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/bower.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/channel.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/client/dist/glue.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/client/gulpfile.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/client/package.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/client/src/ajaxsocket.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/client/src/channel.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/client/src/emitter.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/client/src/glue.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/client/src/utils.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/client/src/websocket.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/handler.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/log/log.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/options.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/sample/Channels/.gitignore" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/sample/Channels/main.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/sample/Channels/public/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/sample/OnlyWrite/.gitignore" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/sample/OnlyWrite/main.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/sample/OnlyWrite/public/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/sample/ReadEventWrite/.gitignore" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/sample/ReadEventWrite/main.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/sample/ReadEventWrite/public/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/sample/ReadWrite/.gitignore" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/sample/ReadWrite/main.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/sample/ReadWrite/public/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/server.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/socket.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/utils/utils.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/desertbit/glue/utils/utils_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/manager/manager.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/shifts/shifts.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/shifts/shiftsite.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/socket/handlemessage.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/socket/ws.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/tmp/runner-build" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/user/user.go" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -91,21 +41,11 @@
       <file leaf-file-name="main.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-36">
-              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <state relative-caret-position="300">
+              <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
               <folding>
-                <element signature="e#14#84#0" expanded="true" />
+                <element signature="e#14#125#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="server.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/github.com/odknt/go-socket.io/server.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="50" column="17" lean-forward="false" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -130,32 +70,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="handlemessage.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/socket/handlemessage.go">
+      <file leaf-file-name="struct.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shifts/struct.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="14" lean-forward="false" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+            <state relative-caret-position="40">
+              <caret line="2" column="11" lean-forward="false" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ws.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/socket/ws.go">
+      <file leaf-file-name="dao.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shifts/dao.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shifts.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shifts/shifts.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="138">
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding>
+                <element signature="e#16#79#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -201,7 +133,6 @@
         <option value="$PROJECT_DIR$/protobuf/index.js" />
         <option value="$PROJECT_DIR$/twillio/textmessage.go" />
         <option value="$PROJECT_DIR$/manager/manager.go" />
-        <option value="$PROJECT_DIR$/shifts/shifts.go" />
         <option value="$PROJECT_DIR$/shifts/shiftsite.go" />
         <option value="$PROJECT_DIR$/company/company.go" />
         <option value="$PROJECT_DIR$/database/mongo.go" />
@@ -213,6 +144,8 @@
         <option value="$PROJECT_DIR$/protobuf/package.json" />
         <option value="$PROJECT_DIR$/socket/handlemessage.go" />
         <option value="$PROJECT_DIR$/Gopkg.lock" />
+        <option value="$PROJECT_DIR$/shifts/shifts.go" />
+        <option value="$PROJECT_DIR$/shifts/dao.go" />
         <option value="$PROJECT_DIR$/main.go" />
       </list>
     </option>
@@ -271,6 +204,16 @@
               <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
               <item name="flexable" type="462c0819:PsiDirectoryNode" />
               <item name="shifts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flexable" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flexable" type="462c0819:PsiDirectoryNode" />
+              <item name="twilio" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
@@ -387,19 +330,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="878" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3276316" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3276316" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Graph Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23026316" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2274678" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2274678" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Graph Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -493,14 +437,14 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/main.go</url>
-          <line>30</line>
+          <line>31</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="42" />
+      <option name="time" value="45" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -546,20 +490,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/protobuf/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="1" lean-forward="false" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protobuf/payload.proto">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/mongo.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -572,7 +502,7 @@
         <state relative-caret-position="680">
           <caret line="50" column="28" lean-forward="false" selection-start-line="50" selection-start-column="28" selection-end-line="50" selection-end-column="28" />
           <folding>
-            <element signature="e#14#84#0" expanded="true" />
+            <element signature="e#14#125#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -610,7 +540,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#14#84#0" expanded="true" />
+            <element signature="e#14#125#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -730,13 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shifts/shiftsite.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/company/company.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -803,16 +726,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/user/user.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-          <folding>
-            <element signature="e#14#50#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/twilio/textmessage.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-622">
@@ -820,14 +733,6 @@
           <folding>
             <element signature="e#16#146#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shifts/shifts.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -908,12 +813,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/user/user.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shifts/shiftsite.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/odknt/go-socket.io/conn.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2061">
+          <caret line="31" column="4" lean-forward="false" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shifts/struct.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="11" lean-forward="false" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shifts/dao.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="e#16#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-36">
-          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state relative-caret-position="300">
+          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
           <folding>
-            <element signature="e#14#84#0" expanded="true" />
+            <element signature="e#14#125#0" expanded="true" />
           </folding>
         </state>
       </provider>
