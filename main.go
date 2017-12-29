@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
-	_ "github.com/heroku/x/hmetrics/onload"
-	"github.com/nemesisesq/flexable/shifts"
-	"github.com/odknt/go-socket.io"
 	"log"
 	"net/http"
 	"os"
+
+	_ "github.com/heroku/x/hmetrics/onload"
+	"github.com/nemesisesq/flexable/flexable"
+	"github.com/odknt/go-socket.io"
 )
 
 func main() {
@@ -17,6 +18,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	server.OnConnect("/", func(s socketio.Conn) error {
 		s.SetContext("")
 		fmt.Println("connected:", s.ID())
@@ -37,28 +39,30 @@ func main() {
 		return last
 	})
 
-	server.OnEvent("/", "socket0", func(s socketio.Conn) string {
-		fmt.Print("hello 0")
-
-		shift_list := shifts.GetAllShifts()
-
-		//payload, err := json.Marshal(shift_list)
-		//
-		//if err != nil {
-		//	panic(err)
-		//}
-
-		s.Emit("socket0", shift_list, func(so socketio.Conn, data string) {
-			log.Println("Client ACK with data: ", data)
-		})
-		return "hello"
-	})
+	//server.OnEvent("/", "socket0", func(s socketio.Conn) string {
+	//	fmt.Print("hello 0")
+	//
+	//	shift_list := shifts.GetAllShifts()
+	//
+	//	payload, err := json.Marshal(shift_list)
+	//
+	//	if err != nil {
+	//		panic(err)
+	//	}
+	//
+	//s.Emit("socket0", shift_list, func(so socketio.Conn, data string) {
+	//	log.Println("Client ACK with data: ", data)
+	//})
+	//return "hello"
+	//})
 	server.OnError("/", func(s socketio.Conn, e error) {
 		fmt.Println("meet error:", e)
 	})
 	server.OnDisconnect("/", func(s socketio.Conn, msg string) {
 		fmt.Println("closed", msg)
 	})
+
+	flexable.SetListeners(server)
 	go server.Serve()
 	defer server.Close()
 
