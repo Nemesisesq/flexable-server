@@ -25,3 +25,22 @@ func GetAllShifts() []Shift {
 	return result
 
 }
+
+func (shift Shift) Save() {
+
+	session, err := mgo.Dial("localhost:27017")
+
+	if err != nil {
+		panic(err)
+	}
+	defer session.Close()
+
+	c := session.DB("flexable").C("shifts")
+
+	if shift.ID.String() != "" {
+		c.UpsertId(shift.ID, &shift)
+	} else {
+		c.Insert(&shift)
+	}
+
+}

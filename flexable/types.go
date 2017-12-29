@@ -2,7 +2,6 @@ package flexable
 
 import (
 	"github.com/nemesisesq/flexable/protobuf"
-	"github.com/nemesisesq/flexable/shifts"
 	"github.com/odknt/go-socket.io"
 )
 
@@ -17,18 +16,18 @@ const (
 	EMPLOYEE_LIST           = payload.Payload_EMPLOYEE_LIST
 )
 
-type SockHandler func(so socketio.Conn, data interface{}) interface{}
+type SockHandler func(socketio.Conn, interface{}) interface{}
 type MessageType struct {
 	T payload.Payload_Type
 	H SockHandler
 }
 
 var messageTypes = []MessageType{
-	MessageType{OPEN_SHIFTS, shifts.OpenShiftHandler},
+	MessageType{OPEN_SHIFTS, OpenShiftHandler},
 	MessageType{SHIFT_DETAILS, nil},
 	MessageType{ACCEPT_SHIFT_SUBSTITUE, nil},
 	MessageType{DENY_SHIFT_SUBSTITUTE, nil},
-	MessageType{FIND_SHIFT_SUBSTITUTE, nil},
+	MessageType{FIND_SHIFT_SUBSTITUTE, FindShiftReplacementHandler},
 	MessageType{GET_AVAILABLE_EMPLOYEES, nil},
 	MessageType{GET_JOBS, nil},
 	MessageType{EMPLOYEE_LIST, nil},

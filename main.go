@@ -39,22 +39,6 @@ func main() {
 		return last
 	})
 
-	//server.OnEvent("/", "socket0", func(s socketio.Conn) string {
-	//	fmt.Print("hello 0")
-	//
-	//	shift_list := shifts.GetAllShifts()
-	//
-	//	payload, err := json.Marshal(shift_list)
-	//
-	//	if err != nil {
-	//		panic(err)
-	//	}
-	//
-	//s.Emit("socket0", shift_list, func(so socketio.Conn, data string) {
-	//	log.Println("Client ACK with data: ", data)
-	//})
-	//return "hello"
-	//})
 	server.OnError("/", func(s socketio.Conn, e error) {
 		fmt.Println("meet error:", e)
 	})

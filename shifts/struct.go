@@ -1,6 +1,10 @@
 package shifts
 
-import "gopkg.in/mgo.v2/bson"
+import (
+	"github.com/nemesisesq/flexable/company"
+	"github.com/nemesisesq/flexable/plivio/application"
+	"gopkg.in/mgo.v2/bson"
+)
 
 type Job struct {
 	Title        string        `json:"title" bson:"title"`
@@ -13,14 +17,18 @@ type Worker struct {
 	ID   bson.ObjectId `json:"_id" bson:"_id"`
 }
 type Shift struct {
-	ID           bson.ObjectId `json:"_id" bson:"_id"`
-	Name         string        `json:"name"`
-	AbsentWorker Worker        `json:"absentWorker" bson:"absentWorker"`
-	Job          Job           `json:"job"`
-	Location     string        `json:"location"`
-	Date         string        `json:"date"`
-	StartTime    string        `json:"startTime"`
-	EndTime      string        `json:"endTime"`
-	Volunteers   []interface{} `json:"volunteers"`
-	V            int           `json:"__v"`
+	ID           bson.ObjectId           `json:"_id" bson:"_id"`
+	SmsID        string                  `json:"sms_id" bson:"sms_id"`
+	Name         string                  `json:"name"`
+	AbsentWorker Worker                  `json:"absentWorker" bson:"absentWorker"`
+	Job          Job                     `json:"job"`
+	Location     string                  `json:"location"`
+	Date         string                  `json:"date"`
+	StartTime    string                  `json:"startTime"`
+	EndTime      string                  `json:"endTime"`
+	Volunteers   []interface{}           `json:"volunteers"`
+	Company      company.Company         `json:"company"`
+	Application  application.Application `json:"application"`
+	PhoneNumber  string                  `json:"phone_number"`
+	V            int                     `json:"__v"`
 }

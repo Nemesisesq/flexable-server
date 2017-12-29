@@ -2,28 +2,28 @@
 
 
 [[projects]]
+  name = "github.com/davecgh/go-spew"
+  packages = ["spew"]
+  revision = "346938d642f2ec3594ed81d874461961cd0faa76"
+  version = "v1.1.0"
+
+[[projects]]
   branch = "master"
   name = "github.com/golang/protobuf"
   packages = ["proto"]
   revision = "1e59b77b52bf8e4b449a57e6f79f21226d571845"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/google/go-querystring"
+  packages = ["query"]
+  revision = "53e6ce116135b80d037921a7fdd5138cf32d7a8a"
+
+[[projects]]
   branch = "v1.4"
   name = "github.com/googollee/go-socket.io"
   packages = ["parser"]
   revision = "ab4816a1fbc58a94fb9e7a637d548bb4dbee6491"
-
-[[projects]]
-  name = "github.com/gorilla/context"
-  packages = ["."]
-  revision = "1ea25387ff6f684839d82767c1733ff4d4d15d0a"
-  version = "v1.1"
-
-[[projects]]
-  name = "github.com/gorilla/mux"
-  packages = ["."]
-  revision = "7f08801859139f86dfafd1c296e2cba9a80d292e"
-  version = "v1.6.0"
 
 [[projects]]
   name = "github.com/gorilla/websocket"
@@ -39,9 +39,9 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/manveru/faker"
-  packages = ["."]
-  revision = "9fbc68a78c4dbc7914e1a23f88f126bea4383b97"
+  name = "github.com/kris-nova/kubicorn"
+  packages = ["cutil/rand","cutil/uuid"]
+  revision = "aaa359a1545b56448472e94d608e56bf6893a2d0"
 
 [[projects]]
   branch = "v1.4"
@@ -50,10 +50,22 @@
   revision = "3a143c21204e244c4b66c945d12a6d84a3c53501"
 
 [[projects]]
-  name = "github.com/rs/cors"
+  name = "github.com/plivo/plivo-go"
+  packages = ["plivo"]
+  revision = "c668365a52663ca6ffcd6cff8366b159a6d53c1b"
+  version = "v4.0.0-beta.1"
+
+[[projects]]
+  name = "github.com/pmezard/go-difflib"
+  packages = ["difflib"]
+  revision = "792786c7400a136282c1664665ae0a8db921c6c2"
+  version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/satori/go.uuid"
   packages = ["."]
-  revision = "7af7a1e09ba336d2ea14b1ce73bf693c6837dbf6"
-  version = "v1.2"
+  revision = "879c5887cd475cd7864858769793b2ceb0d44feb"
+  version = "v1.1.0"
 
 [[projects]]
   name = "github.com/sirupsen/logrus"
@@ -62,10 +74,10 @@
   version = "v1.0.3"
 
 [[projects]]
-  name = "github.com/urfave/negroni"
-  packages = ["."]
-  revision = "5dbbc83f748fc3ad38585842b0aedab546d0ea1e"
-  version = "v0.3.0"
+  name = "github.com/stretchr/testify"
+  packages = ["assert"]
+  revision = "69483b4bd14f5845b5a1e55bca19e954e827f1d0"
+  version = "v1.1.4"
 
 [[projects]]
   branch = "master"
@@ -94,6 +106,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "96411d4ef59e1627cd1b4e45837931d3c1b6d225cdde012125f2f42f0ed32a8a"
+  inputs-digest = "44520f9d757b13829ca8070c8d3063272a805aab42f402d110267cdbb08c18f8"
   solver-name = "gps-cdcl"
   solver-version = 1
