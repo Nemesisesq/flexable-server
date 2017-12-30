@@ -3,6 +3,7 @@ package shifts
 import (
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 func GetAllShifts() []Shift {
@@ -37,10 +38,20 @@ func (shift Shift) Save() {
 
 	c := session.DB("flexable").C("shifts")
 
-	if shift.ID.String() != "" {
-		c.UpsertId(shift.ID, &shift)
+	shift.ID = bson.NewObjectId()
+
+	if shift.ID != "" {
+		info, err := c.UpsertId(shift.ID, &shift)
+		log.Info(info)
+
+		if err != nil {
+			panic(err)
+		}
 	} else {
-		c.Insert(&shift)
+		err := c.Insert(&shift)
+		if err != nil {
+			panic(err)
+		}
 	}
 
 }

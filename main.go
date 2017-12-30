@@ -30,7 +30,7 @@ func main() {
 	n := negroni.Classic() // Includes some default middlewares
 	n.UseHandler(r)
 	r.Handle("/socket.io/", server)
-	r.HandleFunc("/sms/listener/{smsId}", func(writer http.ResponseWriter, request *http.Request) {
+	r.HandleFunc("/sms/incoming/{smsId}", func(writer http.ResponseWriter, request *http.Request) {
 		log.Info("Message response received!")
 	})
 	r.Handle("/", http.FileServer(http.Dir("./asset")))

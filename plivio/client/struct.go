@@ -74,7 +74,7 @@ func (c Client) SearchPhoneNumbers() (*plivo.PhoneNumber, error) {
 	phoneNumberList, err := c.PhoneNumbers.List(
 		plivo.PhoneNumberListParams{
 			CountryISO: "US",
-			Pattern:    "1614",
+			Pattern:    "614",
 			Services:   "sms",
 		},
 	)
@@ -100,6 +100,10 @@ func (c Client) SendMessages(s shifts.Shift) error {
 Hey There is an open shift from {{.StartTime }} to {{.EndTime}}
 On {{.Date }}
 `)
+
+	if err != nil {
+		panic(err)
+	}
 	buf := bytes.Buffer{}
 	err = messageTemplate.Execute(&buf, s)
 	if err != nil {

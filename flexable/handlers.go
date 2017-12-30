@@ -48,10 +48,11 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} 
 
 	shift.Application = app
 	shift.Save()
+	// TODO uncomment for testing buying phone number works
+	//number, err := plivio.BuyPhoneNumber(shift)
 
-	number, err := plivio.BuyPhoneNumber(shift)
-
-	shift.PhoneNumber = number
+	//shift.PhoneNumber = number
+	shift.PhoneNumber = "16143636301"
 
 	shift.Save()
 
