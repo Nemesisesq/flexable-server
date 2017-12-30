@@ -2,9 +2,399 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96aabcfd-8c1d-44c0-9600-443c6db20f3c" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/flexable/connection.go" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/flexable/handlers.go" afterPath="$PROJECT_DIR$/flexable/handlers.go" />
-      <change beforePath="$PROJECT_DIR$/shifts/struct.go" afterPath="$PROJECT_DIR$/shifts/struct.go" />
+      <change beforePath="$PROJECT_DIR$/Gopkg.lock" afterPath="$PROJECT_DIR$/Gopkg.lock" />
+      <change beforePath="$PROJECT_DIR$/main.go" afterPath="$PROJECT_DIR$/main.go" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/.circleci/config.yml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/.gitignore" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/.travis.yml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/AUTHORS" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/CODE_OF_CONDUCT.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/CONTRIBUTING.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/Dockerfile" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/Gopkg.lock" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/Gopkg.toml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/LICENSE" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/Makefile" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/VERSION" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/apis/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/apis/cluster/api.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/apis/cluster/auth.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/apis/cluster/cluster.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/apis/cluster/cluster_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/apis/cluster/firewall.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/apis/cluster/instanceprofile.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/apis/cluster/internetgw.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/apis/cluster/network.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/apis/cluster/project.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/apis/cluster/serverpool.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/apis/cluster/subnet.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/apis/cluster/values.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/amazon_k8s_centos_7_master.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/amazon_k8s_centos_7_node.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/amazon_k8s_ubuntu_16.04_master.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/amazon_k8s_ubuntu_16.04_node.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/digitalocean_k8s_centos_7_master.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/digitalocean_k8s_centos_7_node.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/digitalocean_k8s_ubuntu_16.04_master.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/digitalocean_k8s_ubuntu_16.04_node.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/google_compute_k8s_ubuntu_16.04_master.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/google_compute_k8s_ubuntu_16.04_node.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/inject.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/packet_k8s_ubuntu_16.04_master.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/packet_k8s_ubuntu_16.04_node.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/vpn/meshbirdMaster.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/vpn/meshbirdNode.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/vpn/openvpnMaster-centos.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/vpn/openvpnMaster.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/vpn/openvpnNode-centos.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/bootstrap/vpn/openvpnNode.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/amazon/awsSdkGo/sdk.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/amazon/awsSdkGo/sdk_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/amazon/public/model.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/amazon/public/resources/autoscalegroup.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/amazon/public/resources/instanceprofile.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/amazon/public/resources/internetgateway.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/amazon/public/resources/keypair.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/amazon/public/resources/launchconfiguration.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/amazon/public/resources/resource.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/amazon/public/resources/routetable.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/amazon/public/resources/securitygroup.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/amazon/public/resources/subnet.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/amazon/public/resources/virtualprivatecloud.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/atomic_reconciler.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/azure/azureSDK/sdk.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/azure/public/model.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/azure/public/resources/resource.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/azure/public/resources/resourcegroup.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/azure/public/resources/stub" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/azure/public/resources/virtualnetwork.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/digitalocean/droplet/model.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/digitalocean/droplet/resources/droplet.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/digitalocean/droplet/resources/firewall.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/digitalocean/droplet/resources/resources.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/digitalocean/droplet/resources/ssh.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/digitalocean/godoSdk/sdk.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/digitalocean/godoSdk/sdk_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/google/compute/model.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/google/compute/model_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/google/compute/resources/instancegroup.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/google/compute/resources/instancegroup_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/google/compute/resources/resources.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/google/googleSDK/sdk.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/google/googleSDK/sdk_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/interface.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/packet/packetSDK/sdk.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/packet/packetSDK/sdk_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/packet/public/model.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/packet/public/resources/device.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/packet/public/resources/project.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/packet/public/resources/resource.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cloud/packet/public/resources/ssh.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cmd/adopt.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cmd/apply.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cmd/completion.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cmd/create.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cmd/delete.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cmd/edit.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cmd/env.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cmd/getconfig.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cmd/image.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cmd/list.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cmd/prompt.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cmd/prompt_windows.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cmd/root.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cmd/unicorn.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cmd/unicorn/unicorn" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cmd/version.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/agent/agent.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/agent/agent_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/agent/testdata/ssh_with_password" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/agent/testdata/ssh_with_password.pub" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/agent/testdata/ssh_without_password" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/agent/testdata/ssh_without_password.pub" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/compare/compare.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/compare/compare_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/defaults/defaults.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/hang/ratio.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/initapi/init.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/initapi/ssh.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/initapi/validate.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/initapi/validate_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/kubeadm/token.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/kubeconfig/kubeconfig.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/kubeconfig/kubeconfig_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/local/env.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/local/env_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/logger/logger.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/logger/logger_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/namer/random.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/parser/examples_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/parser/fileresource.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/parser/fileresource_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/parser/github.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/parser/github_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/parser/httpresource.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/parser/localresource.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/rand/cryptorand.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/reconciler.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/retry/retry.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/retry/retry_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/scp/scp.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/script/script.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/script/script_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/signals/signals.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/task/task.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/task/task_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/cutil/uuid/uuid.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docker/build.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/.sass-cache/236f350c5087146889e6a9eb884a1c8b60d0db33/minima.scssc" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/.sass-cache/6ae5fd58f6910193bdedfcafb8fe3161950e41a1/minima.scssc" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/.sass-cache/985c1583efea0747632aa31720ea97ca14366b65/minima.scssc" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/404.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/CNAME" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/Gemfile" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/Gemfile.lock" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/LICENSE.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_config.yml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/aws-walkthrough.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/azure-walkthrough.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/build.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/cloud-providers.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/do-walkthrough.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/envar.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/exit_codes.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/friends.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/google-walkthrough.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/install.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/issue_template.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/maintainers.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/make.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/minimal-aws-permissions.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/packet-walkthrough.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/readme.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/semver.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/twitter.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_documentation/website-documentation.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_friends/ark.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_friends/calico.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_friends/weave.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_includes/disqus_comments.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_includes/footer.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_includes/google-analytics.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_includes/head.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_includes/header.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_includes/icon-github.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_includes/icon-github.svg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_includes/icon-twitter.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_includes/icon-twitter.svg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_layouts/default.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_layouts/documentation.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_layouts/home.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_layouts/page.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_layouts/post.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_posts/2017-08-24-welcome-to-jekyll.markdown" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_sass/minima.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_sass/minima/_base.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_sass/minima/_layout.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_sass/minima/_syntax-highlighting.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/404.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/CNAME" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/LICENSE.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/about/index.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/ark_integration.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/android-icon-144x144.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/android-icon-192x192.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/android-icon-36x36.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/android-icon-48x48.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/android-icon-72x72.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/android-icon-96x96.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/apple-icon-114x114.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/apple-icon-120x120.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/apple-icon-144x144.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/apple-icon-152x152.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/apple-icon-180x180.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/apple-icon-57x57.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/apple-icon-60x60.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/apple-icon-72x72.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/apple-icon-76x76.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/apple-icon-precomposed.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/apple-icon.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/browserconfig.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/favicon-16x16.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/favicon-32x32.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/favicon-96x96.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/favicon.ico" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/manifest.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/ms-icon-144x144.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/ms-icon-150x150.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/ms-icon-310x310.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/favicon/ms-icon-70x70.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/assets/main.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/BUILD.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/EXIT_CODES.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/INSTALL.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/ISSUE_TEMPLATE.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/MAKE.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/Maintainers.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/SEMVER.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/aws/walkthrough.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/azure/walkthrough.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/do/walkthrough.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/envar.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/google/walkthrough.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/img/aws-ec2-post-create-screen-shot.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/img/aws-example-apply.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/img/aws-iam-user-perm-screen-shot.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/img/aws.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/img/azure.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/img/google.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/img/kubicorn-trans.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/img/kubicorn.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/docs_old/twitter.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/documentation/aws-walkthrough.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/documentation/azure-walkthrough.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/documentation/build.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/documentation/do-walkthrough.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/documentation/envar.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/documentation/exit_codes.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/documentation/friends.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/documentation/google-walkthrough.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/documentation/install.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/documentation/issue_template.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/documentation/maintainers.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/documentation/make.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/documentation/readme.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/documentation/semver.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/documentation/twitter.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/feed.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/img/ark.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/img/aws-ec2-post-create-screen-shot.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/img/aws-example-apply.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/img/aws-iam-user-perm-screen-shot.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/img/aws.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/img/azure.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/img/calico.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/img/google.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/img/kubicorn-trans.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/img/kubicorn.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/img/weave.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/index.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/jekyll/update/2017/08/24/welcome-to-jekyll.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/_site/notes" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/about.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/ark_integration.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/android-icon-144x144.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/android-icon-192x192.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/android-icon-36x36.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/android-icon-48x48.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/android-icon-72x72.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/android-icon-96x96.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/apple-icon-114x114.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/apple-icon-120x120.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/apple-icon-144x144.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/apple-icon-152x152.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/apple-icon-180x180.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/apple-icon-57x57.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/apple-icon-60x60.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/apple-icon-72x72.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/apple-icon-76x76.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/apple-icon-precomposed.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/apple-icon.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/browserconfig.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/favicon-16x16.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/favicon-32x32.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/favicon-96x96.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/favicon.ico" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/manifest.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/ms-icon-144x144.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/ms-icon-150x150.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/ms-icon-310x310.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/favicon/ms-icon-70x70.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/assets/main.scss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/BUILD.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/EXIT_CODES.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/INSTALL.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/ISSUE_TEMPLATE.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/MAKE.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/Maintainers.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/SEMVER.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/aws/walkthrough.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/azure/walkthrough.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/do/walkthrough.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/envar.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/google/walkthrough.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/img/aws-ec2-post-create-screen-shot.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/img/aws-example-apply.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/img/aws-iam-user-perm-screen-shot.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/img/aws.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/img/azure.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/img/google.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/img/kubicorn-trans.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/img/kubicorn.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/docs_old/twitter.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/img/ark.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/img/aws-ec2-post-create-screen-shot.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/img/aws-example-apply.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/img/aws-iam-user-perm-screen-shot.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/img/aws.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/img/azure.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/img/calico.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/img/google.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/img/kubicorn-trans.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/img/kubicorn.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/img/weave.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/index.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/docs/notes" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/examples/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/examples/amazon/basiccluster.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/examples/digitalocean/basiccluster.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/examples/google/compute/basiccluster.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/main.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/profiles/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/profiles/amazon/centos_7.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/profiles/amazon/ubuntu_16_04.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/profiles/azure/ubuntu.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/profiles/digitalocean/centos_7.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/profiles/digitalocean/ubuntu_16_04.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/profiles/googlecompute/ubuntu_16_04.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/profiles/packet/ubuntu_16_04.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/scripts/bump-version.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/scripts/check-header.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/scripts/ci-checks.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/scripts/headers.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/state/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/state/filenames.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/state/fs/impl.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/state/fs/impl_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/state/git/impl.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/state/git/impl_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/state/interface.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/state/jsonfs/impl.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/state/jsonfs/impl_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/test/Dockerfile" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/test/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/test/amazon/centos_cluster_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/test/amazon/ubuntu_cluster_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/test/cluster.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/test/credentials/id_rsa" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/test/credentials/id_rsa.ppk" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/test/credentials/id_rsa.pub" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/test/digitalocean/centos_cluster_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/test/digitalocean/ubuntu_cluster_test.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/test/resources/google_application_credentials_example.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/test/ssh.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/test/ssh_test.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/kris-nova/kubicorn/test/tmp/.gitignore" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,12 +417,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="730">
-              <caret line="48" column="20" lean-forward="true" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="573">
+              <caret line="34" column="6" lean-forward="true" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="6" />
+              <folding>
+                <element signature="e#14#249#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -49,23 +441,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dao.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shifts/dao.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-363">
-              <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-              <folding>
-                <element signature="e#16#79#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="types.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flexable/types.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="591">
-              <caret line="29" column="48" lean-forward="true" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
+              <caret line="29" column="48" lean-forward="false" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
               <folding>
                 <element signature="e#18#104#0" expanded="true" />
               </folding>
@@ -76,41 +456,11 @@
       <file leaf-file-name="handlers.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flexable/handlers.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="46" column="25" lean-forward="true" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+            <state relative-caret-position="500">
+              <caret line="46" column="25" lean-forward="false" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
               <folding>
                 <element signature="e#18#293#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="handler.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/github.com/odknt/go-socket.io/handler.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="asm_amd64.s" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/Cellar/go/1.9.2/libexec/src/runtime/asm_amd64.s">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="508" column="0" lean-forward="false" selection-start-line="508" selection-start-column="0" selection-end-line="508" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="panic.go" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/Cellar/go/1.9.2/libexec/src/runtime/panic.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="491" column="0" lean-forward="false" selection-start-line="491" selection-start-column="0" selection-end-line="491" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -119,7 +469,7 @@
         <entry file="file://$PROJECT_DIR$/flexable/actions.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="260">
-              <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+              <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
               <folding>
                 <element signature="e#18#112#0" expanded="true" />
               </folding>
@@ -127,11 +477,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="struct.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="struct.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plivio/client/struct.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state relative-caret-position="305">
+              <caret line="32" column="5" lean-forward="false" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
               <folding>
                 <element signature="e#16#299#0" expanded="true" />
               </folding>
@@ -198,7 +548,6 @@
         <option value="$PROJECT_DIR$/handlers/types.go" />
         <option value="$PROJECT_DIR$/flexable/actions.go" />
         <option value="$PROJECT_DIR$/Company/struct.go" />
-        <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/plivio/application/application.go" />
         <option value="$PROJECT_DIR$/plivio/phonenumber/dao.go" />
         <option value="$PROJECT_DIR$/plivio/application/struct.go" />
@@ -213,6 +562,8 @@
         <option value="$PROJECT_DIR$/flexable/types.go" />
         <option value="$PROJECT_DIR$/flexable/handlers.go" />
         <option value="$PROJECT_DIR$/shifts/struct.go" />
+        <option value="$PROJECT_DIR$/flexable/connection.go" />
+        <option value="$PROJECT_DIR$/main.go" />
       </list>
     </option>
   </component>
@@ -265,6 +616,11 @@
           <expand>
             <path>
               <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flexable" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flexable" type="462c0819:PsiDirectoryNode" />
               <item name="flexable" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -392,8 +748,8 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Graph Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18398269" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39935064" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18398269" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39935064" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -561,14 +917,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/socket/socket-io.go" />
-    <entry file="file://$PROJECT_DIR$/../../golang/protobuf/proto/lib.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="408" column="5" lean-forward="false" selection-start-line="408" selection-start-column="5" selection-end-line="408" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/github.com/golang/protobuf/proto/lib.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
@@ -658,14 +1006,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="43" column="55" lean-forward="false" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/github.com/odknt/go-socket.io/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="50" column="17" lean-forward="false" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -783,23 +1123,15 @@
         <state relative-caret-position="-363">
           <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
           <folding>
-            <element signature="e#16#79#0" expanded="true" />
+            <element signature="e#16#79#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="730">
-          <caret line="48" column="20" lean-forward="true" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/flexable/actions.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
-          <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+          <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
           <folding>
             <element signature="e#18#112#0" expanded="true" />
           </folding>
@@ -809,18 +1141,28 @@
     <entry file="file://$PROJECT_DIR$/flexable/types.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="591">
-          <caret line="29" column="48" lean-forward="true" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
+          <caret line="29" column="48" lean-forward="false" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
           <folding>
             <element signature="e#18#104#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/Cellar/go/1.9.2/libexec/src/runtime/panic.go">
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/odknt/go-socket.io/handler.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="491" column="0" lean-forward="false" selection-start-line="491" selection-start-column="0" selection-end-line="491" selection-end-column="0" />
+        <state relative-caret-position="196">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plivio/client/struct.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="32" column="5" lean-forward="false" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+          <folding>
+            <element signature="e#16#299#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -832,10 +1174,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/github.com/odknt/go-socket.io/handler.go">
+    <entry file="file:///usr/local/Cellar/go/1.9.2/libexec/src/runtime/panic.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+        <state relative-caret-position="170">
+          <caret line="491" column="0" lean-forward="false" selection-start-line="491" selection-start-column="0" selection-end-line="491" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flexable/connection.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding>
+            <element signature="e#18#69#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flexable/handlers.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="46" column="25" lean-forward="false" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+          <folding>
+            <element signature="e#18#293#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/go/1.9.2/libexec/src/net/http/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="2307" column="5" lean-forward="false" selection-start-line="2307" selection-start-column="5" selection-end-line="2307" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/odknt/go-socket.io/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -850,22 +1228,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flexable/handlers.go">
+    <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="46" column="25" lean-forward="true" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+        <state relative-caret-position="573">
+          <caret line="34" column="6" lean-forward="true" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="6" />
           <folding>
-            <element signature="e#18#293#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plivio/client/struct.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding>
-            <element signature="e#16#299#0" expanded="true" />
+            <element signature="e#14#249#0" expanded="true" />
           </folding>
         </state>
       </provider>

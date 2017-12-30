@@ -26,6 +26,18 @@
   revision = "ab4816a1fbc58a94fb9e7a637d548bb4dbee6491"
 
 [[projects]]
+  name = "github.com/gorilla/context"
+  packages = ["."]
+  revision = "1ea25387ff6f684839d82767c1733ff4d4d15d0a"
+  version = "v1.1"
+
+[[projects]]
+  name = "github.com/gorilla/mux"
+  packages = ["."]
+  revision = "7f08801859139f86dfafd1c296e2cba9a80d292e"
+  version = "v1.6.0"
+
+[[projects]]
   name = "github.com/gorilla/websocket"
   packages = ["."]
   revision = "ea4d1f681babbce9545c9c5f3d5194a789c89f5b"
@@ -36,12 +48,6 @@
   name = "github.com/heroku/x"
   packages = ["hmetrics","hmetrics/onload"]
   revision = "705849e307dd75c91728463dea5bfd08ef493e64"
-
-[[projects]]
-  branch = "master"
-  name = "github.com/kris-nova/kubicorn"
-  packages = ["cutil/rand","cutil/uuid"]
-  revision = "aaa359a1545b56448472e94d608e56bf6893a2d0"
 
 [[projects]]
   branch = "v1.4"
@@ -80,6 +86,12 @@
   version = "v1.1.4"
 
 [[projects]]
+  name = "github.com/urfave/negroni"
+  packages = ["."]
+  revision = "5dbbc83f748fc3ad38585842b0aedab546d0ea1e"
+  version = "v0.3.0"
+
+[[projects]]
   branch = "master"
   name = "golang.org/x/crypto"
   packages = ["ssh/terminal"]
@@ -106,6 +118,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "44520f9d757b13829ca8070c8d3063272a805aab42f402d110267cdbb08c18f8"
+  inputs-digest = "a8b8a424cf3798f8bb2a075f1c00865baf447416f88c598769789bcde5d9efda"
   solver-name = "gps-cdcl"
   solver-version = 1
