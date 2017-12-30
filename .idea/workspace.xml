@@ -2,87 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96aabcfd-8c1d-44c0-9600-443c6db20f3c" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/company/struct.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/plivio/application/dao.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/plivio/application/struct.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/plivio/client/struct.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/plivio/phonenumber/dao.go" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/plivio/phonenumber/struct.go" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Gopkg.lock" afterPath="$PROJECT_DIR$/Gopkg.lock" />
-      <change beforePath="$PROJECT_DIR$/flexable/types.go" afterPath="$PROJECT_DIR$/flexable/types.go" />
-      <change beforePath="$PROJECT_DIR$/main.go" afterPath="$PROJECT_DIR$/main.go" />
-      <change beforePath="$PROJECT_DIR$/shifts/dao.go" afterPath="$PROJECT_DIR$/shifts/dao.go" />
-      <change beforePath="$PROJECT_DIR$/shifts/handlers.go" afterPath="$PROJECT_DIR$/shifts/handlers.go" />
+      <change beforePath="$PROJECT_DIR$/flexable/handlers.go" afterPath="$PROJECT_DIR$/flexable/handlers.go" />
       <change beforePath="$PROJECT_DIR$/shifts/struct.go" afterPath="$PROJECT_DIR$/shifts/struct.go" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/context/.travis.yml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/context/LICENSE" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/context/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/context/context.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/context/context_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/context/doc.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/mux/.travis.yml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/mux/LICENSE" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/mux/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/mux/bench_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/mux/context_gorilla.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/mux/context_gorilla_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/mux/context_native.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/mux/context_native_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/mux/doc.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/mux/mux.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/mux/mux_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/mux/old_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/mux/regexp.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/gorilla/mux/route.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/manveru/faker/.travis.yml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/manveru/faker/LICENSE" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/manveru/faker/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/manveru/faker/bin/importer.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/manveru/faker/dict.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/manveru/faker/faker.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/manveru/faker/faker_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/.travis.yml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/LICENSE" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/bench_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/cors.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/cors_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/examples/alice/server.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/examples/default/server.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/examples/goji/server.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/examples/gorilla/server.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/examples/httprouter/server.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/examples/martini/server.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/examples/negroni/server.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/examples/nethttp/server.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/examples/openbar/server.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/utils.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/rs/cors/utils_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/.gitignore" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/.travis.yml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/CHANGELOG.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/LICENSE" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/doc.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/logger.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/logger_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/negroni.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/negroni_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/recovery.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/recovery_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/response_writer.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/response_writer_pusher.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/response_writer_pusher_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/response_writer_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/static.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/static_test.go" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/translations/README_de_de.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/translations/README_fr_FR.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/translations/README_ja_JP.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/translations/README_pt_br.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/translations/README_zh_CN.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/urfave/negroni/translations/README_zh_tw.md" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -105,11 +27,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="730">
+              <caret line="48" column="20" lean-forward="true" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="struct.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shifts/struct.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <state relative-caret-position="359">
+              <caret line="27" column="51" lean-forward="false" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
               <folding>
                 <element signature="e#16#145#0" expanded="true" />
               </folding>
@@ -120,10 +52,10 @@
       <file leaf-file-name="dao.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shifts/dao.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="29" column="19" lean-forward="false" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+            <state relative-caret-position="-363">
+              <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
               <folding>
-                <element signature="e#16#103#0" expanded="true" />
+                <element signature="e#16#79#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -132,53 +64,77 @@
       <file leaf-file-name="types.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flexable/types.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="30" column="63" lean-forward="false" selection-start-line="30" selection-start-column="63" selection-end-line="30" selection-end-column="63" />
+            <state relative-caret-position="591">
+              <caret line="29" column="48" lean-forward="true" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
               <folding>
-                <element signature="e#18#145#0" expanded="true" />
+                <element signature="e#18#104#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="handlers.go" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/shifts/handlers.go">
+      <file leaf-file-name="handlers.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/flexable/handlers.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="8" column="31" lean-forward="true" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+            <state relative-caret-position="371">
+              <caret line="46" column="25" lean-forward="true" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+              <folding>
+                <element signature="e#18#293#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="handler.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/github.com/odknt/go-socket.io/handler.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="struct.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="asm_amd64.s" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/Cellar/go/1.9.2/libexec/src/runtime/asm_amd64.s">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="508" column="0" lean-forward="false" selection-start-line="508" selection-start-column="0" selection-end-line="508" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="panic.go" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/Cellar/go/1.9.2/libexec/src/runtime/panic.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="491" column="0" lean-forward="false" selection-start-line="491" selection-start-column="0" selection-end-line="491" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="actions.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/flexable/actions.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+              <folding>
+                <element signature="e#18#112#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="struct.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/plivio/client/struct.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="111" column="30" lean-forward="false" selection-start-line="111" selection-start-column="30" selection-end-line="111" selection-end-column="30" />
+            <state relative-caret-position="227">
+              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding>
                 <element signature="e#16#299#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bufio.go" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/Cellar/go/1.9.2/libexec/src/bufio/bufio.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="546" column="5" lean-forward="false" selection-start-line="546" selection-start-column="5" selection-end-line="546" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="struct.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/company/struct.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="8" column="16" lean-forward="true" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -242,19 +198,21 @@
         <option value="$PROJECT_DIR$/handlers/types.go" />
         <option value="$PROJECT_DIR$/flexable/actions.go" />
         <option value="$PROJECT_DIR$/Company/struct.go" />
-        <option value="$PROJECT_DIR$/flexable/types.go" />
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/plivio/application/application.go" />
-        <option value="$PROJECT_DIR$/shifts/dao.go" />
         <option value="$PROJECT_DIR$/plivio/phonenumber/dao.go" />
         <option value="$PROJECT_DIR$/plivio/application/struct.go" />
         <option value="$PROJECT_DIR$/plivio/application/dao.go" />
         <option value="$PROJECT_DIR$/plivio/phonenumber/struct.go" />
         <option value="$PROJECT_DIR$/messaging/plivio.go" />
-        <option value="$PROJECT_DIR$/shifts/struct.go" />
         <option value="$PROJECT_DIR$/company/struct.go" />
         <option value="$PROJECT_DIR$/plivio/struct.go" />
         <option value="$PROJECT_DIR$/shifts/handlers.go" />
+        <option value="$PROJECT_DIR$/shifts/dao.go" />
+        <option value="$PROJECT_DIR$/plivio/client/struct.go" />
+        <option value="$PROJECT_DIR$/flexable/types.go" />
+        <option value="$PROJECT_DIR$/flexable/handlers.go" />
+        <option value="$PROJECT_DIR$/shifts/struct.go" />
       </list>
     </option>
   </component>
@@ -268,9 +226,10 @@
     <handled-path value="$PROJECT_DIR$/protobuf/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-1920" />
     <option name="y" value="22" />
-    <option name="width" value="1440" />
-    <option name="height" value="878" />
+    <option name="width" value="1920" />
+    <option name="height" value="1058" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -308,79 +267,6 @@
               <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
               <item name="flexable" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flexable" type="462c0819:PsiDirectoryNode" />
-              <item name="company" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flexable" type="462c0819:PsiDirectoryNode" />
-              <item name="plivio" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flexable" type="462c0819:PsiDirectoryNode" />
-              <item name="plivio" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flexable" type="462c0819:PsiDirectoryNode" />
-              <item name="plivio" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flexable" type="462c0819:PsiDirectoryNode" />
-              <item name="plivio" type="462c0819:PsiDirectoryNode" />
-              <item name="phonenumber" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flexable" type="462c0819:PsiDirectoryNode" />
-              <item name="shifts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flexable" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="flexable" type="462c0819:PsiDirectoryNode" />
-              <item name="twilio" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go SDK 1.9.2" type="20ee2d1f:SyntheticLibraryElementNode" />
-            </path>
-            <path>
-              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go SDK 1.9.2" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go SDK 1.9.2" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Go SDK 1.9.2" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -410,11 +296,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/flexable" />
       <recent name="$PROJECT_DIR$/plivio/client" />
       <recent name="$PROJECT_DIR$/plivio" />
       <recent name="$PROJECT_DIR$/protobuf" />
       <recent name="$PROJECT_DIR$/socket" />
-      <recent name="$PROJECT_DIR$/mainhandler/mangerhandler.go" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -455,7 +341,7 @@
       <go_parameters value="-i" />
       <envs>
         <env name="PORT" value="8080" />
-        <env name="HOST" value="" />
+        <env name="HOST" value="http://023d1e09.ngrok.io" />
       </envs>
       <kind value="PACKAGE" />
       <filePath value="$PROJECT_DIR$" />
@@ -495,19 +381,18 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="878" extended-state="6" />
-    <editor active="true" />
+    <frame x="-1920" y="22" width="1920" height="1058" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30829757" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22949947" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Graph Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40591398" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40584415" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Graph Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22849463" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18398269" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39935064" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -590,20 +475,32 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/shifts/dao.go</url>
-          <line>25</line>
+          <line>24</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/shifts/handlers.go</url>
-          <line>13</line>
+          <url>file://$PROJECT_DIR$/flexable/handlers.go</url>
+          <line>15</line>
           <properties />
           <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/flexable/handlers.go</url>
+          <line>27</line>
+          <properties />
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/plivio/client/struct.go</url>
+          <line>24</line>
+          <properties />
+          <option name="timeStamp" value="53" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="52" />
+      <option name="time" value="54" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -616,6 +513,21 @@
       </expression>
     </expressions>
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>data[&quot;payload&quot;]</expression-string>
+        <language-id>go</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>data.payload</expression-string>
+        <language-id>go</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>data</expression-string>
+        <language-id>go</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>open_shifts.Data</expression-string>
         <language-id>go</language-id>
@@ -649,14 +561,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/Cellar/go/1.9.2/libexec/src/net/http/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="1917" column="0" lean-forward="false" selection-start-line="1917" selection-start-column="0" selection-end-line="1917" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/github.com/googollee/go-socket.io/server.go" />
     <entry file="file://$PROJECT_DIR$/socket/socket-io.go" />
     <entry file="file://$PROJECT_DIR$/../../golang/protobuf/proto/lib.go">
       <provider selected="true" editor-type-id="text-editor">
@@ -710,13 +614,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/manager/manager.go" />
     <entry file="file://$PROJECT_DIR$/company/company.go" />
-    <entry file="file:///usr/local/Cellar/go/1.9.2/libexec/src/runtime/panic.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2691">
-          <caret line="576" column="0" lean-forward="false" selection-start-line="576" selection-start-column="0" selection-end-line="576" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/mongo.go" />
     <entry file="file://$PROJECT_DIR$/employees/employee.go" />
     <entry file="file://$PROJECT_DIR$/protobuf/payload.proto">
@@ -779,6 +676,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2061">
           <caret line="31" column="4" lean-forward="false" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -806,31 +704,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flexable/actions.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="e#18#112#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="e#14#174#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -842,31 +720,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shifts/dao.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="29" column="19" lean-forward="false" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
-          <folding>
-            <element signature="e#16#103#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plivio/application/dao.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
           <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flexable/types.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="30" column="63" lean-forward="false" selection-start-line="30" selection-start-column="63" selection-end-line="30" selection-end-column="63" />
-          <folding>
-            <element signature="e#18#145#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -904,13 +762,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shifts/struct.go">
+    <entry file="file:///usr/local/Cellar/go/1.9.2/libexec/src/bufio/bufio.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding>
-            <element signature="e#16#145#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="177">
+          <caret line="546" column="5" lean-forward="false" selection-start-line="546" selection-start-column="5" selection-end-line="546" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -922,29 +778,95 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/Cellar/go/1.9.2/libexec/src/bufio/bufio.go">
+    <entry file="file://$PROJECT_DIR$/shifts/dao.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="546" column="5" lean-forward="false" selection-start-line="546" selection-start-column="5" selection-end-line="546" selection-end-column="5" />
+        <state relative-caret-position="-363">
+          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+          <folding>
+            <element signature="e#16#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="730">
+          <caret line="48" column="20" lean-forward="true" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flexable/actions.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+          <folding>
+            <element signature="e#18#112#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flexable/types.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="29" column="48" lean-forward="true" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
+          <folding>
+            <element signature="e#18#104#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/go/1.9.2/libexec/src/runtime/panic.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="491" column="0" lean-forward="false" selection-start-line="491" selection-start-column="0" selection-end-line="491" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/Cellar/go/1.9.2/libexec/src/runtime/asm_amd64.s">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="508" column="0" lean-forward="false" selection-start-line="508" selection-start-column="0" selection-end-line="508" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/github.com/odknt/go-socket.io/handler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shifts/struct.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="27" column="51" lean-forward="false" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
+          <folding>
+            <element signature="e#16#145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flexable/handlers.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="46" column="25" lean-forward="true" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+          <folding>
+            <element signature="e#18#293#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/plivio/client/struct.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="111" column="30" lean-forward="false" selection-start-line="111" selection-start-column="30" selection-end-line="111" selection-end-column="30" />
+        <state relative-caret-position="227">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
             <element signature="e#16#299#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shifts/handlers.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="8" column="31" lean-forward="true" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>

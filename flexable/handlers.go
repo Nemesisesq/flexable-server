@@ -1,6 +1,7 @@
 package flexable
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/nemesisesq/flexable/company"
@@ -23,7 +24,17 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) interface{} {
 }
 
 func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} {
-	shift := data.(shifts.Shift)
+	payload := data.(map[string]interface{})["payload"]
+	tmp, err := json.Marshal(payload)
+	if err != nil {
+		panic(err)
+	}
+	var shift shifts.Shift
+	err = json.Unmarshal(tmp, &shift)
+
+	if err != nil {
+		panic(err)
+	}
 	shift.Company = company.Company{"flexable", "123"}
 	shift.SmsID = uuid.NewV4().String()
 
