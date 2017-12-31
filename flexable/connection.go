@@ -48,5 +48,6 @@ func SetMongoSession(i context.Context) context.Context {
 	}()
 
 	ctx := context.WithValue(i, "mgo", session)
+	ctx := context.WithValue(i, "db", session.DB("flexable"))
 	return ctx
 }
