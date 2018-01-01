@@ -50,6 +50,12 @@
   revision = "705849e307dd75c91728463dea5bfd08ef493e64"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/mitchellh/hashstructure"
+  packages = ["."]
+  revision = "2bca23e0e452137f789efbc8610126fd8b94f73b"
+
+[[projects]]
   branch = "v1.4"
   name = "github.com/odknt/go-socket.io"
   packages = ["."]
@@ -118,6 +124,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "a8b8a424cf3798f8bb2a075f1c00865baf447416f88c598769789bcde5d9efda"
+  inputs-digest = "ded383ad79bd91b9e9286338f6edd623f6a23670827594062c415173f64795ba"
   solver-name = "gps-cdcl"
   solver-version = 1

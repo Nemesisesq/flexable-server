@@ -17,7 +17,7 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) interface{} {
 
 	shift_list := shifts.GetAllShifts()
 
-	s.Emit("socket0", shift_list, func(so socketio.Conn, data string) {
+	s.Emit(constructSocketID(OPEN_SHIFTS), shift_list, func(so socketio.Conn, data string) {
 		log.Println("Client ACK with data: ", data)
 	})
 	return "hello"

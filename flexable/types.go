@@ -1,6 +1,8 @@
 package flexable
 
 import (
+	"fmt"
+
 	"github.com/nemesisesq/flexable/protobuf"
 	"github.com/odknt/go-socket.io"
 )
@@ -31,4 +33,9 @@ var messageTypes = []MessageType{
 	MessageType{GET_AVAILABLE_EMPLOYEES, nil},
 	MessageType{GET_JOBS, nil},
 	MessageType{EMPLOYEE_LIST, nil},
+}
+
+func constructSocketID(payload_type payload.Payload_Type) string {
+	return fmt.Sprintf("socket%d", payload_type)
+
 }

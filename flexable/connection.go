@@ -19,7 +19,7 @@ func SocketServerConnections(server socketio.Server) {
 		s.SetContext(ctx)
 		fmt.Println("Context", s.Context())
 
-		InitEmitters(s)
+		InitWatchers(s)
 
 		fmt.Println("connected:", s.ID())
 		return nil
@@ -48,6 +48,6 @@ func SetMongoSession(i context.Context) context.Context {
 	}()
 
 	ctx := context.WithValue(i, "mgo", session)
-	ctx := context.WithValue(i, "db", session.DB("flexable"))
+	ctx = context.WithValue(ctx, "db", session.DB("flexable"))
 	return ctx
 }

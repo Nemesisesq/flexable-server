@@ -1,14 +1,50 @@
 package flexable
 
-import "github.com/odknt/go-socket.io"
+import (
+	"context"
+	"time"
 
-func InitEmitters(socket socketio.Conn) {
+	"github.com/mitchellh/hashstructure"
+	"github.com/nemesisesq/flexable/shifts"
+	"github.com/odknt/go-socket.io"
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
+)
+
+func InitWatchers(socket socketio.Conn) {
 
 	go func() {
 		CheckOpenShifts(socket)
 	}()
 
 }
-func CheckOpenShifts(socketio.Conn) {
+func CheckOpenShifts(s socketio.Conn) {
+
+	ctx := s.Context().(context.Context)
+	db := ctx.Value("db").(*mgo.Database)
+
+	tickChan := time.NewTicker(time.Second * 1).C
+	companyId := "123"
+	var currentShiftState uint64
+
+	for {
+		shiftList := []shifts.Shift{}
+		select {
+		case <-tickChan:
+			db.C("shifts").Find(bson.M{"company.uuid": companyId}).All(&shiftList)
+
+			shift_list_hash, err := hashstructure.Hash(&shiftList, nil)
+
+			if err != nil {
+				panic(err)
+			}
+
+			if currentShiftState != shift_list_hash {
+				currentShiftState = shift_list_hash
+				s.Emit(constructSocketID(OPEN_SHIFTS), shiftList)
+			}
+		}
+
+	}
 
 }
