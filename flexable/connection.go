@@ -13,12 +13,11 @@ func SocketServerConnections(server socketio.Server) {
 	server.OnConnect("/", func(s socketio.Conn) error {
 		//set context
 		ctx := context.Background()
-		ctx, _ = context.WithCancel(ctx)
-
+		ctx, cancel := context.WithCancel(ctx)
+		ctx = context.WithValue(ctx, "cancel", cancel)
 		ctx = SetMongoSession(ctx)
 
 		s.SetContext(ctx)
-		fmt.Println("Context", s.Context())
 
 		InitWatchers(s)
 
@@ -27,10 +26,19 @@ func SocketServerConnections(server socketio.Server) {
 	})
 
 	server.OnError("/", func(s socketio.Conn, e error) {
+		ctx := s.Context()
+		fmt.Println(ctx)
+		//cancel := ctx.Value("cancel").(context.CancelFunc)
+		//cancel()
 		fmt.Println("meet error:", e)
+		fmt.Println("everything cancelled", e)
 	})
 	server.OnDisconnect("/", func(s socketio.Conn, msg string) {
-		fmt.Println("closed", msg)
+		ctx := s.Context().(context.Context)
+
+		cancel := ctx.Value("cancel").(context.CancelFunc)
+		cancel()
+		fmt.Println("closed and cancelled", msg)
 	})
 }
 func SetMongoSession(i context.Context) context.Context {
