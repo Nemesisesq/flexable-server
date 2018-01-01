@@ -1,8 +1,7 @@
 package shifts
 
 import (
-	"os"
-
+	"github.com/nemesisesq/flexable/utils"
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -10,13 +9,12 @@ import (
 
 func Find(query bson.M) *mgo.Query {
 
-	session, err := getMgoSession()
-
+	session, database, err := utils.GetMgoSession()
 	if err != nil {
 		panic(err)
 	}
 
-	c := session.DB("flexable").C("shifts")
+	c := session.DB(database).C("shifts")
 
 	return c.Find(query)
 }
@@ -44,14 +42,14 @@ func GetOneShift(query bson.M) (result Shift) {
 
 func (shift Shift) Save() {
 
-	session, err := getMgoSession()
+	session, database, err := utils.GetMgoSession()
 
 	if err != nil {
 		panic(err)
 	}
 	defer session.Close()
 
-	c := session.DB("flexable").C("shifts")
+	c := session.DB(database).C("shifts")
 
 	shift.ID = bson.NewObjectId()
 
@@ -69,9 +67,4 @@ func (shift Shift) Save() {
 		}
 	}
 
-}
-func getMgoSession() (*mgo.Session, error) {
-	mongodb_uri := os.Getenv("MONGODB_URI")
-	session, err := mgo.Dial(mongodb_uri)
-	return session, err
 }

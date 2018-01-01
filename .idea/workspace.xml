@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96aabcfd-8c1d-44c0-9600-443c6db20f3c" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/utils/mongo.go" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/shifts/dao.go" afterPath="$PROJECT_DIR$/shifts/dao.go" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,8 +30,8 @@
       <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="51" column="75" lean-forward="false" selection-start-line="51" selection-start-column="75" selection-end-line="51" selection-end-column="75" />
+            <state relative-caret-position="383">
+              <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
               <folding>
                 <element signature="e#14#297#0" expanded="true" />
               </folding>
@@ -37,7 +39,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="connection.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="connection.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flexable/connection.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
@@ -61,11 +63,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dao.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dao.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/shifts/dao.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="74" column="41" lean-forward="true" selection-start-line="73" selection-start-column="4" selection-end-line="74" selection-end-column="41" />
+            <state relative-caret-position="126">
+              <caret line="11" column="51" lean-forward="false" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+              <folding>
+                <element signature="e#16#143#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mongo.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/mongo.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -107,8 +121,9 @@
       <find>context</find>
       <find>localhost:27017</find>
       <find>270</find>
-      <find>mgo</find>
       <find>fmt.Print</find>
+      <find>flexable</find>
+      <find>mgo</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/vendor/github.com/desertbit/glue</dir>
@@ -162,10 +177,11 @@
         <option value="$PROJECT_DIR$/flexable/types.go" />
         <option value="$PROJECT_DIR$/flexable/handlers.go" />
         <option value="$PROJECT_DIR$/shifts/actions.go" />
-        <option value="$PROJECT_DIR$/shifts/dao.go" />
         <option value="$PROJECT_DIR$/flexable/emitters.go" />
-        <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/flexable/connection.go" />
+        <option value="$PROJECT_DIR$/main.go" />
+        <option value="$PROJECT_DIR$/flexable/mongo.go" />
+        <option value="$PROJECT_DIR$/shifts/dao.go" />
       </list>
     </option>
   </component>
@@ -219,6 +235,21 @@
               <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
               <item name="flexable" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flexable" type="462c0819:PsiDirectoryNode" />
+              <item name="flexable" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flexable" type="462c0819:PsiDirectoryNode" />
+              <item name="shifts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="flexable" type="b2602c69:ProjectViewProjectNode" />
+              <item name="flexable" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -248,11 +279,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils" />
       <recent name="$PROJECT_DIR$/flexable" />
       <recent name="$PROJECT_DIR$/plivio/client" />
       <recent name="$PROJECT_DIR$/plivio" />
       <recent name="$PROJECT_DIR$/protobuf" />
-      <recent name="$PROJECT_DIR$/socket" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -294,7 +325,7 @@
       <envs>
         <env name="PORT" value="8080" />
         <env name="HOST" value="http://023d1e09.ngrok.io" />
-        <env name="MONGO_URI" value="localhost:27017" />
+        <env name="MONGO_URI" value="mongodb://localhost:27017/flexable" />
       </envs>
       <kind value="PACKAGE" />
       <filePath value="$PROJECT_DIR$" />
@@ -335,13 +366,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="878" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4045699" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4045699" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Graph Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1827957" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18145162" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30829757" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Graph Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -470,13 +502,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/shifts/dao.go</url>
-          <line>36</line>
+          <line>35</line>
           <properties />
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/shifts/dao.go</url>
-          <line>12</line>
+          <line>11</line>
           <properties />
           <option name="timeStamp" value="68" />
         </line-breakpoint>
@@ -556,7 +588,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/employees/employee.go" />
     <entry file="file://$PROJECT_DIR$/protobuf/payload.proto">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -869,24 +900,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shifts/dao.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="74" column="41" lean-forward="true" selection-start-line="73" selection-start-column="4" selection-end-line="74" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="51" column="75" lean-forward="false" selection-start-line="51" selection-start-column="75" selection-end-line="51" selection-end-column="75" />
-          <folding>
-            <element signature="e#14#297#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/flexable/emitters.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
@@ -903,6 +916,34 @@
           <caret line="32" column="18" lean-forward="true" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
           <folding>
             <element signature="e#18#105#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding>
+            <element signature="e#14#297#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/mongo.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shifts/dao.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="11" column="51" lean-forward="false" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+          <folding>
+            <element signature="e#16#143#0" expanded="true" />
           </folding>
         </state>
       </provider>
