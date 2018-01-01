@@ -1,24 +1,29 @@
 package shifts
 
 import (
+	"os"
+
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
-func GetAllShifts() []Shift {
+func Find(query bson.M) *mgo.Query {
 
-	session, err := mgo.Dial("localhost:27017")
+	session, err := getMgoSession()
 
 	if err != nil {
 		panic(err)
 	}
-	defer session.Close()
 
 	c := session.DB("flexable").C("shifts")
 
-	result := []Shift{}
-	err = c.Find(nil).All(&result)
+	return c.Find(query)
+}
+
+func GetAllShifts(query bson.M) (result []Shift) {
+
+	err := Find(query).All(&result)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -27,9 +32,19 @@ func GetAllShifts() []Shift {
 
 }
 
+func GetOneShift(query bson.M) (result Shift) {
+
+	err := Find(query).One(&result)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return result
+}
+
 func (shift Shift) Save() {
 
-	session, err := mgo.Dial("localhost:27017")
+	session, err := getMgoSession()
 
 	if err != nil {
 		panic(err)
@@ -54,4 +69,9 @@ func (shift Shift) Save() {
 		}
 	}
 
+}
+func getMgoSession() (*mgo.Session, error) {
+	mongodb_uri := os.Getenv("MONGODB_URI")
+	session, err := mgo.Dial(mongodb_uri)
+	return session, err
 }

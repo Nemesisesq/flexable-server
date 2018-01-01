@@ -3,6 +3,7 @@ package flexable
 import (
 	"context"
 	"fmt"
+	"os"
 
 	"github.com/odknt/go-socket.io"
 	"gopkg.in/mgo.v2"
@@ -34,7 +35,8 @@ func SocketServerConnections(server socketio.Server) {
 }
 func SetMongoSession(i context.Context) context.Context {
 
-	session, err := mgo.Dial("localhost:27017")
+	mongodb_uri := os.Getenv("MONGODB_URI")
+	session, err := mgo.Dial(mongodb_uri)
 
 	if err != nil {
 		panic(err)
