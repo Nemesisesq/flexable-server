@@ -23,7 +23,8 @@ func CheckOpenShifts(s socketio.Conn) {
 	ctx := s.Context().(context.Context)
 	db := ctx.Value("db").(*mgo.Database)
 
-	tickChan := time.NewTicker(time.Second * 1).C
+	ticker := time.NewTicker(time.Second * 1)
+	tickChan := ticker.C
 	companyId := "123"
 	var currentShiftState uint64
 
@@ -43,6 +44,10 @@ func CheckOpenShifts(s socketio.Conn) {
 				currentShiftState = shift_list_hash
 				s.Emit(constructSocketID(OPEN_SHIFTS), shiftList)
 			}
+
+		case <-ctx.Done():
+			ticker.Stop()
+			break
 		}
 
 	}

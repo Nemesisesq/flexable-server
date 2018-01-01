@@ -49,7 +49,7 @@ func main() {
 
 			fmt.Fprint(writer, "Thanks for voluteering we will be getting back to you shortly to let you know you got the gig!")
 		} else {
-			fmt.Fprint(writer, "Sorry, this shift wasn't for you we'll check with other opportunities")
+			fmt.Fprint(writer, "Sorry, this shift wasn't for you we'll chdeheck with other opportunities")
 		}
 
 	})
