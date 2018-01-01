@@ -17,7 +17,7 @@ func UpdateShiftWithSmsID(smsId string, payload map[string]string) bool {
 		shift.Save()
 
 		return true
-		log.Info(payload, shift)
+		//log.Info(payload, shift)
 	}
 
 	return false

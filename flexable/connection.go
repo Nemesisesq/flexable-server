@@ -44,6 +44,8 @@ func SocketServerConnections(server socketio.Server) {
 func SetMongoSession(i context.Context) context.Context {
 
 	mongodb_uri := os.Getenv("MONGODB_URI")
+
+	dialInfo, err := mgo.ParseURL(mongodb_uri)
 	session, err := mgo.Dial(mongodb_uri)
 
 	if err != nil {
@@ -58,6 +60,6 @@ func SetMongoSession(i context.Context) context.Context {
 	}()
 
 	ctx := context.WithValue(i, "mgo", session)
-	ctx = context.WithValue(ctx, "db", session.DB("flexable"))
+	ctx = context.WithValue(ctx, "db", session.DB(dialInfo.Database))
 	return ctx
 }

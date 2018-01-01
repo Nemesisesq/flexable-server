@@ -40,7 +40,7 @@ func GetOneShift(query bson.M) (result Shift) {
 	return result
 }
 
-func (shift Shift) Save() {
+func (shift *Shift) Save() {
 
 	session, database, err := utils.GetMgoSession()
 
@@ -51,20 +51,15 @@ func (shift Shift) Save() {
 
 	c := session.DB(database).C("shifts")
 
-	shift.ID = bson.NewObjectId()
+	if shift.ID == "" {
+		shift.ID = bson.NewObjectId()
+	}
 
-	if shift.ID != "" {
-		info, err := c.UpsertId(shift.ID, &shift)
-		log.Info(info)
+	info, err := c.UpsertId(shift.ID, &shift)
+	log.Info(info)
 
-		if err != nil {
-			panic(err)
-		}
-	} else {
-		err := c.Insert(&shift)
-		if err != nil {
-			panic(err)
-		}
+	if err != nil {
+		panic(err)
 	}
 
 }
