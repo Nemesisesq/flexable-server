@@ -54,6 +54,6 @@ func main() {
 
 	})
 	r.Handle("/", http.FileServer(http.Dir("./asset")))
-	log.Println("Serving at localhost:8080...")
+	log.Println("Serving at " + port + " ...")
 	log.Fatal(http.ListenAndServe(":"+port, n))
 }
