@@ -62,7 +62,7 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} 
 		},
 	)
 
-	//log.Info(response)
+	log.Info(response)
 	if err != nil {
 		panic(err)
 	}

@@ -2,13 +2,13 @@ package flexable
 
 import (
 	"context"
-	"time"
-
 	"github.com/mitchellh/hashstructure"
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/odknt/go-socket.io"
+	log "github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"time"
 )
 
 func InitWatchers(socket socketio.Conn) {
@@ -32,6 +32,8 @@ func CheckOpenShifts(s socketio.Conn) {
 		shiftList := []shifts.Shift{}
 		select {
 		case <-tickChan:
+			log.Info("I'm checking the db")
+			log.Info(db)
 			db.C("shifts").Find(bson.M{"company.uuid": companyId}).All(&shiftList)
 
 			shift_list_hash, err := hashstructure.Hash(&shiftList, nil)
