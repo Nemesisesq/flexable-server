@@ -2,12 +2,13 @@ package flexable
 
 import (
 	"context"
+	"time"
+
 	"github.com/mitchellh/hashstructure"
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/odknt/go-socket.io"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"time"
 )
 
 func InitWatchers(socket socketio.Conn) {
