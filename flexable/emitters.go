@@ -32,8 +32,8 @@ func CheckOpenShifts(s socketio.Conn) {
 		shiftList := []shifts.Shift{}
 		select {
 		case <-tickChan:
-			log.Info("I'm checking the db")
-			log.Info(db)
+			//log.Info("I'm checking the db")
+			//log.Info(db)
 			db.C("shifts").Find(bson.M{"company.uuid": companyId}).All(&shiftList)
 
 			shift_list_hash, err := hashstructure.Hash(&shiftList, nil)
