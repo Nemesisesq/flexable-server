@@ -10,7 +10,8 @@ message Payload {
         FIND_SHIFT_SUBSTITUTE = 4;
         GET_AVAILABLE_EMPLOYEES = 5;
         GET_JOBS = 6;
-        EMPLOYEE_LIST=7;
+        EMPLOYEE_LIST = 7;
+        SELECT_VOLUNTEER = 8;
     };
 
     Type type = 1;
