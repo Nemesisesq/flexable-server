@@ -5,7 +5,6 @@ import (
 	"github.com/mitchellh/hashstructure"
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/odknt/go-socket.io"
-	log "github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"time"
