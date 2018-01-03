@@ -16,6 +16,7 @@ const (
 	GET_AVAILABLE_EMPLOYEES = payload.Payload_GET_AVAILABLE_EMPLOYEES
 	GET_JOBS                = payload.Payload_GET_JOBS
 	EMPLOYEE_LIST           = payload.Payload_EMPLOYEE_LIST
+	SELECT_VOLUNTEER        = payload.Payload_SELECT_VOLUNTEER
 )
 
 type SockHandler func(socketio.Conn, interface{}) interface{}
@@ -25,14 +26,15 @@ type MessageType struct {
 }
 
 var messageTypes = []MessageType{
-	MessageType{OPEN_SHIFTS, OpenShiftHandler},
-	MessageType{SHIFT_DETAILS, nil},
-	MessageType{ACCEPT_SHIFT_SUBSTITUE, nil},
-	MessageType{DENY_SHIFT_SUBSTITUTE, nil},
-	MessageType{FIND_SHIFT_SUBSTITUTE, FindShiftReplacementHandler},
-	MessageType{GET_AVAILABLE_EMPLOYEES, nil},
-	MessageType{GET_JOBS, nil},
-	MessageType{EMPLOYEE_LIST, nil},
+	{OPEN_SHIFTS, OpenShiftHandler},
+	{SHIFT_DETAILS, nil},
+	{ACCEPT_SHIFT_SUBSTITUE, nil},
+	{DENY_SHIFT_SUBSTITUTE, nil},
+	{FIND_SHIFT_SUBSTITUTE, FindShiftReplacementHandler},
+	{GET_AVAILABLE_EMPLOYEES, nil},
+	{GET_JOBS, nil},
+	{EMPLOYEE_LIST, nil},
+	{SELECT_VOLUNTEER, SelectVolunteer},
 }
 
 func constructSocketID(payload_type payload.Payload_Type) string {

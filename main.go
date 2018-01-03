@@ -25,6 +25,7 @@ func main() {
 	flexable.SocketServerConnections(*server)
 
 	flexable.SetListeners(server)
+
 	go server.Serve()
 	defer server.Close()
 

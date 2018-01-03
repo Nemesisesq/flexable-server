@@ -1,16 +1,15 @@
 package client
 
 import (
-	"bytes"
 	"fmt"
+	"os"
+	"regexp"
+
 	application2 "github.com/nemesisesq/flexable/plivio/application"
 	"github.com/nemesisesq/flexable/plivio/phonenumber"
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/plivo/plivo-go/plivo"
 	"github.com/satori/go.uuid"
-	"os"
-	"regexp"
-	"text/template"
 )
 
 type Client plivo.Client
@@ -93,27 +92,13 @@ func (c Client) SearchPhoneNumbers() (*plivo.PhoneNumber, error) {
 	return nil, err
 }
 
-func (c Client) SendMessages(s shifts.Shift) error {
-	s.Company.GetAvailableWorkers()
+func (c Client) SendMessages(from, to, message string) error {
 
-	messageTemplate, err := template.New("test").Parse(`
-Hey There is an open shift from {{.StartTime }} to {{.EndTime}}
-On {{.Date }}
-`)
-
-	if err != nil {
-		panic(err)
-	}
-	buf := bytes.Buffer{}
-	err = messageTemplate.Execute(&buf, s)
-	if err != nil {
-		panic(err)
-	}
 	response, err := c.Messages.Create(
 		plivo.MessageCreateParams{
-			Src:  s.PhoneNumber,
-			Dst:  "12165346715<16142881847",
-			Text: buf.String(),
+			Src:  from,
+			Dst:  to,
+			Text: message,
 		},
 	)
 	if err != nil {
