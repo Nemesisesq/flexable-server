@@ -5,12 +5,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"text/template"
-	"time"
 
 	"github.com/manveru/faker"
 	"github.com/nemesisesq/flexable/company"
 	"github.com/nemesisesq/flexable/employee"
 	PlivoClient "github.com/nemesisesq/flexable/plivio/client"
+	"github.com/nemesisesq/flexable/position"
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/nemesisesq/flexable/utils"
 	"github.com/odknt/go-socket.io"
@@ -57,7 +57,7 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} 
 
 	shift.Application = app
 	shift.Save()
-	shift.Name = fmt.Sprint("Rando", time.Now())
+	shift.Name = fmt.Sprintf("%v : %v per hour", shift.Job.Title, shift.Job.Compensation)
 	// TODO uncomment for testing buying phone number works
 	//number, err := plivio.BuyPhoneNumber(shift)
 
@@ -194,38 +194,45 @@ func SelectVolunteer(s socketio.Conn, data interface{}) interface{} {
 
 func GetAvailableEmployees(s socketio.Conn, data interface{}) interface{} {
 	log.Info("Getting Available Employees")
-	empList := []employee.Employee{}
 	fake, err := faker.New("en")
 	if err != nil {
 		panic(err)
 	}
-	for i := 0; i < utils.RandomRange(2, 10); i++ {
-		var num string
-		bin := utils.RandomRange(1, 2)
+	empList := employee.GetAllEmployees(nil)
 
-		if bin%2 == 0 {
-			num = "12165346715"
-		} else {
-			num = "16142881847"
+	if len(empList) <= 1 {
+
+		for i := 0; i < utils.RandomRange(2, 10); i++ {
+			var num string
+			bin := utils.RandomRange(1, 2)
+
+			if bin%2 == 0 {
+				num = "12165346715"
+			} else {
+				num = "16142881847"
+			}
+
+			x := employee.Employee{
+				bson.NewObjectId(),
+				fake.Name(),
+				num,
+				fake.Email(),
+				employee.GeoLocation{
+					fake.Latitude(),
+					fake.Longitude(),
+				},
+				position.Position{
+					bson.NewObjectId(),
+					fake.JobTitle(),
+					10.00,
+					"hr",
+				},
+			}
+
+			x.Save()
+			empList = append(empList, x)
+
 		}
-
-		x := employee.Employee{
-			fake.Name(),
-			num,
-			fake.Email(),
-			employee.GeoLocation{
-				fake.Latitude(),
-				fake.Longitude(),
-			},
-			employee.Position{
-				fake.JobTitle(),
-				10.00,
-				"hr",
-			},
-		}
-
-		empList = append(empList, x)
-
 	}
 	s.Emit(constructSocketID(EMPLOYEE_LIST), empList, func(so socketio.Conn, data string) {
 		log.Println("Client ACK with data: ", data)
@@ -239,15 +246,21 @@ func GetPositions(s socketio.Conn, data interface{}) interface{} {
 	if err != nil {
 		panic(err)
 	}
-	jobs := []employee.Position{}
-	for i := 0; i < utils.RandomRange(2, 10); i++ {
-		x := employee.Position{
-			fake.JobTitle(),
-			10.00,
-			"hr",
-		}
+	jobs := position.GetAllPositions(nil)
 
-		jobs = append(jobs, x)
+	if len(jobs) <= 1 {
+
+		for i := 0; i < utils.RandomRange(2, 10); i++ {
+			x := position.Position{
+				bson.NewObjectId(),
+				fake.JobTitle(),
+				10.00,
+				"hr",
+			}
+
+			x.Save()
+			jobs = append(jobs, x)
+		}
 	}
 
 	s.Emit(constructSocketID(GET_JOBS), jobs, func(so socketio.Conn, data string) {
