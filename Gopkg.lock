@@ -51,6 +51,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/manveru/faker"
+  packages = ["."]
+  revision = "9fbc68a78c4dbc7914e1a23f88f126bea4383b97"
+
+[[projects]]
+  branch = "master"
   name = "github.com/mitchellh/hashstructure"
   packages = ["."]
   revision = "2bca23e0e452137f789efbc8610126fd8b94f73b"
@@ -124,6 +130,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "ded383ad79bd91b9e9286338f6edd623f6a23670827594062c415173f64795ba"
+  inputs-digest = "bef4bafa3e9f6ce303632b64c0bc32648c00a54e8bd123d5c80fb5858a02ba24"
   solver-name = "gps-cdcl"
   solver-version = 1

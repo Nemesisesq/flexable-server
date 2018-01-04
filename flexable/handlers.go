@@ -7,10 +7,12 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/manveru/faker"
 	"github.com/nemesisesq/flexable/company"
 	"github.com/nemesisesq/flexable/employee"
 	PlivoClient "github.com/nemesisesq/flexable/plivio/client"
 	"github.com/nemesisesq/flexable/shifts"
+	"github.com/nemesisesq/flexable/utils"
 	"github.com/odknt/go-socket.io"
 	"github.com/plivo/plivo-go/plivo"
 	"github.com/satori/go.uuid"
@@ -188,4 +190,69 @@ func SelectVolunteer(s socketio.Conn, data interface{}) interface{} {
 	log.Info(shift)
 
 	return nil
+}
+
+func GetAvailableEmployees(s socketio.Conn, data interface{}) interface{} {
+	log.Info("Getting Available Employees")
+	empList := []employee.Employee{}
+	fake, err := faker.New("en")
+	if err != nil {
+		panic(err)
+	}
+	for i := 0; i < utils.RandomRange(2, 10); i++ {
+		var num string
+		bin := utils.RandomRange(1, 2)
+
+		if bin%2 == 0 {
+			num = "12165346715"
+		} else {
+			num = "16142881847"
+		}
+
+		x := employee.Employee{
+			fake.Name(),
+			num,
+			fake.Email(),
+			employee.GeoLocation{
+				fake.Latitude(),
+				fake.Longitude(),
+			},
+			employee.Position{
+				fake.JobTitle(),
+				10.00,
+				"hr",
+			},
+		}
+
+		empList = append(empList, x)
+
+	}
+	s.Emit(constructSocketID(EMPLOYEE_LIST), empList, func(so socketio.Conn, data string) {
+		log.Println("Client ACK with data: ", data)
+	})
+	return empList
+}
+
+func GetPositions(s socketio.Conn, data interface{}) interface{} {
+	log.Info("Getting positions")
+	fake, err := faker.New("en")
+	if err != nil {
+		panic(err)
+	}
+	jobs := []employee.Position{}
+	for i := 0; i < utils.RandomRange(2, 10); i++ {
+		x := employee.Position{
+			fake.JobTitle(),
+			10.00,
+			"hr",
+		}
+
+		jobs = append(jobs, x)
+	}
+
+	s.Emit(constructSocketID(GET_JOBS), jobs, func(so socketio.Conn, data string) {
+		log.Println("Client ACK with data: ", data)
+	})
+
+	return jobs
 }

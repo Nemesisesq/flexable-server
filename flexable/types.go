@@ -32,8 +32,8 @@ var messageTypes = []MessageType{
 	{DENY_SHIFT_SUBSTITUTE, nil},
 	{FIND_SHIFT_SUBSTITUTE, FindShiftReplacementHandler},
 	{GET_AVAILABLE_EMPLOYEES, nil},
-	{GET_JOBS, nil},
-	{EMPLOYEE_LIST, nil},
+	{GET_JOBS, GetPositions},
+	{EMPLOYEE_LIST, GetAvailableEmployees},
 	{SELECT_VOLUNTEER, SelectVolunteer},
 }
 
