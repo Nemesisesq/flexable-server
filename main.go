@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/xml"
 	"fmt"
 	"net/http"
 	"os"
@@ -46,11 +47,15 @@ func main() {
 		}
 		res := shifts.UpdateShiftWithSmsID(smsID, body)
 
-		if res {
+		if res != nil {
 
-			fmt.Fprint(writer, "Thanks for voluteering we will be getting back to you shortly to let you know you got the gig!")
-		} else {
-			fmt.Fprint(writer, "Sorry, this shift wasn't for you we'll chdeheck with other opportunities")
+			out, err := xml.MarshalIndent(res, "", "   ")
+
+			if err != nil {
+				panic(err)
+			}
+
+			fmt.Fprint(writer, out)
 		}
 
 	})

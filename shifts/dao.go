@@ -1,6 +1,8 @@
 package shifts
 
 import (
+	"time"
+
 	"github.com/nemesisesq/flexable/utils"
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2"
@@ -26,7 +28,25 @@ func GetAllShifts(query bson.M) (result []Shift) {
 		log.Fatal(err)
 	}
 
-	return result
+	out := []Shift{}
+	for _, v := range result {
+
+		then, err := time.Parse("Mon Jan 2 2006 15:04:05 MST-0700", v.RawEndTime)
+		if err != nil {
+			log.Error(err)
+		}
+		now := time.Now()
+
+		//log.Info(now.Hour(), now.Minute())
+		//log.Info(then.Hour(), then.Minute())
+
+		if now.Before(then) {
+			out = append(out, v)
+		}
+
+	}
+
+	return out
 
 }
 

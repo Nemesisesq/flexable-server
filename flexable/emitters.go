@@ -7,7 +7,6 @@ import (
 	"github.com/mitchellh/hashstructure"
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/odknt/go-socket.io"
-	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -21,7 +20,6 @@ func InitWatchers(socket socketio.Conn) {
 func CheckOpenShifts(s socketio.Conn) {
 
 	ctx := s.Context().(context.Context)
-	db := ctx.Value("db").(*mgo.Database)
 
 	ticker := time.NewTicker(time.Second * 1)
 	tickChan := ticker.C
@@ -34,7 +32,7 @@ func CheckOpenShifts(s socketio.Conn) {
 		case <-tickChan:
 			//log.Info("I'm checking the db")
 			//log.Info(db)
-			db.C("shifts").Find(bson.M{"company.uuid": companyId}).All(&shiftList)
+			shiftList = shifts.GetAllShifts(bson.M{"company.uuid": companyId})
 
 			shift_list_hash, err := hashstructure.Hash(&shiftList, nil)
 

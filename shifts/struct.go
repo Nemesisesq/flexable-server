@@ -27,7 +27,9 @@ type Shift struct {
 	Location     string                  `json:"location"`
 	Date         string                  `json:"date"`
 	StartTime    string                  `json:"start"`
+	RawStartTime string                  `json:"rawStart"`
 	EndTime      string                  `json:"end"`
+	RawEndTime   string                  `json:"rawEnd"`
 	Volunteers   []employee.Employee     `json:"volunteers"`
 	Company      company.Company         `json:"company"`
 	Application  application.Application `json:"application"`
