@@ -80,7 +80,8 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} 
 
 	templateString := `
 Hey There is an open shift from {{.StartTime }} to {{.EndTime}}
-On {{.Date }}
+On {{.Date }}. Reply "1" if you would like to pick up this shift. Skip the text messages and download the Flexable app in the Apple App store
+or the Google play store.
 `
 
 	buf, err := CreateTextMessageString(templateString, shift)
