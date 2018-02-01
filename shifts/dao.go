@@ -9,12 +9,24 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
-func Find(query bson.M) *mgo.Query {
+//Channel to close conections to Mongo from other methods that get  query
+var ch chan bool
 
+func Find(query bson.M) *mgo.Query {
+	ch = make(chan bool)
 	session, database, err := utils.GetMgoSession()
 	if err != nil {
 		panic(err)
 	}
+
+	go func() {
+		for {
+			select {
+			case <-ch:
+				session.Close()
+			}
+		}
+	}()
 
 	c := session.DB(database).C("shifts")
 
@@ -24,23 +36,31 @@ func Find(query bson.M) *mgo.Query {
 func GetAllShifts(query bson.M) (result []Shift) {
 
 	err := Find(query).All(&result)
+
+	ch <- true
+
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	out := []Shift{}
 	for _, v := range result {
+		layout := "2006-01-02T15:04:05.000Z"
 
-		then, err := time.Parse("Mon Jan 2 2006 15:04:05 MST-0700", v.RawEndTime)
+		then, err := time.Parse(layout, v.RawEndTime)
 		if err != nil {
 			log.Error(err)
 		}
+
+		//log.Info(then.String())
 		now := time.Now()
+		//log.Info(now.String())
 
 		//log.Info(now.Hour(), now.Minute())
 		//log.Info(then.Hour(), then.Minute())
 
-		if now.Before(then) {
+		before := now.Before(then)
+		if before {
 			out = append(out, v)
 		}
 
@@ -56,6 +76,8 @@ func GetOneShift(query bson.M) (result Shift) {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	ch <- true
 
 	return result
 }

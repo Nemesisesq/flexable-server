@@ -6,8 +6,11 @@ import (
 	"net/http"
 	"os"
 
+	//"github.com/auth0/go-jwt-middleware"
+	//"github.com/dgrijalva/jwt-go"
 	"github.com/gorilla/mux"
 	_ "github.com/heroku/x/hmetrics/onload"
+	"github.com/nemesisesq/flexable/account"
 	"github.com/nemesisesq/flexable/flexable"
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/odknt/go-socket.io"
@@ -24,7 +27,6 @@ func main() {
 	}
 
 	flexable.SocketServerConnections(*server)
-
 	flexable.SetListeners(server)
 
 	go server.Serve()
@@ -32,8 +34,24 @@ func main() {
 
 	r := mux.NewRouter()
 	n := negroni.Classic() // Includes some default middlewares
+
+	/*jwtMiddleware := jwtmiddleware.New(jwtmiddleware.Options{
+		ValidationKeyGetter: func(token *jwt.Token) (interface{}, error) {
+			return []byte("My Secret"), nil
+		},
+		// When set, the middleware verifies that tokens are signed with the specific signing algorithm
+		// If the signing method is not constant the ValidationKeyGetter callback can be used to implement additional checks
+		// Important to avoid security issues described here: https://auth0.com/blog/2015/03/31/critical-vulnerabilities-in-json-web-token-libraries/
+		SigningMethod: jwt.SigningMethodHS256,
+	})*/
+
 	n.UseHandler(r)
 	r.Handle("/socket.io/", server)
+
+	r.HandleFunc("/users/push-token", func(writer http.ResponseWriter, request *http.Request) {
+		account.SavePushToken(*request)
+	})
+
 	r.HandleFunc("/sms/incoming/{smsId}", func(writer http.ResponseWriter, request *http.Request) {
 		fmt.Println(request)
 		vars := mux.Vars(request)

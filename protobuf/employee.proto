@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+message EmployeePayload {
+    enum Type {
+
+        OPEN_SHIFTS = 0;
+        SHIFT_DETAILS = 1;
+        PICK_UP_SHIFT = 2;
+        CALL_OFF_SHIFT = 3;
+
+
+    };
+
+    Type type = 1;
+    string id = 2;
+    string jwt = 3;
+    string shift = 4;
+
+}

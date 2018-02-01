@@ -51,6 +51,18 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/kr/pretty"
+  packages = ["."]
+  revision = "cfb55aafdaf3ec08f0db22699ab822c50091b1c4"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/kr/text"
+  packages = ["."]
+  revision = "7cafcd837844e784b526369c9bce262804aebc60"
+
+[[projects]]
+  branch = "master"
   name = "github.com/manveru/faker"
   packages = ["."]
   revision = "9fbc68a78c4dbc7914e1a23f88f126bea4383b97"
@@ -130,6 +142,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "bef4bafa3e9f6ce303632b64c0bc32648c00a54e8bd123d5c80fb5858a02ba24"
+  inputs-digest = "db3b38841d1c6bf3ba5c89a4ddc6fd1f6b1d9dc66056530d8a9f2b16423babfa"
   solver-name = "gps-cdcl"
   solver-version = 1

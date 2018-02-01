@@ -34,11 +34,11 @@ func SocketServerConnections(server socketio.Server) {
 		fmt.Println("everything cancelled", e)
 	})
 	server.OnDisconnect("/", func(s socketio.Conn, msg string) {
-		ctx := s.Context().(context.Context)
+		//ctx := s.Context().(context.Context)
 
-		cancel := ctx.Value("cancel").(context.CancelFunc)
-		cancel()
-		fmt.Println("closed and cancelled", msg)
+		//cancel := ctx.Value("cancel").(context.CancelFunc)
+		//cancel()
+		//fmt.Println("closed and cancelled", msg)
 	})
 }
 func SetMongoSession(i context.Context) context.Context {
