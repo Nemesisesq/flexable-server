@@ -40,8 +40,14 @@ func GetAllShifts(query bson.M) (result []Shift) {
 	ch <- true
 
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
+
+	defer func() {
+		if r := recover(); r != nil {
+			log.Info("Recovered in f", r)
+		}
+	}()
 
 	out := []Shift{}
 	for _, v := range result {
@@ -74,8 +80,14 @@ func GetOneShift(query bson.M) (result Shift) {
 
 	err := Find(query).One(&result)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
+
+	defer func() {
+		if r := recover(); r != nil {
+			log.Info("Recovered in f", r)
+		}
+	}()
 
 	ch <- true
 

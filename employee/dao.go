@@ -9,12 +9,23 @@ import (
 
 const COLLECTION = "employee"
 
+var ch chan bool
+
 func Find(query bson.M) *mgo.Query {
 
 	session, database, err := utils.GetMgoSession()
 	if err != nil {
 		panic(err)
 	}
+
+	go func() {
+		for {
+			select {
+			case <-ch:
+				session.Close()
+			}
+		}
+	}()
 
 	c := session.DB(database).C(COLLECTION)
 
@@ -25,8 +36,16 @@ func GetAllEmployees(query bson.M) (result []Employee) {
 
 	err := Find(query).All(&result)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
+
+	ch <- true
+
+	defer func() {
+		if r := recover(); r != nil {
+			log.Info("Recovered in f", r)
+		}
+	}()
 
 	return result
 
