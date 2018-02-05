@@ -40,7 +40,7 @@ func GetAllShifts(query bson.M) (result []Shift) {
 	ch <- true
 
 	if err != nil {
-		panic(err)
+		//panic(err)
 	}
 
 	defer func() {
@@ -65,8 +65,8 @@ func GetAllShifts(query bson.M) (result []Shift) {
 		//log.Info(now.Hour(), now.Minute())
 		//log.Info(then.Hour(), then.Minute())
 
-		before := now.Before(then)
-		if before {
+		_ = now.Before(then)
+		if true {
 			out = append(out, v)
 		}
 

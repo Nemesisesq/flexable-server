@@ -22,7 +22,7 @@ func CheckOpenShifts(s socketio.Conn) {
 
 	ctx := s.Context().(context.Context)
 
-	ticker := time.NewTicker(time.Second * 1)
+	ticker := time.NewTicker(time.Second * 2)
 	tickChan := ticker.C
 	companyId := "123"
 	var currentShiftState uint64
