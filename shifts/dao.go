@@ -5,40 +5,19 @@ import (
 
 	"github.com/nemesisesq/flexable/utils"
 	log "github.com/sirupsen/logrus"
-	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
 //Channel to close conections to Mongo from other methods that get  query
-var ch chan bool
-
-func Find(query bson.M) *mgo.Query {
-	ch = make(chan bool)
+func GetAllShifts(query bson.M) (result []Shift) {
 	session, database, err := utils.GetMgoSession()
+
+	defer session.Close()
 	if err != nil {
 		panic(err)
 	}
-
-	go func() {
-		for {
-			select {
-			case <-ch:
-				log.Info("closing session")
-				session.Close()
-			}
-		}
-	}()
-
 	c := session.DB(database).C("shifts")
-
-	return c.Find(query)
-}
-
-func GetAllShifts(query bson.M) (result []Shift) {
-
-	err := Find(query).All(&result)
-
-	ch <- true
+	err = c.Find(query).All(&result)
 
 	if err != nil {
 		//panic(err)
@@ -79,7 +58,14 @@ func GetAllShifts(query bson.M) (result []Shift) {
 
 func GetOneShift(query bson.M) (result Shift) {
 
-	err := Find(query).One(&result)
+	session, database, err := utils.GetMgoSession()
+	defer session.Close()
+	if err != nil {
+		panic(err)
+	}
+	c := session.DB(database).C("shifts")
+
+	err = c.Find(query).One(&result)
 	if err != nil {
 		panic(err)
 	}
@@ -89,8 +75,6 @@ func GetOneShift(query bson.M) (result Shift) {
 			log.Info("Recovered in f", r)
 		}
 	}()
-
-	ch <- true
 
 	return result
 }

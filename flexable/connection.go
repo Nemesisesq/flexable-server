@@ -26,10 +26,10 @@ func SocketServerConnections(server socketio.Server) {
 	})
 
 	server.OnError("/", func(s socketio.Conn, e error) {
-		ctx := s.Context()
+		ctx := s.Context().(context.Context)
 		fmt.Println(ctx)
-		//cancel := ctx.Value("cancel").(context.CancelFunc)
-		//cancel()
+		cancel := ctx.Value("cancel").(context.CancelFunc)
+		cancel()
 		fmt.Println("meet error:", e)
 		fmt.Println("everything cancelled", e)
 	})

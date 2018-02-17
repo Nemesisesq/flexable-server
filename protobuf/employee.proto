@@ -16,4 +16,5 @@ message EmployeePayload {
     string jwt = 3;
     string shift = 4;
 
+
 }
