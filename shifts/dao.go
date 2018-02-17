@@ -23,6 +23,7 @@ func Find(query bson.M) *mgo.Query {
 		for {
 			select {
 			case <-ch:
+				log.Info("closing session")
 				session.Close()
 			}
 		}

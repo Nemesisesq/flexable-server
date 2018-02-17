@@ -6,7 +6,7 @@ import (
 	"gopkg.in/mgo.v2"
 )
 
-func GetMgoSession() (string *mgo.Session, database string, err error) {
+func GetMgoSession() (*mgo.Session, string, error) {
 	mongodb_uri := os.Getenv("MONGODB_URI")
 
 	dialInfo, err := mgo.ParseURL(mongodb_uri)
