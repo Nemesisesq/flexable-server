@@ -5,12 +5,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"text/template"
+	"time"
 
 	"github.com/manveru/faker"
 	"github.com/nemesisesq/flexable/company"
 	"github.com/nemesisesq/flexable/employee"
 	PlivoClient "github.com/nemesisesq/flexable/plivio/client"
 	"github.com/nemesisesq/flexable/position"
+	payload2 "github.com/nemesisesq/flexable/protobuf"
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/nemesisesq/flexable/utils"
 	"github.com/odknt/go-socket.io"
@@ -269,4 +271,48 @@ func GetPositions(s socketio.Conn, data interface{}) interface{} {
 	})
 
 	return jobs
+}
+
+type EmployeeData struct {
+}
+
+func GetEmployeeShifts(s socketio.Conn, data interface{}) interface{} {
+
+	payload := data.(map[string]interface{})["payload"]
+	tmp, err := json.Marshal(payload)
+	if err != nil {
+		panic(err)
+	}
+	var empl_payload payload2.EmployeePayload
+	err = json.Unmarshal(tmp, &empl_payload)
+
+	if err != nil {
+		panic(err)
+	}
+	ticker := time.NewTicker(time.Second * 2)
+	tickChan := ticker.C
+	//companyId := "123"
+	var employeeShiftHash uint64
+
+	go func() {
+		log.Info("starting employee shift watcher")
+
+		for {
+			select {
+			case <-tickChan:
+
+				shift_list := shifts.GetAllShifts(bson.M{
+					"$and": []bson.M{
+						{"volunteers": bson.M{"$size": 0}},
+						{"company.uuid": 123},
+					}})
+
+				employee_schedule := employee.GetOneEmployee()
+
+			}
+
+		}
+
+	}()
+	return nil
 }

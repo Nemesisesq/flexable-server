@@ -52,6 +52,7 @@ func GetAllEmployees(query bson.M) (result []Employee) {
 }
 
 func GetOneEmployee(query bson.M) (result Employee) {
+	//TODO fix mongo access for employee unpack this find Query
 
 	err := Find(query).One(&result)
 	if err != nil {

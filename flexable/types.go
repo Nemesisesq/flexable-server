@@ -19,9 +19,20 @@ const (
 	SELECT_VOLUNTEER        = payload.Payload_SELECT_VOLUNTEER
 )
 
+//Employee Constants
+
+const (
+	GET_EMPLOYEE_SHIFTS = payload.EmployeePayload_GET_SHIFTS
+)
+
+type ProtoBuffer interface {
+	String() string
+	EnumDescriptor() ([]byte, []int)
+}
+
 type SockHandler func(socketio.Conn, interface{}) interface{}
 type MessageType struct {
-	T payload.Payload_Type
+	T ProtoBuffer
 	H SockHandler
 }
 
@@ -35,6 +46,7 @@ var messageTypes = []MessageType{
 	{GET_JOBS, GetPositions},
 	{EMPLOYEE_LIST, GetAvailableEmployees},
 	{SELECT_VOLUNTEER, SelectVolunteer},
+	{GET_EMPLOYEE_SHIFTS, GetEmployeeShifts},
 }
 
 func constructSocketID(payload_type payload.Payload_Type) string {
