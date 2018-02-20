@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/manveru/faker"
+	"github.com/mitchellh/hashstructure"
 	"github.com/nemesisesq/flexable/company"
 	"github.com/nemesisesq/flexable/employee"
 	PlivoClient "github.com/nemesisesq/flexable/plivio/client"
@@ -307,7 +308,36 @@ func GetEmployeeShifts(s socketio.Conn, data interface{}) interface{} {
 						{"company.uuid": 123},
 					}})
 
-				employee_schedule := employee.GetOneEmployee()
+				currentEmployee := employee.GetOneEmployee(bson.M{"id": empl_payload.Id})
+
+				//Combine the employee shift list as well as make them unique
+				combined := append(shift_list, currentEmployee.Schedule...)
+
+				unique := []shifts.Shift{}
+
+				for _, v := range combined {
+					found := false
+					for _, uv := range unique {
+						if v.Date == uv.Date {
+							found = true
+						}
+					}
+
+					if !found {
+						unique = append(unique, v)
+					}
+
+				}
+
+				tmpHash, err := hashstructure.Hash(unique, nil)
+
+				if err != nil {
+					panic(err)
+				}
+
+				if tmpHash != employeeShiftHash {
+					s.Emit()
+				}
 
 			}
 

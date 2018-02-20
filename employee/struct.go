@@ -2,6 +2,7 @@ package employee
 
 import (
 	"github.com/nemesisesq/flexable/position"
+	"github.com/nemesisesq/flexable/shifts"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -17,4 +18,5 @@ type Employee struct {
 	Email    string            `json:"email" bson:"email"`
 	Location GeoLocation       `json:"location" bson:"location"`
 	Position position.Position `json:"position" bson:"position"`
+	Schedule []shifts.Shift    `json:"schedule" bson:"schedule"`
 }
