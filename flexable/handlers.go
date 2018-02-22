@@ -336,7 +336,7 @@ func GetEmployeeShifts(s socketio.Conn, data interface{}) interface{} {
 				}
 
 				if tmpHash != employeeShiftHash {
-					s.Emit()
+					s.Emit(constructSocketID(GET_EMPLOYEE_SHIFTS), unique)
 				}
 
 			}

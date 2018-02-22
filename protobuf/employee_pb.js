@@ -183,7 +183,8 @@ proto.payload.EmployeePayload.Type = {
   GET_SHIFTS: 0,
   SHIFT_DETAILS: 1,
   PICK_UP_SHIFT: 2,
-  CALL_OFF_SHIFT: 3
+  CALL_OFF_SHIFT: 3,
+  SHIFTS_AND_SCHEDULES: 4
 };
 
 /**

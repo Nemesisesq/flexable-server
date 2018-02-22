@@ -49,7 +49,7 @@ var messageTypes = []MessageType{
 	{GET_EMPLOYEE_SHIFTS, GetEmployeeShifts},
 }
 
-func constructSocketID(payload_type payload.Payload_Type) string {
+func constructSocketID(payload_type ProtoBuffer) string {
 	return fmt.Sprintf("socket%d", payload_type)
 
 }
