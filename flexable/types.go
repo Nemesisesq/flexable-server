@@ -34,19 +34,20 @@ type SockHandler func(socketio.Conn, interface{}) interface{}
 type MessageType struct {
 	T ProtoBuffer
 	H SockHandler
+	N string
 }
 
 var messageTypes = []MessageType{
-	{OPEN_SHIFTS, OpenShiftHandler},
-	{SHIFT_DETAILS, nil},
-	{ACCEPT_SHIFT_SUBSTITUE, nil},
-	{DENY_SHIFT_SUBSTITUTE, nil},
-	{FIND_SHIFT_SUBSTITUTE, FindShiftReplacementHandler},
-	{GET_AVAILABLE_EMPLOYEES, nil},
-	{GET_JOBS, GetPositions},
-	{EMPLOYEE_LIST, GetAvailableEmployees},
-	{SELECT_VOLUNTEER, SelectVolunteer},
-	{GET_EMPLOYEE_SHIFTS, GetEmployeeShifts},
+	{OPEN_SHIFTS, OpenShiftHandler, "manager"},
+	{SHIFT_DETAILS, nil, "manager"},
+	{ACCEPT_SHIFT_SUBSTITUE, nil, "manager"},
+	{DENY_SHIFT_SUBSTITUTE, nil, "manager"},
+	{FIND_SHIFT_SUBSTITUTE, FindShiftReplacementHandler, "manager"},
+	{GET_AVAILABLE_EMPLOYEES, nil, "manager"},
+	{GET_JOBS, GetPositions, "manager"},
+	{EMPLOYEE_LIST, GetAvailableEmployees, "manager"},
+	{SELECT_VOLUNTEER, SelectVolunteer, "manager"},
+	{GET_EMPLOYEE_SHIFTS, GetEmployeeShifts, "employee"},
 }
 
 func constructSocketID(payload_type ProtoBuffer) string {

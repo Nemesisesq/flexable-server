@@ -6,7 +6,7 @@ func SetListeners(socket *socketio.Server) {
 	for _, i := range messageTypes {
 
 		id := constructSocketID(i.T)
-		socket.OnEvent("/", id, i.H)
+		socket.OnEvent(i.N, id, i.H)
 
 	}
 }

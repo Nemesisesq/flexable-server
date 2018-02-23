@@ -217,19 +217,19 @@ func GetAvailableEmployees(s socketio.Conn, data interface{}) interface{} {
 			}
 
 			x := employee.Employee{
-				bson.NewObjectId(),
-				fake.Name(),
-				num,
-				fake.Email(),
-				employee.GeoLocation{
+				ID:     bson.NewObjectId(),
+				Name:   fake.Name(),
+				Number: num,
+				Email:  fake.Email(),
+				Location: employee.GeoLocation{
 					fake.Latitude(),
 					fake.Longitude(),
 				},
-				position.Position{
-					bson.NewObjectId(),
-					fake.JobTitle(),
-					10.00,
-					"hr",
+				Position: position.Position{
+					ID:           bson.NewObjectId(),
+					Title:        fake.JobTitle(),
+					Compensation: 10.00,
+					Rate:         "hr",
 				},
 			}
 
@@ -280,6 +280,10 @@ type EmployeeData struct {
 func GetEmployeeShifts(s socketio.Conn, data interface{}) interface{} {
 
 	payload := data.(map[string]interface{})["payload"]
+
+	if payload == nil {
+		return nil
+	}
 	tmp, err := json.Marshal(payload)
 	if err != nil {
 		panic(err)
@@ -311,20 +315,28 @@ func GetEmployeeShifts(s socketio.Conn, data interface{}) interface{} {
 				currentEmployee := employee.GetOneEmployee(bson.M{"id": empl_payload.Id})
 
 				//Combine the employee shift list as well as make them unique
-				combined := append(shift_list, currentEmployee.Schedule...)
+
+				var shift_list2 []employee.Shiftable
+
+				// Loop through and cast shift.Shift to Shiftable
+				for _, v := range shift_list {
+					var tmp employee.Shiftable = v
+					shift_list2 = append(shift_list2, tmp)
+				}
+				combined := append(shift_list2, currentEmployee.Schedule...)
 
 				unique := []shifts.Shift{}
 
 				for _, v := range combined {
 					found := false
 					for _, uv := range unique {
-						if v.Date == uv.Date {
+						if v.(shifts.Shift).Date == uv.Date {
 							found = true
 						}
 					}
 
 					if !found {
-						unique = append(unique, v)
+						unique = append(unique, v.(shifts.Shift))
 					}
 
 				}

@@ -1,6 +1,8 @@
 package shifts
 
 import (
+	"fmt"
+
 	"github.com/nemesisesq/flexable/company"
 	"github.com/nemesisesq/flexable/employee"
 	"github.com/nemesisesq/flexable/plivio/application"
@@ -36,4 +38,8 @@ type Shift struct {
 	PhoneNumber  string                  `json:"phone_number"`
 	Chosen       employee.Employee       `json:"chosen"`
 	V            int                     `json:"__v"`
+}
+
+func (s Shift) String() {
+	fmt.Println("I'm an Employee")
 }

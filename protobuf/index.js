@@ -1,5 +1,7 @@
-var proto = require("./payload_pb");
+var payoad = require("./payload_pb");
+var employee = require("./employee_pb")
 
 module.exports ={
-    proto : proto
+    payoad : payoad,
+    employee: employee
 }

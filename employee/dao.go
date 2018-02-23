@@ -1,6 +1,8 @@
 package employee
 
 import (
+	"fmt"
+
 	"github.com/nemesisesq/flexable/utils"
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2"
@@ -56,8 +58,14 @@ func GetOneEmployee(query bson.M) (result Employee) {
 
 	err := Find(query).One(&result)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
+
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered in f", r)
+		}
+	}()
 
 	return result
 }

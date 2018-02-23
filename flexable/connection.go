@@ -3,14 +3,16 @@ package flexable
 import (
 	"context"
 	"fmt"
-	"os"
-
 	"github.com/odknt/go-socket.io"
+	log "github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2"
+	"os"
 )
 
-func SocketServerConnections(server socketio.Server) {
-	server.OnConnect("/", func(s socketio.Conn) error {
+func SocketServerConnections(server socketio.Server, namespace string) {
+	server.OnConnect(fmt.Sprintf("/%v", namespace), func(s socketio.Conn) error {
+
+		log.Info("Connecting to ", namespace)
 		//set context
 		ctx := context.Background()
 		ctx, cancel := context.WithCancel(ctx)
@@ -21,19 +23,22 @@ func SocketServerConnections(server socketio.Server) {
 
 		InitWatchers(s)
 
-		fmt.Println("connected:", s.ID())
+		log.WithFields(log.Fields{
+			"namespace": namespace,
+			"ID":        s.ID(),
+		}).Info("connected:")
 		return nil
 	})
 
-	server.OnError("/", func(s socketio.Conn, e error) {
-		ctx := s.Context().(context.Context)
-		fmt.Println(ctx)
-		cancel := ctx.Value("cancel").(context.CancelFunc)
-		cancel()
+	server.OnError(fmt.Sprintf("/%v", namespace), func(s socketio.Conn, e error) {
+		//ctx := s.Context().(context.Context)
+		//fmt.Println(ctx)
+		//cancel := ctx.Value("cancel").(context.CancelFunc)
+		//cancel()
 		fmt.Println("meet error:", e)
 		fmt.Println("everything cancelled", e)
 	})
-	server.OnDisconnect("/", func(s socketio.Conn, msg string) {
+	server.OnDisconnect(fmt.Sprintf("/%v", namespace), func(s socketio.Conn, msg string) {
 		//ctx := s.Context().(context.Context)
 
 		//cancel := ctx.Value("cancel").(context.CancelFunc)

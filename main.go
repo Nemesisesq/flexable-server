@@ -19,14 +19,15 @@ import (
 )
 
 func main() {
-
+	log.SetFormatter(&log.JSONFormatter{})
 	port := os.Getenv("PORT")
 	server, err := socketio.NewServer(nil)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	flexable.SocketServerConnections(*server)
+	flexable.SocketServerConnections(*server, "manager")
+	flexable.SocketServerConnections(*server, "employee")
 	flexable.SetListeners(server)
 
 	go server.Serve()
