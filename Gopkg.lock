@@ -51,18 +51,6 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/kr/pretty"
-  packages = ["."]
-  revision = "cfb55aafdaf3ec08f0db22699ab822c50091b1c4"
-
-[[projects]]
-  branch = "master"
-  name = "github.com/kr/text"
-  packages = ["."]
-  revision = "7cafcd837844e784b526369c9bce262804aebc60"
-
-[[projects]]
-  branch = "master"
   name = "github.com/manveru/faker"
   packages = ["."]
   revision = "9fbc68a78c4dbc7914e1a23f88f126bea4383b97"
@@ -110,6 +98,12 @@
   version = "v1.1.4"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/unrolled/render"
+  packages = ["."]
+  revision = "65450fb6b2d3595beca39f969c411db8f8d5c806"
+
+[[projects]]
   name = "github.com/urfave/negroni"
   packages = ["."]
   revision = "5dbbc83f748fc3ad38585842b0aedab546d0ea1e"
@@ -142,6 +136,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "db3b38841d1c6bf3ba5c89a4ddc6fd1f6b1d9dc66056530d8a9f2b16423babfa"
+  inputs-digest = "08e20e9ad109c7ee62a72dd9b0a73adcfb8135e8f855d80e08111adf0b97cf65"
   solver-name = "gps-cdcl"
   solver-version = 1

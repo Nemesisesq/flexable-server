@@ -15,6 +15,7 @@ import (
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/odknt/go-socket.io"
 	log "github.com/sirupsen/logrus"
+	"github.com/unrolled/render"
 	"github.com/urfave/negroni"
 )
 
@@ -33,7 +34,8 @@ func main() {
 	go server.Serve()
 	defer server.Close()
 
-	r := mux.NewRouter()
+	m := mux.NewRouter()
+	r := render.New()
 	n := negroni.Classic() // Includes some default middlewares
 
 	/*jwtMiddleware := jwtmiddleware.New(jwtmiddleware.Options{
@@ -46,14 +48,20 @@ func main() {
 		SigningMethod: jwt.SigningMethodHS256,
 	})*/
 
-	n.UseHandler(r)
-	r.Handle("/socket.io/", server)
+	n.UseHandler(m)
+	m.Handle("/socket.io/", server)
 
-	r.HandleFunc("/users/push-token", func(writer http.ResponseWriter, request *http.Request) {
+	m.HandleFunc("/users/push-token", func(writer http.ResponseWriter, request *http.Request) {
 		account.SavePushToken(*request)
 	})
 
-	r.HandleFunc("/sms/incoming/{smsId}", func(writer http.ResponseWriter, request *http.Request) {
+	m.HandleFunc("/users/verify", func(writer http.ResponseWriter, request *http.Request) {
+		role := account.UserRole(*request)
+
+		r.JSON(writer, http.StatusOK, map[string]string{"role": role})
+	})
+
+	m.HandleFunc("/sms/incoming/{smsId}", func(writer http.ResponseWriter, request *http.Request) {
 		fmt.Println(request)
 		vars := mux.Vars(request)
 		smsID := vars["smsId"]
@@ -78,7 +86,7 @@ func main() {
 		}
 
 	})
-	r.Handle("/", http.FileServer(http.Dir("./asset")))
+	m.Handle("/", http.FileServer(http.Dir("./asset")))
 	log.Println("Serving at " + port + " ...")
 	log.Fatal(http.ListenAndServe(":"+port, n))
 }
