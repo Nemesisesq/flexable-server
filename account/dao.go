@@ -15,6 +15,7 @@ func UserRole(r http.Request) string {
 	tmp := map[string]interface{}{}
 
 	decoder := json.NewDecoder(r.Body)
+
 	err := decoder.Decode(&tmp)
 
 	session, database, err := utils.GetMgoSession()

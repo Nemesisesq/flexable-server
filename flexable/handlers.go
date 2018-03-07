@@ -35,6 +35,7 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) interface{} {
 }
 
 func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} {
+	log.Info("Finding a shift replacement")
 	payload := data.(map[string]interface{})["payload"]
 	tmp, err := json.Marshal(payload)
 	if err != nil {
@@ -145,7 +146,7 @@ type Data struct {
 }
 
 func SelectVolunteer(s socketio.Conn, data interface{}) interface{} {
-	//fmt.Println("Selecting the Volunteer")
+	log.Info("Selecting the Volunteer")
 	//spew.Dump(data)
 
 	payload := &Data{}

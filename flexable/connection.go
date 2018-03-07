@@ -24,7 +24,7 @@ func SocketServerConnections(server socketio.Server, namespace string) {
 		InitWatchers(s)
 
 		log.WithFields(log.Fields{
-			"namespace": namespace,
+			"namespace": s.Namespace(),
 			"ID":        s.ID(),
 		}).Info("connected:")
 		return nil
