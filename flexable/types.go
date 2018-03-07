@@ -25,6 +25,11 @@ const (
 	GET_EMPLOYEE_SHIFTS = payload.EmployeePayload_GET_SHIFTS
 )
 
+const (
+	MANAGER  = "manager"
+	EMPLOYEE = "employee"
+)
+
 type ProtoBuffer interface {
 	String() string
 	EnumDescriptor() ([]byte, []int)
@@ -38,16 +43,16 @@ type MessageType struct {
 }
 
 var messageTypes = []MessageType{
-	{OPEN_SHIFTS, OpenShiftHandler, "manager"},
-	{SHIFT_DETAILS, nil, "manager"},
-	{ACCEPT_SHIFT_SUBSTITUE, nil, "manager"},
-	{DENY_SHIFT_SUBSTITUTE, nil, "manager"},
-	{FIND_SHIFT_SUBSTITUTE, FindShiftReplacementHandler, "manager"},
-	{GET_AVAILABLE_EMPLOYEES, nil, "manager"},
-	{GET_JOBS, GetPositions, "manager"},
-	{EMPLOYEE_LIST, GetAvailableEmployees, "manager"},
-	{SELECT_VOLUNTEER, SelectVolunteer, "manager"},
-	{GET_EMPLOYEE_SHIFTS, GetEmployeeShifts, "employee"},
+	{OPEN_SHIFTS, OpenShiftHandler, MANAGER},
+	{SHIFT_DETAILS, nil, MANAGER},
+	{ACCEPT_SHIFT_SUBSTITUE, nil, MANAGER},
+	{DENY_SHIFT_SUBSTITUTE, nil, MANAGER},
+	{FIND_SHIFT_SUBSTITUTE, FindShiftReplacementHandler, MANAGER},
+	{GET_AVAILABLE_EMPLOYEES, nil, MANAGER},
+	{GET_JOBS, GetPositions, MANAGER},
+	{EMPLOYEE_LIST, GetAvailableEmployees, MANAGER},
+	{SELECT_VOLUNTEER, SelectVolunteer, MANAGER},
+	{GET_EMPLOYEE_SHIFTS, GetEmployeeShifts, EMPLOYEE},
 }
 
 func constructSocketID(payload_type ProtoBuffer) string {

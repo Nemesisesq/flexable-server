@@ -239,7 +239,13 @@ func GetAvailableEmployees(s socketio.Conn, data interface{}) interface{} {
 
 		}
 	}
-	s.Emit(constructSocketID(EMPLOYEE_LIST), empList, func(so socketio.Conn, data string) {
+
+	fmt.Println("sending employees")
+
+	log.Info(s.Namespace())
+
+	id := constructSocketID(EMPLOYEE_LIST)
+	s.Emit(id, empList, func(so socketio.Conn, data string) {
 		log.Println("Client ACK with data: ", data)
 	})
 	return empList

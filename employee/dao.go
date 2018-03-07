@@ -35,13 +35,18 @@ func Find(query bson.M) *mgo.Query {
 }
 
 func GetAllEmployees(query bson.M) (result []Employee) {
-
-	err := Find(query).All(&result)
+	session, database, err := utils.GetMgoSession()
 	if err != nil {
 		panic(err)
 	}
 
-	ch <- true
+	defer session.Close()
+
+	c := session.DB(database).C(COLLECTION)
+	err = c.Find(query).All(&result)
+	if err != nil {
+		panic(err)
+	}
 
 	defer func() {
 		if r := recover(); r != nil {
