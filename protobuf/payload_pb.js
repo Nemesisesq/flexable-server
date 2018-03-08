@@ -156,7 +156,7 @@ proto.Payload.serializeBinaryToWriter = function(message, writer) {
  * @enum {number}
  */
 proto.Payload.Type = {
-  OPEN_SHIFTS: 0,
+  UNKNOWN: 0,
   SHIFT_DETAILS: 1,
   ACCEPT_SHIFT_SUBSTITUE: 2,
   DENY_SHIFT_SUBSTITUTE: 3,
@@ -164,7 +164,8 @@ proto.Payload.Type = {
   GET_AVAILABLE_EMPLOYEES: 5,
   GET_JOBS: 6,
   EMPLOYEE_LIST: 7,
-  SELECT_VOLUNTEER: 8
+  SELECT_VOLUNTEER: 8,
+  OPEN_SHIFTS: 9
 };
 
 /**
