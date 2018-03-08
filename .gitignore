@@ -1,2 +1,2 @@
 .env
-.docker_build/
+.docker_build/.idea

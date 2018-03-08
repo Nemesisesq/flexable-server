@@ -24,7 +24,7 @@ import (
 )
 
 func OpenShiftHandler(s socketio.Conn, _ interface{}) interface{} {
-	fmt.Print("hello 0")
+	log.Info("Returning openshifts")
 
 	shift_list := shifts.GetAllShifts(nil)
 

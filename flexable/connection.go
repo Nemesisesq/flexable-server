@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"github.com/odknt/go-socket.io"
 	log "github.com/sirupsen/logrus"
-	"gopkg.in/mgo.v2"
-	"os"
 )
 
 func SocketServerConnections(server socketio.Server, namespace string) {
@@ -17,7 +15,7 @@ func SocketServerConnections(server socketio.Server, namespace string) {
 		ctx := context.Background()
 		ctx, cancel := context.WithCancel(ctx)
 		ctx = context.WithValue(ctx, "cancel", cancel)
-		ctx = SetMongoSession(ctx)
+		//ctx = SetMongoSession(ctx)
 
 		s.SetContext(ctx)
 
@@ -46,25 +44,26 @@ func SocketServerConnections(server socketio.Server, namespace string) {
 		//fmt.Println("closed and cancelled", msg)
 	})
 }
-func SetMongoSession(i context.Context) context.Context {
 
-	mongodb_uri := os.Getenv("MONGODB_URI")
-
-	dialInfo, err := mgo.ParseURL(mongodb_uri)
-	session, err := mgo.Dial(mongodb_uri)
-
-	if err != nil {
-		panic(err)
-	}
-
-	go func() {
-
-		defer session.Close()
-
-		<-i.Done()
-	}()
-
-	ctx := context.WithValue(i, "mgo", session)
-	ctx = context.WithValue(ctx, "db", session.DB(dialInfo.Database))
-	return ctx
-}
+//func SetMongoSession(i context.Context) context.Context {
+//
+//	mongodb_uri := os.Getenv("MONGODB_URI")
+//
+//	dialInfo, err := mgo.ParseURL(mongodb_uri)
+//	session, err := mgo.Dial(mongodb_uri)
+//
+//	if err != nil {
+//		panic(err)
+//	}
+//
+//	go func() {
+//
+//		defer session.Close()
+//
+//		<-i.Done()
+//	}()
+//
+//	ctx := context.WithValue(i, "mgo", session)
+//	ctx = context.WithValue(ctx, "db", session.DB(dialInfo.Database))
+//	return ctx
+//}
