@@ -1,12 +1,74 @@
 package shifts
 
 import (
+	"context"
+	"encoding/json"
+	"fmt"
 	"time"
 
+	"github.com/dgraph-io/dgo"
+	"github.com/dgraph-io/dgo/protos/api"
 	"github.com/nemesisesq/flexable/utils"
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2/bson"
 )
+
+func SchemaSetup(c *dgo.Dgraph) {
+	// Install a schema into dgraph. Accounts have a `name` and a `balance`.
+	err := c.Alter(context.Background(), &api.Operation{
+		Schema: `
+			sms_id: string @index(exact) .
+			name: string .
+			absentWorker: uid .
+			job: uid .
+			location: geo.
+			date: uid .
+			start: string .
+			rawStart: string .
+			end: string .
+			rawEnd: string .
+			volunteers: uid .
+			company: uid .
+			application: uid
+			phone_number: string .
+			chosen: uid .
+		`,
+	})
+
+	if err != nil {
+		panic(err)
+	}
+}
+
+type Root struct {
+	Shifts []Shift `json:"shifts"`
+}
+
+func GetAllGraphShifts(company_uid string) (result []Shift) {
+	client := utils.NewDgraphClient()
+	SchemaSetup(client)
+
+	variables := map[string]string{"$company": company_uid}
+	query := `query Shifts($company:string){
+	    			shifts(func: uid($company)){
+						shifts {
+						expand(_all_)
+						}
+
+					}
+		}`
+	resp, err := client.NewTxn().QueryWithVars(context.Background(), query, variables)
+	if err != nil {
+		panic(err)
+	}
+
+	var root Root
+
+	fmt.Println(string(resp.Json))
+	err = json.Unmarshal(resp.Json, &root)
+	return root.Shifts
+
+}
 
 //Channel to close conections to Mongo from other methods that get  query
 func GetAllShifts(query bson.M) (result []Shift) {

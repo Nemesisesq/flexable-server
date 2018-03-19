@@ -22,6 +22,7 @@ type Worker struct {
 }
 type Shift struct {
 	ID           bson.ObjectId           `json:"_id,omitempty" bson:"_id,omitempty"`
+	UID          string                  `json:"uid"`
 	SmsID        string                  `json:"sms_id" bson:"sms_id"`
 	Name         string                  `json:"name"`
 	AbsentWorker employee.Employee       `json:"absentWorker" bson:"absentWorker"`
