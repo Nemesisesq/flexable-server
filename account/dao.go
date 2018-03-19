@@ -3,6 +3,7 @@ package account
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/dgraph-io/dgo"
@@ -90,6 +91,7 @@ func RetrieveUserByEmail(user User, err error, client *dgo.Dgraph, r http.Reques
 	variables := map[string]string{"$email": user.Email}
 	query := `query User($email:string){
 	    			user(func: eq(email, $email)){
+						uid
 	    				name
 	    				email
 	    				role
@@ -102,6 +104,8 @@ func RetrieveUserByEmail(user User, err error, client *dgo.Dgraph, r http.Reques
 	}
 
 	var root Root
+
+	fmt.Println(string(resp.Json))
 	err = json.Unmarshal(resp.Json, &root)
 	return root
 }

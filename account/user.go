@@ -2,6 +2,7 @@ package account
 
 import (
 	"github.com/satori/go.uuid"
+	"gopkg.in/mgo.v2/bson"
 )
 
 type Permission struct {
@@ -19,7 +20,9 @@ type Jobs struct {
 }
 
 type User struct {
+	ID          bson.ObjectId          `json:"id" bson:"id"`
 	UUID        uuid.UUID              `json:"id" bson:"uuid"`
+	UID         string                 `json:"uid" bson:"uid" dgraph:"_uid_"`
 	FirstName   string                 `json:"first_name" bson:"first_name"`
 	LastName    string                 `json:"last_name" bson:"last_name"`
 	Email       string                 `json:"email" bson:"email"`
