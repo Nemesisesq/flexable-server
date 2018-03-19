@@ -1,6 +1,8 @@
 package account
 
-import "gopkg.in/mgo.v2/bson"
+import (
+	"github.com/satori/go.uuid"
+)
 
 type Permission struct {
 }
@@ -17,7 +19,7 @@ type Jobs struct {
 }
 
 type User struct {
-	ID          bson.ObjectId          `json:"id" bson:"id"`
+	UUID        uuid.UUID              `json:"id" bson:"uuid"`
 	FirstName   string                 `json:"first_name" bson:"first_name"`
 	LastName    string                 `json:"last_name" bson:"last_name"`
 	Email       string                 `json:"email" bson:"email"`

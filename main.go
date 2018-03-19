@@ -56,7 +56,10 @@ func main() {
 	})
 
 	m.HandleFunc("/users/verify", func(writer http.ResponseWriter, request *http.Request) {
-		role := account.UserRole(*request)
+		//role := account.UserRole(*request)
+		role := account.UserRoleGraph(*request)
+
+		log.Info(role)
 
 		r.JSON(writer, http.StatusOK, map[string]string{"role": role})
 	})
