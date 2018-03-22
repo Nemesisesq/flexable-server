@@ -181,11 +181,11 @@ proto.payload.EmployeePayload.serializeBinaryToWriter = function(message, writer
  */
 proto.payload.EmployeePayload.Type = {
   UNKNOWN: 0,
-  GET_SHIFTS: 5,
+  GET_OPEN_SHIFTS: 5,
   SHIFT_DETAILS: 1,
   PICK_UP_SHIFT: 2,
   CALL_OFF_SHIFT: 3,
-  SHIFTS_AND_SCHEDULES: 4
+  GET_MY_SCHEDULES: 4
 };
 
 /**

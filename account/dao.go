@@ -11,7 +11,7 @@ import (
 
 var ch = make(chan bool, 1)
 
-func UserRole(r http.Request) string {
+func UserRole(r http.Request) (string, interface{}) {
 	tmp := map[string]interface{}{}
 
 	decoder := json.NewDecoder(r.Body)
@@ -30,7 +30,11 @@ func UserRole(r http.Request) string {
 	user := &User{}
 
 	if err := collection.Find(bson.M{"email": tmp["email"]}).One(&user); err != nil {
-		id, err := collection.Upsert(bson.M{"email": tmp["email"]}, tmp)
+
+		user.CognitoData = tmp
+		user.ID = bson.NewObjectId()
+		user.Email = tmp["email"].(string)
+		id, err := collection.Upsert(bson.M{"email": tmp["email"]}, user)
 
 		if err != nil {
 			panic(err)
@@ -43,7 +47,7 @@ func UserRole(r http.Request) string {
 		panic(err)
 	}
 
-	return user.Role
+	return user.Role, user.Profile
 
 }
 func SavePushToken(r http.Request) {

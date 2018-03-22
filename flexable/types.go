@@ -22,7 +22,10 @@ const (
 //Employee Constants
 
 const (
-	GET_EMPLOYEE_SHIFTS = payload.EmployeePayload_GET_SHIFTS
+	GET_MY_SHIFTS   = payload.EmployeePayload_GET_MY_SCHEDULES
+	GET_OPEN_SHIFTS = payload.EmployeePayload_GET_OPEN_SHIFTS
+	PICK_UP_SHIFT   = payload.EmployeePayload_PICK_UP_SHIFT
+	CALL_OFF_SHIFT  = payload.EmployeePayload_CALL_OFF_SHIFT
 )
 
 const (
@@ -52,7 +55,10 @@ var messageTypes = []MessageType{
 	{GET_JOBS, GetPositions, MANAGER},
 	{EMPLOYEE_LIST, GetAvailableEmployees, MANAGER},
 	{SELECT_VOLUNTEER, SelectVolunteer, MANAGER},
-	{GET_EMPLOYEE_SHIFTS, GetEmployeeShifts, EMPLOYEE},
+	{GET_MY_SHIFTS, GetEmployeeShifts, EMPLOYEE},
+	{GET_OPEN_SHIFTS, GetOpenShifts, EMPLOYEE},
+	{PICK_UP_SHIFT, PickUpShift, EMPLOYEE},
+	{CALL_OFF_SHIFT, CallOfShift, EMPLOYEE},
 }
 
 func constructSocketID(payload_type ProtoBuffer) string {

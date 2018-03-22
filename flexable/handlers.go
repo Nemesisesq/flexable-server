@@ -5,15 +5,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"text/template"
-	"time"
 
 	"github.com/manveru/faker"
-	"github.com/mitchellh/hashstructure"
-	"github.com/nemesisesq/flexable/company"
 	"github.com/nemesisesq/flexable/employee"
 	PlivoClient "github.com/nemesisesq/flexable/plivio/client"
 	"github.com/nemesisesq/flexable/position"
-	payload2 "github.com/nemesisesq/flexable/protobuf"
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/nemesisesq/flexable/utils"
 	"github.com/odknt/go-socket.io"
@@ -37,6 +33,8 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) interface{} {
 func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} {
 	log.Info("Finding a shift replacement")
 	payload := data.(map[string]interface{})["payload"]
+
+	log.Info(payload.(map[string]interface{})["company"])
 	tmp, err := json.Marshal(payload)
 	if err != nil {
 		panic(err)
@@ -47,7 +45,7 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} 
 	if err != nil {
 		panic(err)
 	}
-	shift.Company = company.Company{"flexable", "123"}
+
 	shift.SmsID = uuid.NewV4().String()
 
 	plivoClient, err := PlivoClient.NewClient()
@@ -279,89 +277,4 @@ func GetPositions(s socketio.Conn, data interface{}) interface{} {
 	})
 
 	return jobs
-}
-
-type EmployeeData struct {
-}
-
-func GetEmployeeShifts(s socketio.Conn, data interface{}) interface{} {
-
-	payload := data.(map[string]interface{})["payload"]
-
-	if payload == nil {
-		return nil
-	}
-	tmp, err := json.Marshal(payload)
-	if err != nil {
-		panic(err)
-	}
-	var empl_payload payload2.EmployeePayload
-	err = json.Unmarshal(tmp, &empl_payload)
-
-	if err != nil {
-		panic(err)
-	}
-	ticker := time.NewTicker(time.Second * 2)
-	tickChan := ticker.C
-	//companyId := "123"
-	var employeeShiftHash uint64
-
-	go func() {
-		log.Info("starting employee shift watcher")
-
-		for {
-			select {
-			case <-tickChan:
-
-				shift_list := shifts.GetAllShifts(bson.M{
-					"$and": []bson.M{
-						{"volunteers": bson.M{"$size": 0}},
-						{"company.uuid": 123},
-					}})
-
-				currentEmployee := employee.GetOneEmployee(bson.M{"id": empl_payload.Id})
-
-				//Combine the employee shift list as well as make them unique
-
-				var shift_list2 []employee.Shiftable
-
-				// Loop through and cast shift.Shift to Shiftable
-				for _, v := range shift_list {
-					var tmp employee.Shiftable = v
-					shift_list2 = append(shift_list2, tmp)
-				}
-				combined := append(shift_list2, currentEmployee.Schedule...)
-
-				unique := []shifts.Shift{}
-
-				for _, v := range combined {
-					found := false
-					for _, uv := range unique {
-						if v.(shifts.Shift).Date == uv.Date {
-							found = true
-						}
-					}
-
-					if !found {
-						unique = append(unique, v.(shifts.Shift))
-					}
-
-				}
-
-				tmpHash, err := hashstructure.Hash(unique, nil)
-
-				if err != nil {
-					panic(err)
-				}
-
-				if tmpHash != employeeShiftHash {
-					s.Emit(constructSocketID(GET_EMPLOYEE_SHIFTS), unique)
-				}
-
-			}
-
-		}
-
-	}()
-	return nil
 }
