@@ -8,7 +8,19 @@ import (
 )
 
 func SocketServerConnections(server socketio.Server, namespace string) {
+	//TODO Set a listener to authenticat this name space
+
+	server.OnEvent(fmt.Sprintf("/%v", namespace), "AUTHORIZATION", func(s socketio.Conn, data interface{}) {
+		if token, ok := data.(string); ok {
+			log.Info(token)
+
+			//	TODO evaluate if token is valid
+		}
+	})
+
 	server.OnConnect(fmt.Sprintf("/%v", namespace), func(s socketio.Conn) error {
+
+		s.Emit("authenticate", "please authenticate my bebe ")
 
 		log.Info("Connecting to ", namespace)
 		//set context
