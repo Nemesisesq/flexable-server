@@ -1,10 +1,10 @@
 package shifts
 
 import (
+	"github.com/globalsign/mgo/bson"
 	"github.com/nemesisesq/flexable/employee"
 	"github.com/nemesisesq/flexable/plivio/messaging"
 	log "github.com/sirupsen/logrus"
-	"gopkg.in/mgo.v2/bson"
 )
 
 func UpdateShiftWithSmsID(smsId string, payload map[string]string) *messaging.Response {

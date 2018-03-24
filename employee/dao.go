@@ -3,10 +3,10 @@ package employee
 import (
 	"fmt"
 
+	"github.com/globalsign/mgo"
+	"github.com/globalsign/mgo/bson"
 	"github.com/nemesisesq/flexable/utils"
 	log "github.com/sirupsen/logrus"
-	"gopkg.in/mgo.v2"
-	"gopkg.in/mgo.v2/bson"
 )
 
 const COLLECTION = "employee"

@@ -3,7 +3,7 @@ package utils
 import (
 	"os"
 
-	"gopkg.in/mgo.v2"
+	"github.com/globalsign/mgo"
 )
 
 func GetMgoSession() (*mgo.Session, string, error) {

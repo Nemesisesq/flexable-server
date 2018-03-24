@@ -2,11 +2,14 @@ package flexable
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"text/template"
 
+	"github.com/globalsign/mgo/bson"
 	"github.com/manveru/faker"
+	"github.com/nemesisesq/flexable/account"
 	"github.com/nemesisesq/flexable/employee"
 	PlivoClient "github.com/nemesisesq/flexable/plivio/client"
 	"github.com/nemesisesq/flexable/position"
@@ -16,13 +19,18 @@ import (
 	"github.com/plivo/plivo-go/plivo"
 	"github.com/satori/go.uuid"
 	log "github.com/sirupsen/logrus"
-	"gopkg.in/mgo.v2/bson"
 )
 
 func OpenShiftHandler(s socketio.Conn, _ interface{}) interface{} {
 	log.Info("Returning openshifts")
 
-	shift_list := shifts.GetAllShifts(nil)
+	ctx := s.Context().(context.Context)
+
+	var query bson.M
+	if user, ok := ctx.Value("user").(account.User); ok {
+		query = bson.M{"company.uuid": user.Profile.Company.UUID}
+	}
+	shift_list := shifts.GetAllShifts(query)
 
 	s.Emit(constructSocketID(OPEN_SHIFTS), shift_list, func(so socketio.Conn, data string) {
 		log.Println("Client ACK with data: ", data)

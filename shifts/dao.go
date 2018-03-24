@@ -3,9 +3,9 @@ package shifts
 import (
 	"time"
 
+	"github.com/globalsign/mgo/bson"
 	"github.com/nemesisesq/flexable/utils"
 	log "github.com/sirupsen/logrus"
-	"gopkg.in/mgo.v2/bson"
 )
 
 //Channel to close conections to Mongo from other methods that get  query

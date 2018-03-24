@@ -3,11 +3,11 @@ package shifts
 import (
 	"fmt"
 
+	"github.com/globalsign/mgo/bson"
 	"github.com/nemesisesq/flexable/company"
 	"github.com/nemesisesq/flexable/employee"
 	"github.com/nemesisesq/flexable/plivio/application"
 	"github.com/nemesisesq/flexable/position"
-	"gopkg.in/mgo.v2/bson"
 )
 
 type Job struct {

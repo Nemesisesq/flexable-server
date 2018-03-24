@@ -4,13 +4,13 @@ import (
 	"encoding/json"
 	"time"
 
+	"github.com/globalsign/mgo/bson"
 	"github.com/mitchellh/hashstructure"
 	"github.com/nemesisesq/flexable/employee"
 	payload2 "github.com/nemesisesq/flexable/protobuf"
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/odknt/go-socket.io"
 	log "github.com/sirupsen/logrus"
-	"gopkg.in/mgo.v2/bson"
 )
 
 type EmployeeData struct {

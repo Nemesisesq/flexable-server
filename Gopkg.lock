@@ -8,6 +8,18 @@
   version = "v1.1.0"
 
 [[projects]]
+  name = "github.com/dgrijalva/jwt-go"
+  packages = ["."]
+  revision = "06ea1031745cb8b3dab3f6a236daf2b0aa468b7e"
+  version = "v3.2.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/globalsign/mgo"
+  packages = [".","bson","internal/json","internal/sasl","internal/scram"]
+  revision = "baa28fcb8e7d5dfab92026c0920cb6c9ae72faa2"
+
+[[projects]]
   branch = "master"
   name = "github.com/golang/protobuf"
   packages = ["proto"]
@@ -60,6 +72,12 @@
   name = "github.com/mitchellh/hashstructure"
   packages = ["."]
   revision = "2bca23e0e452137f789efbc8610126fd8b94f73b"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/mitchellh/mapstructure"
+  packages = ["."]
+  revision = "00c29f56e2386353d58c599509e8dc3801b0d716"
 
 [[projects]]
   branch = "v1.4"
@@ -127,15 +145,9 @@
   packages = [".","base","packet","payload","transport","transport/polling","transport/websocket"]
   revision = "eae2c0880dada5047d480f859eba0513e113e67f"
 
-[[projects]]
-  branch = "v2"
-  name = "gopkg.in/mgo.v2"
-  packages = [".","bson","internal/json","internal/sasl","internal/scram"]
-  revision = "3f83fa5005286a7fe593b055f0d7771a7dce4655"
-
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "08e20e9ad109c7ee62a72dd9b0a73adcfb8135e8f855d80e08111adf0b97cf65"
+  inputs-digest = "f5e984f1dcd756c91a44466a21f5c93c047fd082f36dafb3b46d60108ba66848"
   solver-name = "gps-cdcl"
   solver-version = 1

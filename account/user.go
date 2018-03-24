@@ -1,6 +1,9 @@
 package account
 
-import "gopkg.in/mgo.v2/bson"
+import (
+	"github.com/globalsign/mgo/bson"
+	"github.com/nemesisesq/flexable/company"
+)
 
 type Permission struct {
 }
@@ -17,12 +20,26 @@ type Jobs struct {
 }
 
 type Profile struct {
-	Company     string      `json:"company" bson:"company"`
-	JobHistory  []Jobs      `json:"job_history" bson:"job_history"`
-	PhoneNumber string      `json:"phone_number" bson:"phone_number"`
-	Location    GeoLocation `json:"location" bson:"location"`
-	FirstName   string      `json:"first_name" bson:"first_name"`
-	LastName    string      `json:"last_name" bson:"last_name"`
+	Company     company.Company `json:"company" bson:"company"`
+	JobHistory  []Jobs          `json:"job_history" bson:"job_history"`
+	PhoneNumber string          `json:"phone_number" bson:"phone_number"`
+	Location    GeoLocation     `json:"location" bson:"location"`
+	FirstName   string          `json:"first_name" bson:"first_name"`
+	LastName    string          `json:"last_name" bson:"last_name"`
+}
+
+type CognitoData struct {
+	Sub      string `json:"sub" bson:"sub"`
+	EventID  string `json:"event_id" bson:"event_id"`
+	TokenUse string `json:"token_use" bson:"token_use"`
+	Scope    string `json:"scope" bson:"scope"`
+	AuthTime int    `json:"auth_time" bson:"auth_time"`
+	Iss      string `json:"iss" bson:"iss"`
+	Exp      int    `json:"exp" bson:"exp"`
+	Iat      int    `json:"iat" bson:"iat"`
+	Jti      string `json:"jti" bson:"jti"`
+	ClientID string `json:"client_id" bson:"client_id"`
+	Username string `json:"username" bson:"username"`
 }
 
 type User struct {
