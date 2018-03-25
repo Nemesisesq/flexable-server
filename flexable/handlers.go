@@ -27,9 +27,12 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) interface{} {
 	ctx := s.Context().(context.Context)
 
 	var query bson.M
-	if user, ok := ctx.Value("user").(account.User); ok {
-		query = bson.M{"company.uuid": user.Profile.Company.UUID}
-	}
+	//var user account.User
+	user := ctx.Value("user").(account.User);
+	//if !ok {
+	//	fmt.Println("something is not ok")
+	//}
+	query = bson.M{"company.uuid": user.Profile.Company.UUID}
 	shift_list := shifts.GetAllShifts(query)
 
 	s.Emit(constructSocketID(OPEN_SHIFTS), shift_list, func(so socketio.Conn, data string) {
@@ -118,8 +121,8 @@ func CreateTextMessageString(templateString string, shift shifts.Shift) (bytes.B
 type Data struct {
 	Payload struct {
 		Shift struct {
-			V            int    `json:"__v"`
-			ID           string `json:"_id"`
+			V  int    `json:"__v"`
+			ID string `json:"_id"`
 			AbsentWorker struct {
 				Name string `json:"name"`
 			} `json:"absentWorker"`
@@ -134,7 +137,7 @@ type Data struct {
 			} `json:"company"`
 			Date string `json:"date"`
 			End  string `json:"end"`
-			Job  struct {
+			Job struct {
 				Compensation int    `json:"compensation"`
 				Title        string `json:"title"`
 			} `json:"job"`
@@ -143,7 +146,7 @@ type Data struct {
 			PhoneNumber string `json:"phone_number"`
 			SmsID       string `json:"sms_id"`
 			Start       string `json:"start"`
-			Volunteers  struct {
+			Volunteers struct {
 				Number string `json:"number"`
 			} `json:"volunteers"`
 		} `json:"shift"`
