@@ -10,6 +10,7 @@ import (
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/plivo/plivo-go/plivo"
 	"github.com/satori/go.uuid"
+	"errors"
 )
 
 type Client plivo.Client
@@ -22,6 +23,10 @@ func NewClient() (Client, error) {
 func (c Client) CreateApplication(s shifts.Shift) application2.Application {
 
 	host := os.Getenv("HOST")
+
+	if &host == nil {
+		panic(errors.New("You need to set a host in the environment variables"))
+	}
 
 	id := uuid.NewV4().String()
 	response, err := c.Applications.Create(
