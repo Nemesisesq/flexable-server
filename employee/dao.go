@@ -6,7 +6,7 @@ import (
 	"github.com/nemesisesq/flexable/utils"
 	log "github.com/sirupsen/logrus"
 	"gopkg.in/mgo.v2"
-	"gopkg.in/mgo.v2/bson"
+	"github.com/globalsign/mgo/bson"
 )
 
 const COLLECTION = "employee"

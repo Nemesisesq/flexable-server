@@ -1,6 +1,6 @@
 package position
 
-import "gopkg.in/mgo.v2/bson"
+import "github.com/globalsign/mgo/bson"
 
 type Position struct {
 	ID           bson.ObjectId `json:"_id,omitempty" bson:"_id,omitempty"`

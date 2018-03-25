@@ -16,7 +16,7 @@ import (
 	"github.com/plivo/plivo-go/plivo"
 	"github.com/satori/go.uuid"
 	log "github.com/sirupsen/logrus"
-	"gopkg.in/mgo.v2/bson"
+	"github.com/globalsign/mgo/bson"
 )
 
 func OpenShiftHandler(s socketio.Conn, _ interface{}) interface{} {

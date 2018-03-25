@@ -9,6 +9,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/globalsign/mgo"
+  packages = ["bson","internal/json"]
+  revision = "baa28fcb8e7d5dfab92026c0920cb6c9ae72faa2"
+
+[[projects]]
+  branch = "master"
   name = "github.com/golang/protobuf"
   packages = ["proto"]
   revision = "1e59b77b52bf8e4b449a57e6f79f21226d571845"
@@ -60,6 +66,12 @@
   name = "github.com/mitchellh/hashstructure"
   packages = ["."]
   revision = "2bca23e0e452137f789efbc8610126fd8b94f73b"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/mitchellh/mapstructure"
+  packages = ["."]
+  revision = "00c29f56e2386353d58c599509e8dc3801b0d716"
 
 [[projects]]
   branch = "v1.4"
@@ -136,6 +148,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "08e20e9ad109c7ee62a72dd9b0a73adcfb8135e8f855d80e08111adf0b97cf65"
+  inputs-digest = "b036ccdfb55cdfe7ab485eb8f36de9dcecf61f78e7f51c89e43674bf242696b9"
   solver-name = "gps-cdcl"
   solver-version = 1

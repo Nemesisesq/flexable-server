@@ -2,7 +2,7 @@ package employee
 
 import (
 	"github.com/nemesisesq/flexable/position"
-	"gopkg.in/mgo.v2/bson"
+	"github.com/globalsign/mgo/bson"
 )
 
 type GeoLocation struct {

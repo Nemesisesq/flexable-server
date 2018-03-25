@@ -10,7 +10,7 @@ import (
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/odknt/go-socket.io"
 	log "github.com/sirupsen/logrus"
-	"gopkg.in/mgo.v2/bson"
+	"github.com/globalsign/mgo/bson"
 )
 
 type EmployeeData struct {

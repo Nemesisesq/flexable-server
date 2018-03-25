@@ -4,7 +4,7 @@ import (
 	"github.com/nemesisesq/flexable/employee"
 	"github.com/nemesisesq/flexable/plivio/messaging"
 	log "github.com/sirupsen/logrus"
-	"gopkg.in/mgo.v2/bson"
+	"github.com/globalsign/mgo/bson"
 )
 
 func UpdateShiftWithSmsID(smsId string, payload map[string]string) *messaging.Response {

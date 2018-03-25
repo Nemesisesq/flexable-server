@@ -1,6 +1,6 @@
 package account
 
-import "gopkg.in/mgo.v2/bson"
+import "github.com/globalsign/mgo/bson"
 
 type Permission struct {
 }
