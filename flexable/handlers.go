@@ -16,7 +16,7 @@ import (
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/nemesisesq/flexable/utils"
 	"github.com/odknt/go-socket.io"
-	"github.com/plivo/plivo-go/plivo"
+	//"github.com/plivo/plivo-go/plivo"
 	"github.com/satori/go.uuid"
 	log "github.com/sirupsen/logrus"
 )
@@ -52,7 +52,7 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} 
 	}
 
 	ctx := s.Context().(context.Context)
-	user := ctx.Value("user").(account.User);
+	user := ctx.Value("user").(account.User)
 
 	var shift shifts.Shift
 	err = json.Unmarshal(tmp, &shift)
@@ -65,29 +65,30 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} 
 
 	shift.Company = user.Profile.Company
 
-	plivoClient, err := PlivoClient.NewClient()
+	//plivoClient, err := PlivoClient.NewClient()
 
 	if err != nil {
 
 		panic(err)
 	}
 
-	app := plivoClient.CreateApplication(shift)
+	//app := plivoClient.CreateApplication(shift)
 
-	shift.Application = app
+	//shift.Application = app
+	fmt.Println("here")
 	shift.Save()
 	shift.Name = fmt.Sprintf("%v : %v per hour", shift.Job.Title, shift.Job.Compensation)
 	// TODO uncomment for testing buying phone number works
 	//number, err := plivio.BuyPhoneNumber(shift)
 
-	response, err := plivoClient.Numbers.Update(
-		"16143636301",
-		plivo.NumberUpdateParams{
-			AppID: app.AppID,
-		},
-	)
+	//response, err := plivoClient.Numbers.Update(
+	//	"16143636301",
+	//	plivo.NumberUpdateParams{
+	//		AppID: app.AppID,
+	//	},
+	//)
 
-	log.Info(response)
+	//log.Info(response)
 	if err != nil {
 		panic(err)
 	}
@@ -97,14 +98,14 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} 
 
 	shift.Save()
 
-	templateString := `
-Hey There is an open shift from {{.StartTime }} to {{.EndTime}}
-On {{.Date }}. Reply "1" if you would like to pick up this shift. Skip the text messages and download the Flexable app in the Apple App store
-or the Google play store.
-`
+	//templateString := `
+//Hey There is an open shift from {{.StartTime }} to {{.EndTime}}
+//On {{.Date }}. Reply "1" if you would like to pick up this shift. Skip the text messages and download the Flexable app in the Apple App store
+//or the Google play store.
+//`
 
-	buf, err := CreateTextMessageString(templateString, shift)
-	plivoClient.SendMessages(shift.PhoneNumber, "12165346715<16142881847", buf.String())
+	//buf, err := CreateTextMessageString(templateString, shift)
+	//plivoClient.SendMessages(shift.PhoneNumber, "12165346715<16142881847", buf.String())
 	if err != nil {
 		panic(err)
 	}
