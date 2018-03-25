@@ -25,10 +25,10 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) interface{} {
 	log.Info("Returning openshifts")
 
 	ctx := s.Context().(context.Context)
+	user := ctx.Value("user").(account.User);
 
 	var query bson.M
 	//var user account.User
-	user := ctx.Value("user").(account.User);
 	//if !ok {
 	//	fmt.Println("something is not ok")
 	//}
@@ -50,6 +50,10 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} 
 	if err != nil {
 		panic(err)
 	}
+
+	ctx := s.Context().(context.Context)
+	user := ctx.Value("user").(account.User);
+
 	var shift shifts.Shift
 	err = json.Unmarshal(tmp, &shift)
 
@@ -58,6 +62,8 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} 
 	}
 
 	shift.SmsID = uuid.NewV4().String()
+
+	shift.Company = user.Profile.Company
 
 	plivoClient, err := PlivoClient.NewClient()
 

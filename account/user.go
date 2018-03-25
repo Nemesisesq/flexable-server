@@ -43,13 +43,11 @@ type CognitoData struct {
 }
 
 type User struct {
-	ID          bson.ObjectId `json:"_id" bson:"_id"`
-	Email       string        `json:"email" bson:"email"`
-	Permissions []Permission  `json:"permissions" bson:"permissions"`
-	Groups      []Group       `json:"groups" bson:"groups"`
-	Role        string        `json:"role" bson:"role"`
-
-	Profile Profile `json:"profile" bson:"profile"`
-
+	ID          bson.ObjectId          `json:"_id" bson:"_id"`
+	Email       string                 `json:"email" bson:"email"`
+	Permissions []Permission           `json:"permissions" bson:"permissions"`
+	Groups      []Group                `json:"groups" bson:"groups"`
+	Role        string                 `json:"role" bson:"role"`
+	Profile     Profile                `json:"profile" bson:"profile"`
 	CognitoData map[string]interface{} `json:"cognito_data" bson:"cognito_data"`
 }
