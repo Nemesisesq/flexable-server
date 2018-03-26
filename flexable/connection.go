@@ -53,7 +53,6 @@ func SocketServerConnections(server socketio.Server, namespace string) {
 
 	server.OnEvent(fmt.Sprintf("/%v", namespace), "AUTHORIZATION", func(s socketio.Conn, data interface{}) {
 		if token, ok := data.(string); ok {
-			log.Info(token)
 
 			user, err := VerifyJWT(token)
 

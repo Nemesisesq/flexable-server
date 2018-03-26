@@ -27,7 +27,7 @@ func GetOpenShifts(s socketio.Conn, data interface{}) interface{} {
 	return nil
 }
 func GetEmployeeShifts(s socketio.Conn, data interface{}) interface{} {
-
+	log.Info("getting employee shifts")
 	payload := data.(map[string]interface{})["payload"]
 
 	if payload == nil {

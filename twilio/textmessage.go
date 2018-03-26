@@ -62,8 +62,8 @@ func SendSMSMessage(payload SMSPayload) (*http.Response, error) {
 		var data map[string]interface{}
 		decoder := json.NewDecoder(resp.Body)
 		err := decoder.Decode(&data)
-		if err == nil {
-			log.Info(data["sid"])
+		if err != nil {
+			panic(err)
 		}
 	} else {
 		log.Error(resp.Status)

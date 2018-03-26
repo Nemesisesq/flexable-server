@@ -45,7 +45,6 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} 
 	log.Info("Finding a shift replacement")
 	payload := data.(map[string]interface{})["payload"]
 
-	log.Info(payload.(map[string]interface{})["company"])
 	tmp, err := json.Marshal(payload)
 	if err != nil {
 		panic(err)
@@ -88,7 +87,8 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} 
 		},
 	)
 
-	log.Info(response)
+	log.WithFields(log.Fields{"response" : response, "number": "some number to be determined", "app_id ": app.AppID}).Info("number updated to appID")
+
 	if err != nil {
 		panic(err)
 	}
@@ -208,7 +208,6 @@ func SelectVolunteer(s socketio.Conn, data interface{}) interface{} {
 
 	shift.Save()
 
-	log.Info(shift)
 
 	return nil
 }
