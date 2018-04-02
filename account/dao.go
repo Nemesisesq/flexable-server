@@ -8,7 +8,6 @@ import (
 	"github.com/mitchellh/mapstructure"
 	"github.com/nemesisesq/flexable/utils"
 	log "github.com/sirupsen/logrus"
-	"github.com/kr/pretty"
 	"fmt"
 )
 
@@ -28,7 +27,6 @@ func UserRole(r http.Request) (string, interface{}) {
 	user := GetUser(bson.M{"email": tmp["email"]})
 
 	mapstructure.Decode(tmp, &user.CognitoData)
-	pretty.Println(user)
 	if user.ID == "" {
 		fmt.Println("setting user id")
 

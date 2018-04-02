@@ -11,6 +11,8 @@ import (
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/odknt/go-socket.io"
 	log "github.com/sirupsen/logrus"
+	"context"
+	"github.com/nemesisesq/flexable/account"
 )
 
 type EmployeeData struct {
@@ -24,7 +26,23 @@ func CallOfShift(s socketio.Conn, data interface{}) interface{} {
 }
 
 func GetOpenShifts(s socketio.Conn, data interface{}) interface{} {
-	return nil
+	log.Info("Returning  employee openshifts")
+
+	ctx := s.Context().(context.Context)
+	user := ctx.Value("user").(account.User);
+
+	var query bson.M
+	//var user account.User
+	//if !ok {
+	//	fmt.Println("something is not ok")
+	//}
+	query = bson.M{"company.uuid": user.Profile.Company.UUID}
+	shift_list := shifts.GetAllShifts(query)
+
+	s.Emit(constructSocketID(GET_OPEN_SHIFTS), shift_list, func(so socketio.Conn, data string) {
+		log.Println("Client ACK with data: ", data)
+	})
+	return "hello"
 }
 func GetEmployeeShifts(s socketio.Conn, data interface{}) interface{} {
 	log.Info("getting employee shifts")
