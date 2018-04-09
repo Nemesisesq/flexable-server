@@ -30,18 +30,21 @@ func GetOpenShifts(s socketio.Conn, data interface{}) interface{} {
 
 	ctx := s.Context().(context.Context)
 	user := ctx.Value("user").(account.User);
+	ticker := time.NewTicker(time.Second * 5)
 
-	var query bson.M
-	//var user account.User
-	//if !ok {
-	//	fmt.Println("something is not ok")
-	//}
-	query = bson.M{"company.uuid": user.Profile.Company.UUID}
-	shift_list := shifts.GetAllShifts(query)
+	tickerChan := ticker.C
 
-	s.Emit(constructSocketID(GET_OPEN_SHIFTS), shift_list, func(so socketio.Conn, data string) {
-		log.Println("Client ACK with data: ", data)
-	})
+	for {
+		select {
+		case <-tickerChan:
+			var query bson.M
+			query = bson.M{"company.uuid": user.Profile.Company.UUID}
+			shift_list := shifts.GetAllShifts(query)
+			s.Emit(constructSocketID(GET_OPEN_SHIFTS), shift_list, func(so socketio.Conn, data string) {
+				log.Println("Client ACK with data: ", data)
+			})
+		}
+	}
 	return "hello"
 }
 func GetEmployeeShifts(s socketio.Conn, data interface{}) interface{} {

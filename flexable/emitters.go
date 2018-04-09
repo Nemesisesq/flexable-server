@@ -9,17 +9,40 @@ import (
 	"github.com/odknt/go-socket.io"
 	//log "github.com/sirupsen/logrus"
 	"github.com/globalsign/mgo/bson"
+	"github.com/oxequa/grace"
+	"github.com/nemesisesq/flexable/account"
+	log"github.com/sirupsen/logrus"
 )
 
 func InitWatchers(socket socketio.Conn) {
 
 	go func() {
 		CheckOpenShifts(socket)
+		TestPushNotifications(socket)
 	}()
 
 }
-func CheckOpenShifts(s socketio.Conn) {
 
+func TestPushNotifications(s socketio.Conn) {
+	ctx := s.Context().(context.Context)
+
+	user := ctx.Value("user").(account.User);
+	ticker := time.NewTicker(time.Second * 90)
+
+	tickerChan := ticker.C
+
+	for {
+		select {
+		case <-tickerChan:
+			log.Info("sending push message")
+			user.Notify("This is a test message welcome to the family", "Test title", &shifts.Shift{})
+		}
+	}
+}
+
+
+func CheckOpenShifts(s socketio.Conn)(e error) {
+defer grace.Recover(&e)
 	ctx := s.Context().(context.Context)
 
 	ticker := time.NewTicker(time.Second * 2)
@@ -31,10 +54,7 @@ func CheckOpenShifts(s socketio.Conn) {
 		shiftList := []shifts.Shift{}
 		select {
 		case <-tickChan:
-			//log.Info("I'm checking the db")
-			//log.Info(db)
 			shiftList = shifts.GetAllShifts(bson.M{"company.uuid": companyId})
-
 			shift_list_hash, err := hashstructure.Hash(&shiftList, nil)
 
 			if err != nil {

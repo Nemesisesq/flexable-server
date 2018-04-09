@@ -1,4 +1,4 @@
-package utils
+package db
 
 import (
 	"os"
@@ -6,7 +6,13 @@ import (
 	"github.com/globalsign/mgo"
 )
 
-func GetMgoSession() (*mgo.Session, string, error) {
+
+const FLEXABLE string ="flexable"
+
+
+var session *mgo.Session
+
+func InitDB() (string, error) {
 	mongodb_uri := os.Getenv("MONGODB_URI")
 
 	dialInfo, err := mgo.ParseURL(mongodb_uri)
@@ -15,7 +21,12 @@ func GetMgoSession() (*mgo.Session, string, error) {
 		panic(err)
 	}
 
-	session, err := mgo.Dial(mongodb_uri)
+	session, err = mgo.Dial(mongodb_uri)
 	//session, err := mgo.DialWithTimeout(mongodb_uri, time.Second*5)
-	return session, dialInfo.Database, err
+	return dialInfo.Database, err
+}
+
+
+func GetMgoSession() (*mgo.Session){
+	return session.Clone()
 }

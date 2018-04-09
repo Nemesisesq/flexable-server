@@ -5,8 +5,9 @@ import (
 
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
-	"github.com/nemesisesq/flexable/utils"
 	log "github.com/sirupsen/logrus"
+	"github.com/nemesisesq/flexable/db"
+	"github.com/oxequa/grace"
 )
 
 const COLLECTION = "employee"
@@ -15,10 +16,7 @@ var ch chan bool
 
 func Find(query bson.M) *mgo.Query {
 
-	session, database, err := utils.GetMgoSession()
-	if err != nil {
-		panic(err)
-	}
+	session := db.GetMgoSession()
 
 	go func() {
 		for {
@@ -29,23 +27,20 @@ func Find(query bson.M) *mgo.Query {
 		}
 	}()
 
-	c := session.DB(database).C(COLLECTION)
+	c := session.DB(db.FLEXABLE).C(COLLECTION)
 
 	return c.Find(query)
 }
 
 func GetAllEmployees(query bson.M) (result []Employee) {
-	session, database, err := utils.GetMgoSession()
-	if err != nil {
-		panic(err)
-	}
+	session := db.GetMgoSession()
 
 	defer session.Close()
 
-	c := session.DB(database).C(COLLECTION)
-	err = c.Find(query).All(&result)
+	c := session.DB(db.FLEXABLE).C(COLLECTION)
+	err := c.Find(query).All(&result)
 	if err != nil {
-		panic(err)
+		grace.Recover(&err)
 	}
 
 	defer func() {
@@ -63,7 +58,7 @@ func GetOneEmployee(query bson.M) (result Employee) {
 
 	err := Find(query).One(&result)
 	if err != nil {
-		panic(err)
+		grace.Recover(&err)
 	}
 
 	defer func() {
@@ -77,14 +72,11 @@ func GetOneEmployee(query bson.M) (result Employee) {
 
 func (employee *Employee) Save() {
 
-	session, database, err := utils.GetMgoSession()
+	session := db.GetMgoSession()
 
-	if err != nil {
-		panic(err)
-	}
 	defer session.Close()
 
-	c := session.DB(database).C(COLLECTION)
+	c := session.DB(db.FLEXABLE).C(COLLECTION)
 
 	if employee.ID == "" {
 		employee.ID = bson.NewObjectId()
@@ -94,7 +86,7 @@ func (employee *Employee) Save() {
 	log.Info(info)
 
 	if err != nil {
-		panic(err)
+		grace.Recover(&err)
 	}
 
 }

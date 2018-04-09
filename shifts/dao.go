@@ -4,23 +4,21 @@ import (
 	"time"
 
 	"github.com/globalsign/mgo/bson"
-	"github.com/nemesisesq/flexable/utils"
 	log "github.com/sirupsen/logrus"
+	"github.com/nemesisesq/flexable/db"
+	"github.com/oxequa/grace"
 )
 
 //Channel to close conections to Mongo from other methods that get  query
 func GetAllShifts(query bson.M) (result []Shift) {
-	session, database, err := utils.GetMgoSession()
+	session := db.GetMgoSession()
 
 	defer session.Close()
-	if err != nil {
-		panic(err)
-	}
-	c := session.DB(database).C("shifts")
-	err = c.Find(query).All(&result)
+	c := session.DB(db.FLEXABLE).C("shifts")
+	err := c.Find(query).All(&result)
 
 	if err != nil {
-		//panic(err)
+		grace.Recover(&err)
 	}
 
 	defer func() {
@@ -58,16 +56,13 @@ func GetAllShifts(query bson.M) (result []Shift) {
 
 func GetOneShift(query bson.M) (result Shift) {
 
-	session, database, err := utils.GetMgoSession()
+	session := db.GetMgoSession()
 	defer session.Close()
-	if err != nil {
-		panic(err)
-	}
-	c := session.DB(database).C("shifts")
+	c := session.DB(db.FLEXABLE).C("shifts")
 
-	err = c.Find(query).One(&result)
+	err := c.Find(query).One(&result)
 	if err != nil {
-		panic(err)
+		grace.Recover(&err)
 	}
 
 	defer func() {
@@ -80,25 +75,15 @@ func GetOneShift(query bson.M) (result Shift) {
 }
 
 func (shift *Shift) Save() {
-
-	session, database, err := utils.GetMgoSession()
-
-	if err != nil {
-		panic(err)
-	}
+	session := db.GetMgoSession()
 	defer session.Close()
-
-	c := session.DB(database).C("shifts")
-
+	c := session.DB(db.FLEXABLE).C("shifts")
 	if shift.ID == "" {
 		shift.ID = bson.NewObjectId()
 	}
-
 	info, err := c.UpsertId(shift.ID, &shift)
 	log.Info(info)
-
 	if err != nil {
-		panic(err)
+		grace.Recover(&err)
 	}
-
 }

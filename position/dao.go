@@ -3,8 +3,8 @@ package position
 import (
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
-	"github.com/nemesisesq/flexable/utils"
 	log "github.com/sirupsen/logrus"
+	"github.com/nemesisesq/flexable/db"
 )
 
 const COLLECTION = "job"
@@ -13,10 +13,7 @@ var ch chan bool
 
 func Find(query bson.M) *mgo.Query {
 	ch = make(chan bool)
-	session, database, err := utils.GetMgoSession()
-	if err != nil {
-		panic(err)
-	}
+	session:= db.GetMgoSession()
 
 	go func() {
 		for {
@@ -27,7 +24,7 @@ func Find(query bson.M) *mgo.Query {
 		}
 	}()
 
-	c := session.DB(database).C(COLLECTION)
+	c := session.DB(db.FLEXABLE).C(COLLECTION)
 
 	return c.Find(query)
 }
@@ -62,14 +59,11 @@ func GetOnePosition(query bson.M) (result Position) {
 
 func (position *Position) Save() {
 
-	session, database, err := utils.GetMgoSession()
+	session := db.GetMgoSession()
 
-	if err != nil {
-		panic(err)
-	}
 	defer session.Close()
 
-	c := session.DB(database).C(COLLECTION)
+	c := session.DB(db.FLEXABLE).C(COLLECTION)
 
 	if position.ID == "" {
 		position.ID = bson.NewObjectId()

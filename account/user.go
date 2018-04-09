@@ -50,4 +50,5 @@ type User struct {
 	Role        string                 `json:"role" bson:"role"`
 	Profile     Profile                `json:"profile" bson:"profile"`
 	CognitoData map[string]interface{} `json:"cognito_data" bson:"cognito_data"`
+	PushToken   string                 `json:"push_token" bson:"push_token"`
 }

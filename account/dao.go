@@ -6,26 +6,20 @@ import (
 
 	"github.com/globalsign/mgo/bson"
 	"github.com/mitchellh/mapstructure"
-	"github.com/nemesisesq/flexable/utils"
 	log "github.com/sirupsen/logrus"
 	"fmt"
+	"github.com/oxequa/grace"
+	"github.com/nemesisesq/flexable/db"
 )
-
-var ch = make(chan bool, 1)
 
 func UserRole(r http.Request) (string, interface{}) {
 	tmp := map[string]interface{}{}
-
 	decoder := json.NewDecoder(r.Body)
-
 	err := decoder.Decode(&tmp)
-
 	if err != nil {
-		panic(err)
+		grace.Recover(&err)
 	}
-
 	user := GetUser(bson.M{"email": tmp["email"]})
-
 	mapstructure.Decode(tmp, &user.CognitoData)
 	if user.ID == "" {
 		fmt.Println("setting user id")
@@ -33,24 +27,18 @@ func UserRole(r http.Request) (string, interface{}) {
 		user.ID = bson.NewObjectId()
 	}
 	user.Email = tmp["email"].(string)
-
 	user.Upsert(bson.M{"email": tmp["email"]})
-
 	return user.Role, user.Profile
-
 }
 func GetUser(query bson.M) User {
-	session, database, err := utils.GetMgoSession()
-	if err != nil {
-		panic(err)
-	}
-	db := session.DB(database)
+	session := db.GetMgoSession()
+	db := session.DB(db.FLEXABLE)
 	collection := db.C("user")
 	user := &User{}
-	err = collection.Find(query).One(&user)
-
-	//user.CognitoData = tmp
-
+	err := collection.Find(query).One(&user)
+	if err != nil {
+		grace.Recover(&err)
+	}
 	return *user
 }
 func (user *User) Find(query bson.M) *User {
@@ -59,47 +47,42 @@ func (user *User) Find(query bson.M) *User {
 	return user
 }
 func (user *User) Upsert(query bson.M) {
-	session, database, err := utils.GetMgoSession()
-	if err != nil {
-		panic(err)
-	}
-	db := session.DB(database)
+	session := db.GetMgoSession()
+	db := session.DB(db.FLEXABLE)
 	collection := db.C("user")
 
 	id, err := collection.Upsert(query, &user)
 	if err != nil {
-		panic(err)
+		grace.Recover(&err)
 	}
 	log.Info(id)
 	if err != nil {
-		panic(err)
+		grace.Recover(&err)
 	}
 }
 func SavePushToken(r http.Request) {
 	tmp := map[string]interface{}{}
-
 	decoder := json.NewDecoder(r.Body)
 	err := decoder.Decode(&tmp)
-
-	session, database, err := utils.GetMgoSession()
 	if err != nil {
-		panic(err)
+		defer grace.Recover(&err)
 	}
+	user := GetUser(bson.M{"email": tmp["email"]})
+	user.PushToken = tmp["token"].(string)
+	user.Upsert(bson.M{"email": tmp["email"]})
+}
 
-	go func() {
-		for {
-
-			select {
-			case <-ch:
-				session.Close()
-			}
-		}
-	}()
-
-	db := session.DB(database)
-
+func FindAll(query bson.M) (users []User, err error) {
+	session := db.GetMgoSession()
+	defer session.Close()
+	if err != nil {
+		grace.Recover(&err)
+	}
+	db := session.DB(db.FLEXABLE)
 	collection := db.C("user")
-
-	collection.Upsert(bson.M{"auth0_id": tmp["auth0_id"]}, bson.M{"token": tmp["auth"]})
-	ch <- true
+	err = collection.Find(query).All(&users)
+	if err != nil {
+		grace.Recover(&err)
+	}
+	return users, nil
 }

@@ -26,7 +26,6 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) interface{} {
 
 	ctx := s.Context().(context.Context)
 	user := ctx.Value("user").(account.User);
-
 	var query bson.M
 	//var user account.User
 	//if !ok {
@@ -40,6 +39,8 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) interface{} {
 	})
 	return "hello"
 }
+
+const NEW_SHIFT_TITLE = "There's a new shift!!!!"
 
 func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} {
 	log.Info("Finding a shift replacement")
@@ -87,7 +88,7 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} 
 		},
 	)
 
-	log.WithFields(log.Fields{"response" : response, "number": "some number to be determined", "app_id ": app.AppID}).Info("number updated to appID")
+	log.WithFields(log.Fields{"response": response, "number": "some number to be determined", "app_id ": app.AppID}).Info("number updated to appID")
 
 	if err != nil {
 		panic(err)
@@ -103,13 +104,18 @@ Hey There is an open shift from {{.StartTime }} to {{.EndTime}}
 On {{.Date }}. Reply "1" if you would like to pick up this shift. Skip the text messages and download the Flexable app in the Apple App store
 or the Google play store.
 `
-
+	// The New Implementation
+	users, err := account.FindAll(bson.M{"user.profile.company.uuid": shift.Company.UUID})
 	buf, err := CreateTextMessageString(templateString, shift)
+	for _, user := range users {
+		user.Notify(buf.String(), NEW_SHIFT_TITLE, shift)
+	}
+
+	// The old implementation
 	plivoClient.SendMessages(shift.PhoneNumber, "12165346715<16142881847", buf.String())
 	if err != nil {
 		panic(err)
 	}
-
 	return nil
 }
 func CreateTextMessageString(templateString string, shift shifts.Shift) (bytes.Buffer, error) {
@@ -207,7 +213,6 @@ func SelectVolunteer(s socketio.Conn, data interface{}) interface{} {
 	}
 
 	shift.Save()
-
 
 	return nil
 }

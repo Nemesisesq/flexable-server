@@ -17,6 +17,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/unrolled/render"
 	"github.com/urfave/negroni"
+	"github.com/nemesisesq/flexable/db"
 )
 
 func main() {
@@ -26,6 +27,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	// Initialize global mongo database
+	db.InitDB()
 
 	flexable.SocketServerConnections(*server, "manager")
 	flexable.SocketServerConnections(*server, "employee")
@@ -56,6 +60,9 @@ func main() {
 	})
 
 	m.HandleFunc("/users/verify", func(writer http.ResponseWriter, request *http.Request) {
+
+
+		log.Info("registerng user")
 		role, profile := account.UserRole(*request)
 
 		r.JSON(writer, http.StatusOK, map[string]interface{}{"role": role, "profile": profile})
