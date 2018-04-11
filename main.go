@@ -11,17 +11,19 @@ import (
 	"github.com/gorilla/mux"
 	_ "github.com/heroku/x/hmetrics/onload"
 	"github.com/nemesisesq/flexable/account"
+	"github.com/nemesisesq/flexable/db"
 	"github.com/nemesisesq/flexable/flexable"
 	"github.com/nemesisesq/flexable/shifts"
 	"github.com/odknt/go-socket.io"
 	log "github.com/sirupsen/logrus"
 	"github.com/unrolled/render"
 	"github.com/urfave/negroni"
-	"github.com/nemesisesq/flexable/db"
+	"github.com/x-cray/logrus-prefixed-formatter"
 )
 
 func main() {
-	log.SetFormatter(&log.JSONFormatter{})
+	log.SetFormatter(new(prefixed.TextFormatter))
+	log.SetLevel(log.DebugLevel)
 	port := os.Getenv("PORT")
 	server, err := socketio.NewServer(nil)
 	if err != nil {

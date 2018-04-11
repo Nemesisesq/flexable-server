@@ -5,9 +5,9 @@ import (
 
 	"github.com/globalsign/mgo/bson"
 	"github.com/nemesisesq/flexable/company"
-	"github.com/nemesisesq/flexable/employee"
 	"github.com/nemesisesq/flexable/plivio/application"
 	"github.com/nemesisesq/flexable/position"
+	"github.com/nemesisesq/flexable/account"
 )
 
 type Job struct {
@@ -24,7 +24,7 @@ type Shift struct {
 	ID           bson.ObjectId           `json:"_id,omitempty" bson:"_id,omitempty"`
 	SmsID        string                  `json:"sms_id" bson:"sms_id"`
 	Name         string                  `json:"name"`
-	AbsentWorker employee.Employee       `json:"absentWorker" bson:"absentWorker"`
+	AbsentWorker account.User       `json:"absentWorker" bson:"absentWorker"`
 	Job          position.Position       `json:"job"`
 	Location     string                  `json:"location"`
 	Date         string                  `json:"date"`
@@ -32,11 +32,11 @@ type Shift struct {
 	RawStartTime string                  `json:"rawStart"`
 	EndTime      string                  `json:"end"`
 	RawEndTime   string                  `json:"rawEnd"`
-	Volunteers   []employee.Employee     `json:"volunteers"`
+	Volunteers   []account.User     `json:"volunteers"`
 	Company      company.Company         `json:"company"`
 	Application  application.Application `json:"application"`
 	PhoneNumber  string                  `json:"phone_number"`
-	Chosen       employee.Employee       `json:"chosen"`
+	Chosen       account.User       `json:"chosen"`
 	V            int                     `json:"__v"`
 }
 

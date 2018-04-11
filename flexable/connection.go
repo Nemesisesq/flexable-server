@@ -65,6 +65,8 @@ func SocketServerConnections(server socketio.Server, namespace string) {
 			ctx = context.WithValue(ctx, "user", user)
 
 			s.SetContext(ctx)
+
+			InitWatchers(s)
 		}
 	})
 
@@ -81,7 +83,7 @@ func SocketServerConnections(server socketio.Server, namespace string) {
 
 		s.SetContext(ctx)
 
-		InitWatchers(s)
+
 
 		log.WithFields(log.Fields{
 			"namespace": s.Namespace(),
@@ -106,26 +108,3 @@ func SocketServerConnections(server socketio.Server, namespace string) {
 		//fmt.Println("closed and cancelled", msg)
 	})
 }
-
-//func SetMongoSession(i context.Context) context.Context {
-//
-//	mongodb_uri := os.Getenv("MONGODB_URI")
-//
-//	dialInfo, err := mgo.ParseURL(mongodb_uri)
-//	session, err := mgo.Dial(mongodb_uri)
-//
-//	if err != nil {
-//		panic(err)
-//	}
-//
-//	go func() {
-//
-//		defer session.Close()
-//
-//		<-i.Done()
-//	}()
-//
-//	ctx := context.WithValue(i, "mgo", session)
-//	ctx = context.WithValue(ctx, "db", session.DB(dialInfo.Database))
-//	return ctx
-//}

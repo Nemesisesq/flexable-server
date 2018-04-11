@@ -55,7 +55,7 @@ var messageTypes = []MessageType{
 	{GET_JOBS, GetPositions, MANAGER},
 	{EMPLOYEE_LIST, GetAvailableEmployees, MANAGER},
 	{SELECT_VOLUNTEER, SelectVolunteer, MANAGER},
-	{GET_MY_SHIFTS, GetEmployeeShifts, EMPLOYEE},
+	//{GET_MY_SHIFTS, GetEmployeeShifts, EMPLOYEE},
 	{GET_OPEN_SHIFTS, GetOpenShifts, EMPLOYEE},
 	{PICK_UP_SHIFT, PickUpShift, EMPLOYEE},
 	{CALL_OFF_SHIFT, CallOfShift, EMPLOYEE},

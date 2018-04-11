@@ -7,10 +7,10 @@ import (
 
 	application2 "github.com/nemesisesq/flexable/plivio/application"
 	"github.com/nemesisesq/flexable/plivio/phonenumber"
-	"github.com/nemesisesq/flexable/shifts"
 	"github.com/plivo/plivo-go/plivo"
 	"github.com/satori/go.uuid"
 	"errors"
+	"github.com/oxequa/grace"
 )
 
 type Client plivo.Client
@@ -20,7 +20,7 @@ func NewClient() (Client, error) {
 	return Client(*client), err
 }
 
-func (c Client) CreateApplication(s shifts.Shift) application2.Application {
+func (c Client) CreateApplication(companyName string, smsId interface{} ) application2.Application {
 
 	host := os.Getenv("HOST")
 
@@ -31,8 +31,8 @@ func (c Client) CreateApplication(s shifts.Shift) application2.Application {
 	id := uuid.NewV4().String()
 	response, err := c.Applications.Create(
 		plivo.ApplicationCreateParams{
-			AppName:    fmt.Sprint(s.Company.Name, id),
-			MessageURL: fmt.Sprintf("%v/sms/incoming/%v", host, s.SmsID),
+			AppName:    fmt.Sprint(companyName, id),
+			MessageURL: fmt.Sprintf("%v/sms/incoming/%v", host, smsId),
 		},
 	)
 	if err != nil {
@@ -50,13 +50,13 @@ func (c Client) CreateApplication(s shifts.Shift) application2.Application {
 	return *application
 }
 
-func (c Client) BuyPhoneNumber(s shifts.Shift) (string, error) {
+func (c Client) BuyPhoneNumber(applicationId string) (string, error) {
 	v, err := c.SearchPhoneNumbers()
 
 	response, err := c.PhoneNumbers.Create(
 		v.Number,
 		plivo.PhoneNumberCreateParams{
-			AppID: s.Application.AppID,
+			AppID: applicationId,
 		},
 	)
 	if err != nil {
@@ -107,7 +107,7 @@ func (c Client) SendMessages(from, to, message string) error {
 		},
 	)
 	if err != nil {
-		panic(err)
+		grace.Recover(&err)
 	}
 	fmt.Printf("Response: %#v\n", response)
 

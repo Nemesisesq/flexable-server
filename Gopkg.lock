@@ -52,8 +52,8 @@
 [[projects]]
   name = "github.com/gorilla/mux"
   packages = ["."]
-  revision = "7f08801859139f86dfafd1c296e2cba9a80d292e"
-  version = "v1.6.0"
+  revision = "53c1911da2b537f792e7cafcb446b05ffe33b996"
+  version = "v1.6.1"
 
 [[projects]]
   name = "github.com/gorilla/websocket"
@@ -65,13 +65,31 @@
   branch = "master"
   name = "github.com/heroku/x"
   packages = ["hmetrics","hmetrics/onload"]
-  revision = "705849e307dd75c91728463dea5bfd08ef493e64"
+  revision = "a4225bbbfc8a517c9a95251aec1a8189443673b1"
 
 [[projects]]
   branch = "master"
   name = "github.com/manveru/faker"
   packages = ["."]
   revision = "9fbc68a78c4dbc7914e1a23f88f126bea4383b97"
+
+[[projects]]
+  name = "github.com/mattn/go-colorable"
+  packages = ["."]
+  revision = "167de6bfdfba052fa6b2d3664c8f5272e23c9072"
+  version = "v0.0.9"
+
+[[projects]]
+  name = "github.com/mattn/go-isatty"
+  packages = ["."]
+  revision = "0360b2af4f38e8d38c7fce2a9f4e702702d73a39"
+  version = "v0.0.3"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/mgutz/ansi"
+  packages = ["."]
+  revision = "9520e82c474b0a04dd04f8a40959027271bab992"
 
 [[projects]]
   branch = "master"
@@ -140,6 +158,12 @@
   version = "v0.3.0"
 
 [[projects]]
+  name = "github.com/x-cray/logrus-prefixed-formatter"
+  packages = ["."]
+  revision = "bb2702d423886830dee131692131d35648c382e2"
+  version = "v0.5.2"
+
+[[projects]]
   branch = "master"
   name = "golang.org/x/crypto"
   packages = ["ssh/terminal"]
@@ -160,6 +184,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "971d4c2bbb1b4a35e1137fd0ae7dca0c7ddc729424b79ba69ad202eb67d030ee"
+  inputs-digest = "47eada8fb4d2363714f4dd4cf020511785cb2ffce053ed1846c0d2ffb869658a"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -10,7 +10,6 @@ import (
 	"github.com/globalsign/mgo/bson"
 	"github.com/manveru/faker"
 	"github.com/nemesisesq/flexable/account"
-	"github.com/nemesisesq/flexable/employee"
 	PlivoClient "github.com/nemesisesq/flexable/plivio/client"
 	"github.com/nemesisesq/flexable/position"
 	"github.com/nemesisesq/flexable/shifts"
@@ -72,7 +71,7 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} 
 		panic(err)
 	}
 
-	app := plivoClient.CreateApplication(shift)
+	app := plivoClient.CreateApplication(shift.Company.Name, shift.SmsID)
 
 	shift.Application = app
 	fmt.Println("here")
@@ -108,7 +107,7 @@ or the Google play store.
 	users, err := account.FindAll(bson.M{"user.profile.company.uuid": shift.Company.UUID})
 	buf, err := CreateTextMessageString(templateString, shift)
 	for _, user := range users {
-		user.Notify(buf.String(), NEW_SHIFT_TITLE, shift)
+		user.Notify(buf.String(), NEW_SHIFT_TITLE, shift.PhoneNumber)
 	}
 
 	// The old implementation
@@ -163,7 +162,7 @@ type Data struct {
 				Number string `json:"number"`
 			} `json:"volunteers"`
 		} `json:"shift"`
-		Volunteer employee.Employee `json:"volunteer"`
+		Volunteer account.User `json:"volunteer"`
 	} `json:"payload"`
 }
 
@@ -207,7 +206,7 @@ func SelectVolunteer(s socketio.Conn, data interface{}) interface{} {
 		panic(err)
 	}
 
-	err = plivoClient.SendMessages(shift.PhoneNumber, shift.Chosen.Number, buf.String())
+	err = plivoClient.SendMessages(shift.PhoneNumber, shift.Chosen.Profile.PhoneNumber, buf.String())
 	if err != nil {
 		panic(err)
 	}
@@ -223,28 +222,32 @@ func GetAvailableEmployees(s socketio.Conn, data interface{}) interface{} {
 	if err != nil {
 		panic(err)
 	}
-	empList := employee.GetAllEmployees(nil)
+	empList, err := account.FindAll(nil)
 
+	if err != nil {
+		panic(err)
+	}
 	if len(empList) <= 1 {
 
 		for i := 0; i < utils.RandomRange(2, 10); i++ {
-			var num string
-			bin := utils.RandomRange(1, 2)
+			//var num string
+			//bin := utils.RandomRange(1, 2)
 
-			if bin%2 == 0 {
-				num = "12165346715"
-			} else {
-				num = "16142881847"
-			}
+			//if bin%2 == 0 {
+			//	num = "12165346715"
+			//} else {
+			//	num = "16142881847"
+			//}
 
-			x := employee.Employee{
-				ID:     bson.NewObjectId(),
-				Name:   fake.Name(),
-				Number: num,
-				Email:  fake.Email(),
-				Location: employee.GeoLocation{
+			x := account.User{
+				ID: bson.NewObjectId(),
+				//Name:   fake.Name(),
+				//Number: num,
+				Email: fake.Email(),
+				Profile: account.Profile{Location: account.GeoLocation{
 					fake.Latitude(),
 					fake.Longitude(),
+				},
 				},
 				Position: position.Position{
 					ID:           bson.NewObjectId(),
@@ -254,7 +257,7 @@ func GetAvailableEmployees(s socketio.Conn, data interface{}) interface{} {
 				},
 			}
 
-			x.Save()
+			x.Upsert(bson.M{"_id": x.ID})
 			empList = append(empList, x)
 
 		}

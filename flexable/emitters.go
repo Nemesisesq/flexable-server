@@ -17,25 +17,30 @@ import (
 func InitWatchers(socket socketio.Conn) {
 
 	go func() {
-		CheckOpenShifts(socket)
-		TestPushNotifications(socket)
+
+		go CheckOpenShifts(socket)
+
+		//TestPushNotifications(socket)
 	}()
 
 }
 
 func TestPushNotifications(s socketio.Conn) {
+	log.Debug("I'm testing push notifications on an interval")
 	ctx := s.Context().(context.Context)
 
 	user := ctx.Value("user").(account.User);
-	ticker := time.NewTicker(time.Second * 90)
+	ticker := time.NewTicker(time.Hour * 2)
 
 	tickerChan := ticker.C
 
 	for {
 		select {
 		case <-tickerChan:
+
+			log.Debug("Firing off!! ")
 			log.Info("sending push message")
-			user.Notify("This is a test message welcome to the family", "Test title", &shifts.Shift{})
+			user.Notify("This is a test message welcome to the family", "Test title", shifts.Shift{}.PhoneNumber)
 		}
 	}
 }

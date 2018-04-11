@@ -10,6 +10,7 @@ import (
 	"github.com/googollee/go-socket.io/parser"
 
 	"gopkg.in/googollee/go-engine.io.v1"
+	"fmt"
 )
 
 // Conn is a connection in go-socket.io
@@ -161,6 +162,9 @@ func (c *conn) serveWrite() {
 			return
 		case pkg := <-c.writeChan:
 			if err := c.encoder.Encode(pkg.header, pkg.data); err != nil {
+				fmt.Println("***************************************")
+				fmt.Println(err)
+				fmt.Println("***************************************")
 				c.onError(pkg.header.Namespace, err)
 			}
 		}

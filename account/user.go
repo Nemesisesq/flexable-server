@@ -3,17 +3,13 @@ package account
 import (
 	"github.com/globalsign/mgo/bson"
 	"github.com/nemesisesq/flexable/company"
+	"github.com/nemesisesq/flexable/position"
 )
 
 type Permission struct {
 }
 
 type Group struct {
-}
-
-type GeoLocation struct {
-	Lat  float64 `json:"lat"`
-	Long float64 `json:"long"`
 }
 
 type Jobs struct {
@@ -51,4 +47,25 @@ type User struct {
 	Profile     Profile                `json:"profile" bson:"profile"`
 	CognitoData map[string]interface{} `json:"cognito_data" bson:"cognito_data"`
 	PushToken   string                 `json:"push_token" bson:"push_token"`
+	Position position.Position `json:"position" bson:"position"`
+}
+
+type GeoLocation struct {
+	Lat  float64 `json:"lat"`
+	Long float64 `json:"long"`
+}
+
+type Shiftable interface {
+	String()
+}
+
+type Employee struct {
+	User
+	//ID       bson.ObjectId     `json:"_id,omitempty" bson:"_id,omitempty"`
+	Name     string            `json:"name" bson:"name"`
+	//Number   string            `json:"number" bson:"number"`
+	//Email    string            `json:"email" bson:"email"`
+	Location GeoLocation       `json:"location" bson:"location"`
+
+	Schedule []Shiftable       `json:"schedule" bson:"schedule"`
 }
