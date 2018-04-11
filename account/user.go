@@ -39,7 +39,7 @@ type CognitoData struct {
 }
 
 type User struct {
-	ID          bson.ObjectId          `json:"_id" bson:"_id"`
+	ID          bson.ObjectId          `json:"_id,omitempty" bson:"_id,omitempty"`
 	Email       string                 `json:"email" bson:"email"`
 	Permissions []Permission           `json:"permissions" bson:"permissions"`
 	Groups      []Group                `json:"groups" bson:"groups"`

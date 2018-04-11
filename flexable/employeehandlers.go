@@ -10,6 +10,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"context"
 	"github.com/nemesisesq/flexable/account"
+	"github.com/mitchellh/hashstructure"
 )
 
 type EmployeeData struct {
@@ -86,14 +87,26 @@ func GetOpenShifts(s socketio.Conn, data interface{}) interface{} {
 	ticker := time.NewTicker(time.Second * 5)
 
 	tickerChan := ticker.C
+	var currentShiftState uint64
 	//<-tickerChan
 	for {
+		shiftList := []shifts.Shift{}
 		select {
 		case <-tickerChan:
 			var query bson.M
 			query = bson.M{"company.uuid": user.Profile.Company.UUID}
-			shift_list := shifts.GetAllShifts(query)
-			s.Emit(constructSocketID(GET_OPEN_SHIFTS), shift_list)
+			shiftList = shifts.GetAllShifts(query)
+			shift_list_hash, err := hashstructure.Hash(&shiftList, nil)
+
+			if err != nil {
+				panic(err)
+			}
+			if currentShiftState != shift_list_hash {
+				currentShiftState = shift_list_hash
+				s.Emit(constructSocketID(GET_OPEN_SHIFTS), shiftList, func(so socketio.Conn, data string) {
+					log.Println("Client ACK with data: ", data)
+				})
+			}
 		}
 	}
 	return "hello"

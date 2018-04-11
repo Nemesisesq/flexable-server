@@ -18,7 +18,7 @@ func GetAllShifts(query bson.M) (result []Shift) {
 	err := c.Find(query).All(&result)
 
 	if err != nil {
-		grace.Recover(&err)
+		panic(err)
 	}
 
 	defer func() {
@@ -74,16 +74,20 @@ func GetOneShift(query bson.M) (result Shift) {
 	return result
 }
 
-func (shift *Shift) Save() {
+func (shift Shift) Save() {
 	session := db.GetMgoSession()
 	defer session.Close()
 	c := session.DB(db.FLEXABLE).C("shifts")
 	if shift.ID == "" {
-		shift.ID = bson.NewObjectId()
+		id := bson.NewObjectId()
+		log.Debug(id.String())
+		log.Debug(id.Hex())
+		log.Debug(id.Machine())
+		shift.ID = id
 	}
-	info, err := c.UpsertId(shift.ID, &shift)
+	info, err := c.UpsertId(shift.ID, shift)
 	log.Info(info)
 	if err != nil {
-		grace.Recover(&err)
+		panic(err)
 	}
 }

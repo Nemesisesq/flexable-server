@@ -21,7 +21,7 @@ type Worker struct {
 	ID   bson.ObjectId `json:"_id,omitempty" bson:"_id,omitempty"`
 }
 type Shift struct {
-	ID           bson.ObjectId           `json:"_id,omitempty" bson:"_id,omitempty"`
+	ID           bson.ObjectId           `bson:"_id,omitempty"`
 	SmsID        string                  `json:"sms_id" bson:"sms_id"`
 	Name         string                  `json:"name"`
 	AbsentWorker account.User       `json:"absentWorker" bson:"absentWorker"`
