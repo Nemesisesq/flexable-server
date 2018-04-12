@@ -99,9 +99,13 @@ func CallOfShift(s socketio.Conn, data interface{}) interface{} {
 	emp := user
 
 	for k, v := range shift.Volunteers {
-		if v.Email ==  emp.Email {
+		if v.Profile.Email ==  emp.Profile.Email {
 			shift.Volunteers = append(shift.Volunteers[:k], shift.Volunteers[k+1:]...)
 		}
+	}
+
+	if shift.Chosen.Profile.Email == emp.Profile.Email{
+		shift.Chosen = account.User{}
 	}
 	shift.Save()
 	return nil
@@ -112,7 +116,7 @@ func GetOpenShifts(s socketio.Conn, data interface{}) interface{} {
 
 	ctx := s.Context().(context.Context)
 	user := ctx.Value("user").(account.User);
-	ticker := time.NewTicker(time.Second * 5)
+	ticker := time.NewTicker(time.Second)
 
 	tickerChan := ticker.C
 	var currentShiftState uint64

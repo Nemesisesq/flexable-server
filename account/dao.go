@@ -19,18 +19,18 @@ func UserRole(r http.Request) (string, interface{}) {
 	if err != nil {
 		grace.Recover(&err)
 	}
-	user := GetUser(bson.M{"email": tmp["email"]})
+	user := GetUser(bson.M{"profile.email": tmp["email"]})
 	mapstructure.Decode(tmp, &user.CognitoData)
 	if user.ID == "" {
 		fmt.Println("setting user id")
 
 		user.ID = bson.NewObjectId()
-		user.Profile.FirstName = "First Name"
-		user.Profile.LastName = "Last Name"
-		user.Profile.PhoneNumber = user.CognitoData["phone_number"].(string)
+		user.Profile.FirstName = "First"
+		user.Profile.LastName = "Last"
 	}
-	user.Email = tmp["email"].(string)
-	user.Upsert(bson.M{"email": tmp["email"]})
+	user.Profile.PhoneNumber = user.CognitoData["phone_number"].(string)
+	user.Profile.Email = tmp["email"].(string)
+	user.Upsert(bson.M{"_id": user.ID})
 	return user.Role, user.Profile
 }
 func GetUser(query bson.M) User {

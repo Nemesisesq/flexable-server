@@ -16,6 +16,7 @@ type Jobs struct {
 }
 
 type Profile struct {
+	Email       string                 `json:"email" bson:"email"`
 	Company     company.Company `json:"company" bson:"company"`
 	JobHistory  []Jobs          `json:"job_history" bson:"job_history"`
 	PhoneNumber string          `json:"phone_number" bson:"phone_number"`
