@@ -25,6 +25,9 @@ func UserRole(r http.Request) (string, interface{}) {
 		fmt.Println("setting user id")
 
 		user.ID = bson.NewObjectId()
+		user.Profile.FirstName = "First Name"
+		user.Profile.LastName = "Last Name"
+		user.Profile.PhoneNumber = user.CognitoData["phone_number"].(string)
 	}
 	user.Email = tmp["email"].(string)
 	user.Upsert(bson.M{"email": tmp["email"]})

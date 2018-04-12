@@ -47,6 +47,34 @@ func PickUpShift(s socketio.Conn, data interface{}) interface{} {
 
 	return nil
 }
+
+func UpdateProfile(conn socketio.Conn, data interface{}) interface{} {
+	log.Info("CAlling off shift" )
+	payload := data.(map[string]interface{})["payload"]
+
+	tmp, err := json.Marshal(payload)
+	if err != nil {
+		panic(err)
+	}
+
+	ctx := conn.Context().(context.Context)
+	user := ctx.Value("user").(account.User)
+
+	err = json.Unmarshal(tmp, &user.Profile)
+
+	if err != nil {
+		panic(err)
+	}
+
+	user.Upsert(bson.M{"_id": user.ID})
+
+	conn.Emit(constructSocketID(SET_PROFILE), &user.Profile)
+
+
+	return nil
+}
+
+
 func CallOfShift(s socketio.Conn, data interface{}) interface{} {
 
 
@@ -111,6 +139,7 @@ func GetOpenShifts(s socketio.Conn, data interface{}) interface{} {
 	}
 	return "hello"
 }
+
 //func GetEmployeeShifts(s socketio.Conn, data interface{}) interface{} {
 //	log.Info("getting employee shifts")
 //	payload := data.(map[string]interface{})["payload"]
