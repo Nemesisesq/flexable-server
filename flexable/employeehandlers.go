@@ -126,6 +126,9 @@ func GetOpenShifts(s socketio.Conn, data interface{}) interface{} {
 		select {
 		case <-tickerChan:
 			var query bson.M
+			if user.Profile.Company.UUID == "" {
+			       user.Profile.Company.UUID = "123"
+			}
 			query = bson.M{"company.uuid": user.Profile.Company.UUID}
 			shiftList = shifts.GetAllShifts(query)
 			shift_list_hash, err := hashstructure.Hash(&shiftList, nil)
