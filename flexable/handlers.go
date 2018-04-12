@@ -30,6 +30,10 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) interface{} {
 	//if !ok {
 	//	fmt.Println("something is not ok")
 	//}
+	
+	if user.Profile.Company.UUID == "" {
+		user.Profile.Company.UUID = "123"
+	}
 	query = bson.M{"company.uuid": user.Profile.Company.UUID}
 	shift_list := shifts.GetAllShifts(query)
 
