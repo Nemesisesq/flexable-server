@@ -48,7 +48,7 @@ func PickUpShift(s socketio.Conn, data interface{}) interface{} {
 	return nil
 }
 
-func UpdateProfile(conn socketio.Conn, data interface{}) interface{} {
+func UpdateProfile(s socketio.Conn, data interface{}) interface{} {
 	log.Info("CAlling off shift" )
 	payload := data.(map[string]interface{})["payload"]
 
@@ -57,7 +57,7 @@ func UpdateProfile(conn socketio.Conn, data interface{}) interface{} {
 		panic(err)
 	}
 
-	ctx := conn.Context().(context.Context)
+	ctx := s.Context().(context.Context)
 	user := ctx.Value("user").(account.User)
 
 	err = json.Unmarshal(tmp, &user.Profile)
@@ -68,7 +68,7 @@ func UpdateProfile(conn socketio.Conn, data interface{}) interface{} {
 
 	user.Upsert(bson.M{"_id": user.ID})
 
-	conn.Emit(constructSocketID(SET_PROFILE), &user.Profile)
+	s.Emit(constructSocketID(SET_PROFILE), &user.Profile)
 
 
 	return nil

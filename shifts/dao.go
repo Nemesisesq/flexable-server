@@ -85,7 +85,7 @@ func (shift Shift) Save() {
 		log.Debug(id.Machine())
 		shift.ID = id
 	}
-	info, err := c.UpsertId(shift.ID, shift)
+	info, err := c.UpsertId(shift.ID, &shift)
 	log.Info(info)
 	if err != nil {
 		panic(err)
