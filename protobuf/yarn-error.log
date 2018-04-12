@@ -1,0 +1,46 @@
+Arguments: 
+  /usr/local/Cellar/node/9.6.1/bin/node /usr/local/Cellar/yarn/1.5.1/libexec/bin/yarn.js publish
+
+PATH: 
+  /Users/nem/.rbenv/shims:/Users/nem/.venvburrito/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/go/bin:/usr/local/opt/go/libexec/bin:/usr/local/opt/go/libexec/bin:/Users/nem/go/bin:/usr/local/sbin:/Users/nem/terraform
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  9.6.1
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "flexable-protobuf",
+    "version": "1.1.14",
+    "main": "index.js",
+    "license": "MIT",
+    "descripton": "",
+    "dependencies": {
+      "flexable-protobuf": "^1.0.4",
+      "google-protobuf": "^3.5.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/usr/local/Cellar/yarn/1.5.1/libexec/lib/cli.js:128791:13)
+      at Interface.emit (events.js:127:13)
+      at Interface._ttyWrite (readline.js:783:16)
+      at ReadStream.onkeypress (readline.js:163:10)
+      at ReadStream.emit (events.js:127:13)
+      at emitKeys (internal/readline.js:420:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1019:36)
+      at ReadStream.emit (events.js:127:13)
+      at addChunk (_stream_readable.js:269:12)
