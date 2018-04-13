@@ -7,7 +7,7 @@ import (
 )
 
 
-const FLEXABLE string ="flexable"
+var FLEXABLE string = ""
 
 
 var session *mgo.Session
@@ -17,12 +17,15 @@ func InitDB() (string, error) {
 
 	dialInfo, err := mgo.ParseURL(mongodb_uri)
 
+
 	if err != nil {
 		panic(err)
 	}
 
+
+	FLEXABLE = dialInfo.Database
+
 	session, err = mgo.Dial(mongodb_uri)
-	//session, err := mgo.DialWithTimeout(mongodb_uri, time.Second*5)
 	return dialInfo.Database, err
 }
 

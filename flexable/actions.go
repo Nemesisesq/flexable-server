@@ -11,10 +11,5 @@ func SetListeners(socket *socketio.Server) {
 
 		id := constructSocketID(i.T)
 		socket.OnEvent(fmt.Sprintf("/%v", i.N), id, i.H)
-
 	}
 }
-
-//func ( type, payload) = > {
-//	socket.emit(`socket${type}`, payload);
-//}
