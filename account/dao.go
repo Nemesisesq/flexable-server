@@ -71,6 +71,7 @@ func SavePushToken(r http.Request) {
 	err := decoder.Decode(&tmp)
 	if err != nil {
 		defer grace.Recover(&err)
+
 	}
 	user := GetUser(bson.M{"profile.email": tmp["email"]})
 	user.PushToken = tmp["token"].(string)
