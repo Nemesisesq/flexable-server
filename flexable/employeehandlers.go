@@ -49,7 +49,7 @@ func PickUpShift(s socketio.Conn, data interface{}) interface{} {
 }
 
 func UpdateProfile(s socketio.Conn, data interface{}) interface{} {
-	log.Info("CAlling off shift" )
+	log.Info("Updating Profile" )
 	payload := data.(map[string]interface{})["payload"]
 
 	tmp, err := json.Marshal(payload)

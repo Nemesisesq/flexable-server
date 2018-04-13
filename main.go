@@ -5,9 +5,6 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-
-	//"github.com/auth0/go-jwt-middleware"
-	//"github.com/dgrijalva/jwt-go"
 	"github.com/gorilla/mux"
 	_ "github.com/heroku/x/hmetrics/onload"
 	"github.com/nemesisesq/flexable/account"

@@ -72,9 +72,9 @@ func SavePushToken(r http.Request) {
 	if err != nil {
 		defer grace.Recover(&err)
 	}
-	user := GetUser(bson.M{"email": tmp["email"]})
+	user := GetUser(bson.M{"profile.email": tmp["email"]})
 	user.PushToken = tmp["token"].(string)
-	user.Upsert(bson.M{"email": tmp["email"]})
+	user.Upsert(bson.M{"_id": user.ID})
 }
 
 func FindAll(query bson.M) (users []User, err error) {
