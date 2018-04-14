@@ -11,7 +11,6 @@ import (
 	"context"
 	"github.com/nemesisesq/flexable/account"
 	"github.com/mitchellh/hashstructure"
-	"fmt"
 )
 
 type EmployeeData struct {
@@ -63,7 +62,6 @@ func UpdateProfile(s socketio.Conn, data interface{}) interface{} {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(user.Profile.Company)
 
 	user.Upsert(bson.M{"_id": user.ID})
 

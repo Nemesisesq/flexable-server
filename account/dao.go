@@ -20,7 +20,6 @@ func UserRole(r http.Request) (string, interface{}) {
 		grace.Recover(&err)
 	}
 
-	fmt.Println(tmp)
 	user := GetUser(bson.M{"profile.email": tmp["email"]})
 	mapstructure.Decode(tmp, &user.CognitoData)
 	if user.ID == "" {

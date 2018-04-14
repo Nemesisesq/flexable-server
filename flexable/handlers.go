@@ -78,7 +78,6 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} 
 	app := plivoClient.CreateApplication(shift.Company.Name, shift.SmsID)
 
 	shift.Application = app
-	fmt.Println("here")
 	shift.Save()
 	shift.Name = fmt.Sprintf("%v : %v per hour", shift.Job.Title, shift.Job.Compensation)
 	// TODO uncomment for testing buying phone number works

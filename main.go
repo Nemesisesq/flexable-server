@@ -68,7 +68,6 @@ func main() {
 	})
 
 	m.HandleFunc("/sms/incoming/{smsId}", func(writer http.ResponseWriter, request *http.Request) {
-		fmt.Println(request)
 		vars := mux.Vars(request)
 		smsID := vars["smsId"]
 		body := map[string]string{}
