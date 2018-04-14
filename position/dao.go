@@ -15,14 +15,14 @@ func Find(query bson.M) *mgo.Query {
 	ch = make(chan bool)
 	session:= db.GetMgoSession()
 
-	go func() {
-		for {
-			select {
-			case <-ch:
-				session.Close()
-			}
-		}
-	}()
+	//go func() {
+	//	for {
+	//		select {
+	//		case <-ch:
+	//			session.Close()
+	//		}
+	//	}
+	//}()
 
 	c := session.DB(db.FLEXABLE).C(COLLECTION)
 

@@ -19,7 +19,7 @@ type EmployeeData struct {
 
 func PickUpShift(s socketio.Conn, data interface{}) interface{} {
 
-	log.Info("Picking up  a shift" )
+	log.Info("Picking up  a shift")
 	payload := data.(map[string]interface{})["payload"]
 
 	tmp, err := json.Marshal(payload)
@@ -39,18 +39,15 @@ func PickUpShift(s socketio.Conn, data interface{}) interface{} {
 
 	emp := user
 
-
 	shift.Volunteers = append(shift.Volunteers, emp)
 
 	shift.Save()
-
-
 
 	return nil
 }
 
 func UpdateProfile(s socketio.Conn, data interface{}) interface{} {
-	log.Info("Updating Profile" )
+	log.Info("Updating Profile")
 	payload := data.(map[string]interface{})["payload"]
 
 	tmp, err := json.Marshal(payload)
@@ -66,21 +63,18 @@ func UpdateProfile(s socketio.Conn, data interface{}) interface{} {
 	if err != nil {
 		panic(err)
 	}
-	 fmt.Println(user.Profile.Company)
+	fmt.Println(user.Profile.Company)
 
 	user.Upsert(bson.M{"_id": user.ID})
 
 	s.Emit(constructSocketID(SET_PROFILE), &user.Profile)
 
-
 	return nil
 }
 
-
 func CallOfShift(s socketio.Conn, data interface{}) interface{} {
 
-
-	log.Info("CAlling off shift" )
+	log.Info("CAlling off shift")
 	payload := data.(map[string]interface{})["payload"]
 
 	tmp, err := json.Marshal(payload)
@@ -101,12 +95,12 @@ func CallOfShift(s socketio.Conn, data interface{}) interface{} {
 	emp := user
 
 	for k, v := range shift.Volunteers {
-		if v.Profile.Email ==  emp.Profile.Email {
+		if v.Profile.Email == emp.Profile.Email {
 			shift.Volunteers = append(shift.Volunteers[:k], shift.Volunteers[k+1:]...)
 		}
 	}
 
-	if shift.Chosen.Profile.Email == emp.Profile.Email{
+	if shift.Chosen.Profile.Email == emp.Profile.Email {
 		shift.Chosen = account.User{}
 	}
 	shift.Save()
@@ -123,31 +117,38 @@ func GetOpenShifts(s socketio.Conn, data interface{}) interface{} {
 	tickerChan := ticker.C
 	var currentShiftState uint64
 	//<-tickerChan
-	for {
-		shiftList := []shifts.Shift{}
-		select {
-		case <-tickerChan:
-			var query bson.M
-			if user.Profile.Company.UUID == "" {
-			       user.Profile.Company.UUID = "123"
-			}
-			query = bson.M{"company.uuid": user.Profile.Company.UUID}
-			shiftList = shifts.GetAllShifts(query)
-			shift_list_hash, err := hashstructure.Hash(&shiftList, nil)
+	go func() {
+		for {
+			shiftList := []shifts.Shift{}
+			select {
+			case <-tickerChan:
+				var query bson.M
+				if user.Profile.Company.UUID == "" {
+					user.Profile.Company.UUID = "123"
+				}
+				query = bson.M{"company.uuid": user.Profile.Company.UUID}
+				shiftList = shifts.GetAllShifts(query)
+				shift_list_hash, err := hashstructure.Hash(&shiftList, nil)
 
-			if err != nil {
-				panic(err)
-			}
-			if currentShiftState != shift_list_hash {
-				currentShiftState = shift_list_hash
-				s.Emit(constructSocketID(GET_OPEN_SHIFTS), shiftList, func(so socketio.Conn, data string) {
-					log.Println("Client ACK with data: ", data)
-				})
+				if err != nil {
+					panic(err)
+				}
+				if currentShiftState != shift_list_hash {
+					currentShiftState = shift_list_hash
+					s.Emit(constructSocketID(GET_OPEN_SHIFTS), shiftList, func(so socketio.Conn, data string) {
+						log.Println("Client ACK with data: ", data)
+					})
+				}
+			case <-ctx.Done():
+				ticker.Stop()
+				return
+			default:
 			}
 		}
-	}
+	}()
 	return "hello"
 }
+
 
 //func GetEmployeeShifts(s socketio.Conn, data interface{}) interface{} {
 //	log.Info("getting employee shifts")

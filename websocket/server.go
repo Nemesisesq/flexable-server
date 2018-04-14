@@ -7,6 +7,7 @@ import (
 	"log"
 	"strconv"
 	"flag"
+	"fmt"
 )
 
 const (
@@ -89,7 +90,9 @@ func writer(ws *websocket.Conn, lastMod time.Time) {
 			if err := ws.WriteMessage(websocket.PingMessage, []byte{}); err != nil {
 				return
 			}
+		default:
 		}
+
 	}
 }
 

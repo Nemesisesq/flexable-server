@@ -11,7 +11,7 @@ import (
 	"github.com/globalsign/mgo/bson"
 	"github.com/oxequa/grace"
 	"github.com/nemesisesq/flexable/account"
-	log"github.com/sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 )
 
 func InitWatchers(socket socketio.Conn) {
@@ -45,9 +45,8 @@ func TestPushNotifications(s socketio.Conn) {
 	}
 }
 
-
-func CheckOpenShifts(s socketio.Conn)(e error) {
-defer grace.Recover(&e)
+func CheckOpenShifts(s socketio.Conn) (e error) {
+	defer grace.Recover(&e)
 	ctx := s.Context().(context.Context)
 
 	ticker := time.NewTicker(time.Second * 2)
@@ -74,6 +73,9 @@ defer grace.Recover(&e)
 		case <-ctx.Done():
 			ticker.Stop()
 			break
+
+		default:
+			//fmt.Println("wheeee")
 		}
 
 	}
