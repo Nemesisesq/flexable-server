@@ -180,14 +180,7 @@ proto.payload.EmployeePayload.serializeBinaryToWriter = function(message, writer
  * @enum {number}
  */
 proto.payload.EmployeePayload.Type = {
-  UNKNOWN: 0,
-  GET_OPEN_SHIFTS: 5,
-  SHIFT_DETAILS: 1,
-  PICK_UP_SHIFT: 2,
-  CALL_OFF_SHIFT: 3,
-  GET_MY_SCHEDULES: 4,
-  USER_PROFILE_UPDATED: 6,
-  SET_PROFILE: 7
+  UNKNOWN: 0
 };
 
 /**

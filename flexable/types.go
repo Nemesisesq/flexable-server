@@ -22,12 +22,11 @@ const (
 //Employee Constants
 
 const (
-	GET_MY_SHIFTS   = payload.EmployeePayload_GET_MY_SCHEDULES
-	GET_OPEN_SHIFTS = payload.EmployeePayload_GET_OPEN_SHIFTS
-	PICK_UP_SHIFT   = payload.EmployeePayload_PICK_UP_SHIFT
-	CALL_OFF_SHIFT  = payload.EmployeePayload_CALL_OFF_SHIFT
-	USER_PROFILE_UPDATED = payload.EmployeePayload_USER_PROFILE_UPDATED
-	SET_PROFILE = payload.EmployeePayload_SET_PROFILE
+	GET_OPEN_SHIFTS = payload.Payload_GET_OPEN_SHIFTS
+	PICK_UP_SHIFT   = payload.Payload_PICK_UP_SHIFT
+	CALL_OFF_SHIFT  = payload.Payload_CALL_OFF_SHIFT
+	USER_PROFILE_UPDATED = payload.Payload_USER_PROFILE_UPDATED
+	SET_PROFILE = payload.Payload_SET_PROFILE
 //	todo fix
 
 )

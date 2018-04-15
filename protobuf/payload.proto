@@ -13,6 +13,12 @@ message Payload {
         EMPLOYEE_LIST = 7;
         SELECT_VOLUNTEER = 8;
         OPEN_SHIFTS = 9;
+        GET_OPEN_SHIFTS = 10;
+        PICK_UP_SHIFT = 11;
+        CALL_OFF_SHIFT = 12;
+        GET_MY_SCHEDULES = 13;
+        USER_PROFILE_UPDATED = 14;
+        SET_PROFILE = 15;
     };
 
     Type type = 1;

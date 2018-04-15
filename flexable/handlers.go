@@ -220,6 +220,7 @@ func SelectVolunteer(s socketio.Conn, data interface{}) interface{} {
 }
 
 func GetAvailableEmployees(s socketio.Conn, data interface{}) interface{} {
+
 	log.Info("Getting Available Employees")
 	fake, err := faker.New("en")
 	if err != nil {
@@ -300,9 +301,11 @@ func GetPositions(s socketio.Conn, data interface{}) interface{} {
 		}
 	}
 
+	fmt.Println(jobs)
+
 	s.Emit(constructSocketID(GET_JOBS), jobs, func(so socketio.Conn, data string) {
 		log.Println("Client ACK with data: ", data)
 	})
 
-	return jobs
+	return nil
 }

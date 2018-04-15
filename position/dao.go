@@ -42,7 +42,6 @@ func GetAllPositions(query bson.M) (result []Position) {
 		}
 	}()
 
-	ch <- true
 	return result
 
 }

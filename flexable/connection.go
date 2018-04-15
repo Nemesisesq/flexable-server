@@ -91,9 +91,9 @@ func SocketServerConnections(server socketio.Server, namespace string) {
 	})
 
 	server.OnError(fmt.Sprintf("/%v", namespace), func(s socketio.Conn, e error) {
-		ctx := s.Context().(context.Context)
-		cancel := ctx.Value("cancel").(context.CancelFunc)
-		cancel()
+		//ctx := s.Context().(context.Context)
+		//cancel := ctx.Value("cancel").(context.CancelFunc)
+		//cancel()
 		fmt.Println("meet error:", e)
 		fmt.Println("everything cancelled", e)
 	})
