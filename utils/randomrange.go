@@ -14,3 +14,5 @@ func RandomRange(min, max int) int {
 	myrand := random(min, max)
 	return myrand
 }
+
+

@@ -16,6 +16,7 @@ import (
 	"github.com/unrolled/render"
 	"github.com/urfave/negroni"
 	"github.com/x-cray/logrus-prefixed-formatter"
+	"net/http/httputil"
 )
 
 func main() {
@@ -54,12 +55,26 @@ func main() {
 	n.UseHandler(m)
 	m.Handle("/socket.io/", server)
 
+	selectVolunteerEndpoint := fmt.Sprintf("/manager/%d", flexable.SELECT_VOLUNTEER)
+	m.HandleFunc(selectVolunteerEndpoint,
+	func(writer http.ResponseWriter, request *http.Request) {
+
+		shifts.SelectVolunteer(request)
+		fmt.Println("Chosing Volunteer")
+
+		b, err := httputil.DumpRequest(request, true)
+		if err != nil {
+			panic(err)
+		}
+
+		println(string(b))
+	})
+
 	m.HandleFunc("/users/push-token", func(writer http.ResponseWriter, request *http.Request) {
 		account.SavePushToken(*request)
 	})
 
 	m.HandleFunc("/users/verify", func(writer http.ResponseWriter, request *http.Request) {
-
 
 		log.Info("registerng user")
 		role, profile := account.UserRole(*request)

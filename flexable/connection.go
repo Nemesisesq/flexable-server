@@ -98,10 +98,10 @@ func SocketServerConnections(server socketio.Server, namespace string) {
 		fmt.Println("everything cancelled", e)
 	})
 	server.OnDisconnect(fmt.Sprintf("/%v", namespace), func(s socketio.Conn, msg string) {
-		ctx := s.Context().(context.Context)
-		//
-		cancel := ctx.Value("cancel").(context.CancelFunc)
-		cancel()
+		//ctx := s.Context().(context.Context)
+
+		//cancel := ctx.Value("cancel").(context.CancelFunc)
+		//cancel()
 		fmt.Println("closed and cancelled", msg)
 	})
 }

@@ -6,6 +6,8 @@ import (
 	"github.com/nemesisesq/flexable/plivio/messaging"
 	log "github.com/sirupsen/logrus"
 	"github.com/nemesisesq/flexable/account"
+	"net/http"
+	"encoding/json"
 )
 
 func UpdateShiftWithSmsID(smsId string, payload map[string]string) *messaging.Response {
@@ -33,6 +35,47 @@ func UpdateShiftWithSmsID(smsId string, payload map[string]string) *messaging.Re
 
 		return &response
 	}
+
+	return nil
+}
+
+
+type VolunteerPayload struct {
+	Shift Shift  `json:"shift"`
+
+	Volunteer account.User `json:"volunteer"`
+}
+
+func SelectVolunteer (request *http.Request) (e error) {
+	log.Info("Selecting the Volunteer")
+	//spew.Dump(data)
+	payload := &VolunteerPayload{}
+
+    decoder := json.NewDecoder(request.Body)
+
+    decoder.Decode(&payload)
+
+
+	shift := GetOneShift(bson.M{"_id": payload.Shift.ID})
+
+	shift.Chosen = payload.Volunteer
+
+
+	t := `
+				Awesome!!! You've picked up a shift!
+				Details:
+
+				Location : {{.Location}}
+				Date: {{.Date}}
+				Start Time : {{.StartTime}}
+				End Time : {{.EndTime }}
+				`
+
+
+
+	shift.Save()
+
+	payload.Volunteer.Notify(t, "You've picked up shift", shift.PhoneNumber)
 
 	return nil
 }

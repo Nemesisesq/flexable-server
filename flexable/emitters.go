@@ -74,10 +74,12 @@ func CheckOpenShifts(s socketio.Conn) (e error) {
 			ticker.Stop()
 			break
 
-		default:
 			//fmt.Println("wheeee")
 		}
 
 	}
+
+	log.Info("exiting go routine")
+	return e
 
 }

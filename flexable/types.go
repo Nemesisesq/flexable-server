@@ -17,17 +17,18 @@ const (
 	GET_JOBS                = payload.Payload_GET_JOBS
 	EMPLOYEE_LIST           = payload.Payload_EMPLOYEE_LIST
 	SELECT_VOLUNTEER        = payload.Payload_SELECT_VOLUNTEER
+	UPDATE_NOTIFICATIONS    = payload.Payload_UPDATE_NOTIFICATIONS
 )
 
 //Employee Constants
 
 const (
-	GET_OPEN_SHIFTS = payload.Payload_GET_OPEN_SHIFTS
-	PICK_UP_SHIFT   = payload.Payload_PICK_UP_SHIFT
-	CALL_OFF_SHIFT  = payload.Payload_CALL_OFF_SHIFT
+	GET_OPEN_SHIFTS      = payload.Payload_GET_OPEN_SHIFTS
+	PICK_UP_SHIFT        = payload.Payload_PICK_UP_SHIFT
+	CALL_OFF_SHIFT       = payload.Payload_CALL_OFF_SHIFT
 	USER_PROFILE_UPDATED = payload.Payload_USER_PROFILE_UPDATED
-	SET_PROFILE = payload.Payload_SET_PROFILE
-//	todo fix
+	SET_PROFILE          = payload.Payload_SET_PROFILE
+	//	todo fix
 
 )
 
@@ -57,12 +58,13 @@ var messageTypes = []MessageType{
 	{GET_AVAILABLE_EMPLOYEES, nil, MANAGER},
 	{GET_JOBS, GetPositions, MANAGER},
 	{EMPLOYEE_LIST, GetAvailableEmployees, MANAGER},
-	{SELECT_VOLUNTEER, SelectVolunteer, MANAGER},
+	//{SELECT_VOLUNTEER, SelectVolunteer, MANAGER},
 	//{GET_MY_SHIFTS, GetEmployeeShifts, EMPLOYEE},
 	{GET_OPEN_SHIFTS, GetOpenShifts, EMPLOYEE},
 	{PICK_UP_SHIFT, PickUpShift, EMPLOYEE},
 	{CALL_OFF_SHIFT, CallOfShift, EMPLOYEE},
 	{SET_PROFILE, UpdateProfile, EMPLOYEE},
+	{UPDATE_NOTIFICATIONS, UpdateNotifications, EMPLOYEE},
 }
 
 func constructSocketID(payload_type ProtoBuffer) string {

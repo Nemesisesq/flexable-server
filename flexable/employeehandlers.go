@@ -45,6 +45,7 @@ func PickUpShift(s socketio.Conn, data interface{}) interface{} {
 	return nil
 }
 
+
 func UpdateProfile(s socketio.Conn, data interface{}) interface{} {
 	log.Info("Updating Profile")
 	payload := data.(map[string]interface{})["payload"]
@@ -131,22 +132,68 @@ func GetOpenShifts(s socketio.Conn, data interface{}) interface{} {
 				if err != nil {
 					panic(err)
 				}
+				//println(shift_list_hash)
 				if currentShiftState != shift_list_hash {
+					log.Info("Employee shifts are updating ")
 					currentShiftState = shift_list_hash
 					s.Emit(constructSocketID(GET_OPEN_SHIFTS), shiftList, func(so socketio.Conn, data string) {
 						log.Println("Client ACK with data: ", data)
 					})
 				}
+
 			case <-ctx.Done():
 				ticker.Stop()
 				return
-			default:
 			}
 		}
+		log.Info("Exiting go loop")
 	}()
 	return "hello"
 }
 
+
+func UpdateNotifications(s socketio.Conn, data interface{}) interface{} {
+	log.Info("Broadcasting Notifications")
+
+	ctx := s.Context().(context.Context)
+	user := ctx.Value("user").(account.User);
+	ticker := time.NewTicker(time.Second)
+
+	tickerChan := ticker.C
+	var currentNotificationState uint64
+	//<-tickerChan
+	go func() {
+		for {
+			select {
+			case <-tickerChan:
+				var query bson.M
+				query = bson.M{"_id": user.ID}
+				out := user.Find(query)
+
+				notifications := out.Notifications
+				notifications_hash, err := hashstructure.Hash(&notifications, nil)
+
+				if err != nil {
+					panic(err)
+				}
+				//println(shift_list_hash)
+				if currentNotificationState != notifications_hash {
+					log.Info("notifications are updating ")
+					currentNotificationState = notifications_hash
+					s.Emit(constructSocketID(UPDATE_NOTIFICATIONS), notifications, func(so socketio.Conn, data string) {
+						log.Println("Client ACK with data: ", data)
+					})
+				}
+
+			case <-ctx.Done():
+				ticker.Stop()
+				return
+			}
+		}
+		log.Info("Exiting go loop")
+	}()
+	return "hello"
+}
 
 //func GetEmployeeShifts(s socketio.Conn, data interface{}) interface{} {
 //	log.Info("getting employee shifts")

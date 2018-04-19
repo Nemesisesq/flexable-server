@@ -4,6 +4,7 @@ import (
 	"github.com/globalsign/mgo/bson"
 	"github.com/nemesisesq/flexable/company"
 	"github.com/nemesisesq/flexable/position"
+	"time"
 )
 
 type Permission struct {
@@ -16,14 +17,14 @@ type Jobs struct {
 }
 
 type Profile struct {
-	Email       string                 `json:"email" bson:"email"`
+	Email       string          `json:"email" bson:"email"`
 	Company     company.Company `json:"company" bson:"company"`
 	JobHistory  []Jobs          `json:"job_history" bson:"job_history"`
 	PhoneNumber string          `json:"phone_number" bson:"phone_number"`
 	Location    GeoLocation     `json:"location" bson:"location"`
 	FirstName   string          `json:"first_name" bson:"first_name"`
 	LastName    string          `json:"last_name" bson:"last_name"`
-	ImageUrl	string			`json:"image_url" bson:"image_url"`
+	ImageUrl    string          `json:"image_url" bson:"image_url"`
 }
 
 type CognitoData struct {
@@ -41,15 +42,23 @@ type CognitoData struct {
 }
 
 type User struct {
-	ID          bson.ObjectId          `json:"_id,omitempty" bson:"_id,omitempty"`
-	Email       string                 `json:"email" bson:"email"`
-	Permissions []Permission           `json:"permissions" bson:"permissions"`
-	Groups      []Group                `json:"groups" bson:"groups"`
-	Role        string                 `json:"role" bson:"role"`
-	Profile     Profile                `json:"profile" bson:"profile"`
-	CognitoData map[string]interface{} `json:"cognito_data" bson:"cognito_data"`
-	PushToken   string                 `json:"push_token" bson:"push_token"`
-	Position position.Position `json:"position" bson:"position"`
+	ID            bson.ObjectId          `json:"_id,omitempty" bson:"_id,omitempty"`
+	Email         string                 `json:"email" bson:"email"`
+	Permissions   []Permission           `json:"permissions" bson:"permissions"`
+	Groups        []Group                `json:"groups" bson:"groups"`
+	Role          string                 `json:"role" bson:"role"`
+	Profile       Profile                `json:"profile" bson:"profile"`
+	CognitoData   map[string]interface{} `json:"cognito_data" bson:"cognito_data"`
+	PushToken     string                 `json:"push_token" bson:"push_token"`
+	Position      position.Position      `json:"position" bson:"position"`
+	Notifications []Notification         `json:"notifications" bson:"notifications"`
+}
+
+type Notification struct {
+	Sender  User      `json:"sender" bson:"sender"`
+	Date    time.Time `json:"date" bson:"date"`
+	Message string    `json:"message" bson:"message"`
+	Read    bool      `json:"read" bson:"read"`
 }
 
 type GeoLocation struct {
@@ -64,10 +73,10 @@ type Shiftable interface {
 type Employee struct {
 	User
 	//ID       bson.ObjectId     `json:"_id,omitempty" bson:"_id,omitempty"`
-	Name     string            `json:"name" bson:"name"`
+	Name string `json:"name" bson:"name"`
 	//Number   string            `json:"number" bson:"number"`
 	//Email    string            `json:"email" bson:"email"`
-	Location GeoLocation       `json:"location" bson:"location"`
+	Location GeoLocation `json:"location" bson:"location"`
 
-	Schedule []Shiftable       `json:"schedule" bson:"schedule"`
+	Schedule []Shiftable `json:"schedule" bson:"schedule"`
 }
