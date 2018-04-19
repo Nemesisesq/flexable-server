@@ -16,7 +16,8 @@ func (u User) Notify(message, title string, to string) {
 	log.Info(apiRes, "apiRes")
 	log.Info(apiErr, "apiErr")
 	if &apiErr != nil {
-		u.Text(message, title, to)
+		//TODO
+		//u.Text(message, title, to)
 	}
 
 }
