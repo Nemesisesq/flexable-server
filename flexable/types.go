@@ -34,8 +34,8 @@ const (
 )
 
 const (
-	MANAGER  = "manager"
-	EMPLOYEE = "employee"
+	MANAGER  = "flexable"
+	EMPLOYEE = "flexable"
 )
 
 type ProtoBuffer interface {

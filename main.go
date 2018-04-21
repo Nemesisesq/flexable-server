@@ -32,8 +32,8 @@ func main() {
 	// Initialize global mongo database
 	session, _, _ := db.InitDB()
 
-	flexable.SocketServerConnections(*server, "manager")
-	flexable.SocketServerConnections(*server, "employee")
+	flexable.SocketServerConnections(*server, "flexable")
+	//flexable.SocketServerConnections(*server, "employee")
 	flexable.SetListeners(server)
 
 	go server.Serve()
