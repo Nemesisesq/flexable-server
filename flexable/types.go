@@ -5,6 +5,7 @@ import (
 
 	"github.com/nemesisesq/flexable/protobuf"
 	"github.com/odknt/go-socket.io"
+	"net/http"
 )
 
 const (
@@ -43,13 +44,19 @@ type ProtoBuffer interface {
 }
 
 type SockHandler func(socketio.Conn, interface{}) interface{}
-type MessageType struct {
+type SocketMessageType struct {
 	T ProtoBuffer
 	H SockHandler
 	N string
 }
 
-var messageTypes = []MessageType{
+type HTTPMessageType struct {
+	T ProtoBuffer
+	H func(http.ResponseWriter, *http.Request)
+	N string
+}
+
+var messageTypes = []SocketMessageType{
 	{OPEN_SHIFTS, OpenShiftHandler, MANAGER},
 	{SHIFT_DETAILS, nil, MANAGER},
 	{ACCEPT_SHIFT_SUBSTITUE, nil, MANAGER},
@@ -70,4 +77,9 @@ var messageTypes = []MessageType{
 func constructSocketID(payload_type ProtoBuffer) string {
 	return fmt.Sprintf("socket%d", payload_type)
 
+}
+
+
+var HttpTypes = []HTTPMessageType{
+	{GET_JOBS, GetPositionsHttp, MANAGER},
 }

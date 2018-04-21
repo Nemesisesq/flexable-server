@@ -50,14 +50,14 @@ func CheckOpenShifts(s socketio.Conn) (e error) {
 	ctx := s.Context().(context.Context)
 
 	ticker := time.NewTicker(time.Second * 2)
-	tickChan := ticker.C
+	timeout := time.NewTimer(time.Minute)
 	companyId := "123"
 	var currentShiftState uint64
-
+L:
 	for {
 		shiftList := []shifts.Shift{}
 		select {
-		case <-tickChan:
+		case <-ticker.C:
 			shiftList = shifts.GetAllShifts(bson.M{"company.uuid": companyId})
 			shift_list_hash, err := hashstructure.Hash(&shiftList, nil)
 
@@ -68,18 +68,21 @@ func CheckOpenShifts(s socketio.Conn) (e error) {
 			if currentShiftState != shift_list_hash {
 				currentShiftState = shift_list_hash
 				s.Emit(constructSocketID(OPEN_SHIFTS), shiftList)
+				timeout = time.NewTimer(time.Minute)
 			}
 
 		case <-ctx.Done():
 			ticker.Stop()
-			break
+			log.Info("I'm stopping the ticker")
+			break L
 
-			//fmt.Println("wheeee")
+		case <-timeout.C:
+			log.Info("I'm closing out the channel")
+			s.Close()
+			cancel := ctx.Value("cancel").(context.CancelFunc)
+			cancel()
 		}
-
 	}
-
 	log.Info("exiting go routine")
 	return e
-
 }

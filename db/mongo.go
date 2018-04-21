@@ -12,7 +12,7 @@ var FLEXABLE string = ""
 
 var session *mgo.Session
 
-func InitDB() (string, error) {
+func InitDB() (*mgo.Session, string, error) {
 	mongodb_uri := os.Getenv("MONGODB_URI")
 
 	dialInfo, err := mgo.ParseURL(mongodb_uri)
@@ -26,7 +26,7 @@ func InitDB() (string, error) {
 	FLEXABLE = dialInfo.Database
 
 	session, err = mgo.Dial(mongodb_uri)
-	return dialInfo.Database, err
+	return session, dialInfo.Database, err
 }
 
 

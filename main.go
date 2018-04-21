@@ -17,6 +17,7 @@ import (
 	"github.com/urfave/negroni"
 	"github.com/x-cray/logrus-prefixed-formatter"
 	"net/http/httputil"
+	"context"
 )
 
 func main() {
@@ -29,7 +30,7 @@ func main() {
 	}
 
 	// Initialize global mongo database
-	db.InitDB()
+	session, _, _ := db.InitDB()
 
 	flexable.SocketServerConnections(*server, "manager")
 	flexable.SocketServerConnections(*server, "employee")
@@ -53,22 +54,39 @@ func main() {
 	})*/
 
 	n.UseHandler(m)
+
+	//Mongo database
+	n.UseFunc(func(w http.ResponseWriter, r *http.Request, n http.HandlerFunc) {
+
+		ctx := r.Context()
+		sesh := session.Clone()
+		defer sesh.Close()
+		ctx = context.WithValue(ctx, "db", sesh)
+		r = r.WithContext(ctx)
+		n(w, r)
+	})
+
 	m.Handle("/socket.io/", server)
 
 	selectVolunteerEndpoint := fmt.Sprintf("/manager/%d", flexable.SELECT_VOLUNTEER)
 	m.HandleFunc(selectVolunteerEndpoint,
-	func(writer http.ResponseWriter, request *http.Request) {
+		func(writer http.ResponseWriter, request *http.Request) {
 
-		shifts.SelectVolunteer(request)
-		fmt.Println("Chosing Volunteer")
+			shifts.SelectVolunteer(request)
+			fmt.Println("Chosing Volunteer")
 
-		b, err := httputil.DumpRequest(request, true)
-		if err != nil {
-			panic(err)
-		}
+			b, err := httputil.DumpRequest(request, true)
+			if err != nil {
+				panic(err)
+			}
 
-		println(string(b))
-	})
+			println(string(b))
+		})
+
+	// register http handlers
+	for _, v := range flexable.HttpTypes {
+		m.HandleFunc(fmt.Sprintf("/%v/%d", v.N, v.T), v.H)
+	}
 
 	m.HandleFunc("/users/push-token", func(writer http.ResponseWriter, request *http.Request) {
 		account.SavePushToken(*request)
