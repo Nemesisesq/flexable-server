@@ -78,9 +78,9 @@ L:
 
 		case <-timeout.C:
 			log.Info("I'm closing out the channel")
-			s.Close()
 			cancel := ctx.Value("cancel").(context.CancelFunc)
 			cancel()
+			s.Close()
 		}
 	}
 	log.Info("exiting go routine")
