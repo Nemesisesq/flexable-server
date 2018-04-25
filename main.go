@@ -89,7 +89,12 @@ func main() {
 	}
 
 	m.HandleFunc("/users/push-token", func(writer http.ResponseWriter, request *http.Request) {
-		account.SavePushToken(*request)
+		err := account.SavePushToken(*request)
+		if err != nil {
+			r.JSON(writer, http.StatusInternalServerError, map[string]interface{}{"error": err})
+		}
+
+		r.JSON(writer, http.StatusOK, map[string]interface{}{"hello": "world"})
 	})
 
 	m.HandleFunc("/users/verify", func(writer http.ResponseWriter, request *http.Request) {

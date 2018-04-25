@@ -64,7 +64,7 @@ func (user *User) Upsert(query bson.M) {
 		grace.Recover(&err)
 	}
 }
-func SavePushToken(r http.Request) {
+func SavePushToken(r http.Request) error {
 	tmp := map[string]interface{}{}
 	decoder := json.NewDecoder(r.Body)
 	err := decoder.Decode(&tmp)
@@ -75,6 +75,8 @@ func SavePushToken(r http.Request) {
 	user := GetUser(bson.M{"profile.email": tmp["email"]})
 	user.PushToken = tmp["token"].(string)
 	user.Upsert(bson.M{"_id": user.ID})
+
+	return err
 }
 
 func FindAll(query bson.M) (users []User, err error) {
