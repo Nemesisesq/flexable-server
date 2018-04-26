@@ -203,9 +203,9 @@ func UpdateNotifications(s socketio.Conn, data interface{}) interface{} {
 
 			case <-timeout.C:
 				log.Info("I'm closing out the channel")
-				cancel := ctx.Value("cancel").(context.CancelFunc)
-				cancel()
-				s.Close()
+// 				cancel := ctx.Value("cancel").(context.CancelFunc)
+// 				cancel()
+// 				s.Close()
 			}
 		}
 		log.Info("Exiting go loop")
