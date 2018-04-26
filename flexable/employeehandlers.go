@@ -170,7 +170,7 @@ func UpdateNotifications(s socketio.Conn, data interface{}) interface{} {
 	timeout := time.NewTimer(time.Minute)
 	var currentNotificationState uint64
 	//<-tickerChan
-	go func() {
+	func() {
 	L:
 		for {
 			select {
