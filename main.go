@@ -90,6 +90,7 @@ func main() {
 
 	m.HandleFunc("/users/push-token", func(writer http.ResponseWriter, request *http.Request) {
 		account.SavePushToken(*request)
+		r.JSON(writer, http.StatusOK, map[string]interface{}{"role":"profile"})
 	})
 
 	m.HandleFunc("/users/verify", func(writer http.ResponseWriter, request *http.Request) {
