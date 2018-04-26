@@ -111,13 +111,12 @@ func GetOpenShifts(s socketio.Conn, data interface{}) interface{} {
 	ctx := s.Context().(context.Context)
 	user := ctx.Value("user").(account.User);
 	ticker := time.NewTicker(time.Second)
-	timeout := time.NewTimer(time.Minute)
+	timeout := time.NewTicker(time.Minute)
 
 	tickerChan := ticker.C
 	var currentShiftState uint64
 	//<-tickerChan
 	go func() {
-		L:
 		for {
 			shiftList := []shifts.Shift{}
 			select {
@@ -140,21 +139,18 @@ func GetOpenShifts(s socketio.Conn, data interface{}) interface{} {
 					s.Emit(constructSocketID(GET_OPEN_SHIFTS), shiftList, func(so socketio.Conn, data string) {
 						log.Println("Client ACK with data: ", data)
 					})
-
-					timeout = time.NewTimer(time.Minute)
 				}
 
 			case <-ctx.Done():
 				ticker.Stop()
-				break L
-
+				return
 			case <-timeout.C:
 				log.Info("I'm closing out the channel")
 				cancel := ctx.Value("cancel").(context.CancelFunc)
 				cancel()
 				s.Close()
 			}
-
+			}
 		}
 		log.Info("Exiting go loop")
 	}()
