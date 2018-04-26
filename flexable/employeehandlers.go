@@ -16,7 +16,7 @@ import (
 type EmployeeData struct {
 }
 
-func PickUpShift(s socketio.Conn, data interface{}) interface{} {
+func PickUpShift(s socketio.Conn, data interface{})  {
 
 	log.Info("Picking up  a shift")
 	payload := data.(map[string]interface{})["payload"]
@@ -42,10 +42,9 @@ func PickUpShift(s socketio.Conn, data interface{}) interface{} {
 
 	shift.Save()
 
-	return nil
 }
 
-func UpdateProfile(s socketio.Conn, data interface{}) interface{} {
+func UpdateProfile(s socketio.Conn, data interface{}) {
 	log.Info("Updating Profile")
 	payload := data.(map[string]interface{})["payload"]
 
@@ -67,7 +66,6 @@ func UpdateProfile(s socketio.Conn, data interface{}) interface{} {
 
 	s.Emit(constructSocketID(SET_PROFILE), &user.Profile)
 
-	return nil
 }
 
 func CallOfShift(s socketio.Conn, data interface{}) {

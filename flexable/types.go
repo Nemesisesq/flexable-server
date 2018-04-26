@@ -43,7 +43,7 @@ type ProtoBuffer interface {
 	EnumDescriptor() ([]byte, []int)
 }
 
-type SockHandler func(socketio.Conn, interface{}) interface{}
+type SockHandler func(socketio.Conn, interface{})
 type SocketMessageType struct {
 	T ProtoBuffer
 	H SockHandler

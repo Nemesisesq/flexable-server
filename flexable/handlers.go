@@ -20,7 +20,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func OpenShiftHandler(s socketio.Conn, _ interface{}) interface{} {
+func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 	log.Info("Returning openshifts")
 
 	ctx := s.Context().(context.Context)
@@ -40,12 +40,11 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) interface{} {
 	s.Emit(constructSocketID(OPEN_SHIFTS), shift_list, func(so socketio.Conn, data string) {
 		log.Println("Client ACK with data: ", data)
 	})
-	return "hello"
 }
 
 const NEW_SHIFT_TITLE = "There's a new shift!!!!"
 
-func FindShiftReplacementHandler(s socketio.Conn, data interface{}) interface{} {
+func FindShiftReplacementHandler(s socketio.Conn, data interface{}) {
 	log.Info("Finding a shift replacement")
 	payload := data.(map[string]interface{})["payload"]
 
@@ -119,7 +118,6 @@ or the Google play store.
 	if err != nil {
 		panic(err)
 	}
-	return nil
 }
 func CreateTextMessageString(templateString string, shift shifts.Shift) (bytes.Buffer, error) {
 	messageTemplate, err := template.New("test").Parse(templateString)
@@ -220,7 +218,7 @@ func SelectVolunteer(s socketio.Conn, data interface{}) interface{} {
 	return nil
 }
 
-func GetAvailableEmployees(s socketio.Conn, data interface{}) interface{} {
+func GetAvailableEmployees(s socketio.Conn, data interface{})  {
 
 	log.Info("Getting Available Employees")
 	fake, err := faker.New("en")
@@ -276,10 +274,9 @@ func GetAvailableEmployees(s socketio.Conn, data interface{}) interface{} {
 	s.Emit(id, empList, func(so socketio.Conn, data string) {
 		log.Println("Client ACK with data: ", data)
 	})
-	return empList
 }
 
-func GetPositions(s socketio.Conn, data interface{}) interface{} {
+func GetPositions(s socketio.Conn, data interface{}) {
 	log.Info("Getting positions")
 	fake, err := faker.New("en")
 	if err != nil {
@@ -308,5 +305,4 @@ func GetPositions(s socketio.Conn, data interface{}) interface{} {
 		log.Println("Client ACK with data: ", data)
 	})
 
-	return nil
 }
