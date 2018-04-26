@@ -15,7 +15,7 @@ import (
 
 func InitWatchers(socket socketio.Conn) {
 
-	go func() {
+	func() {
 
 		go CheckOpenShifts(socket)
 
