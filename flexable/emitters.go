@@ -9,7 +9,6 @@ import (
 	"github.com/odknt/go-socket.io"
 	//log "github.com/sirupsen/logrus"
 	"github.com/globalsign/mgo/bson"
-	"github.com/oxequa/grace"
 	"github.com/nemesisesq/flexable/account"
 	log "github.com/sirupsen/logrus"
 )
@@ -45,8 +44,7 @@ func TestPushNotifications(s socketio.Conn) {
 	}
 }
 
-func CheckOpenShifts(s socketio.Conn) (e error) {
-	defer grace.Recover(&e)
+func CheckOpenShifts(s socketio.Conn) {
 	ctx := s.Context().(context.Context)
 
 	ticker := time.NewTicker(time.Second * 2)
@@ -84,5 +82,4 @@ L:
 		}
 	}
 	log.Info("exiting go routine")
-	return e
 }
