@@ -70,7 +70,7 @@ func UpdateProfile(s socketio.Conn, data interface{}) interface{} {
 	return nil
 }
 
-func CallOfShift(s socketio.Conn, data interface{}) interface{} {
+func CallOfShift(s socketio.Conn, data interface{}) {
 
 	log.Info("CAlling off shift")
 	payload := data.(map[string]interface{})["payload"]
@@ -102,10 +102,9 @@ func CallOfShift(s socketio.Conn, data interface{}) interface{} {
 		shift.Chosen = account.User{}
 	}
 	shift.Save()
-	return nil
 }
 
-func GetOpenShifts(s socketio.Conn, data interface{}) interface{} {
+func GetOpenShifts(s socketio.Conn, data interface{}) {
 	log.Info("Returning  employee openshifts")
 
 	ctx := s.Context().(context.Context)
@@ -153,10 +152,9 @@ func GetOpenShifts(s socketio.Conn, data interface{}) interface{} {
 		}
 	}()
 		log.Info("Exiting go loop")
-	return "hello"
 }
 
-func UpdateNotifications(s socketio.Conn, data interface{}) interface{} {
+func UpdateNotifications(s socketio.Conn, data interface{}) {
 	log.Info("Broadcasting Notifications")
 
 	ctx := s.Context().(context.Context)
@@ -205,7 +203,6 @@ func UpdateNotifications(s socketio.Conn, data interface{}) interface{} {
 		}
 		log.Info("Exiting go loop")
 	}()
-	return "hello"
 }
 
 //func GetEmployeeShifts(s socketio.Conn, data interface{}) interface{} {
