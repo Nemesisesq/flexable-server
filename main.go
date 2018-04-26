@@ -66,7 +66,7 @@ func main() {
 		n(w, r)
 	})
 
-	m.Handle("/socket.io/", server)
+// 	m.Handle("/socket.io/", server)
 
 	selectVolunteerEndpoint := fmt.Sprintf("/manager/%d", flexable.SELECT_VOLUNTEER)
 	m.HandleFunc(selectVolunteerEndpoint,
