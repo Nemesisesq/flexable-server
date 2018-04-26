@@ -150,10 +150,9 @@ func GetOpenShifts(s socketio.Conn, data interface{}) interface{} {
 				cancel()
 				s.Close()
 			}
-			}
 		}
-		log.Info("Exiting go loop")
 	}()
+		log.Info("Exiting go loop")
 	return "hello"
 }
 
