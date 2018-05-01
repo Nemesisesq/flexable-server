@@ -57,7 +57,8 @@ func SocketServerConnections(server socketio.Server, namespace string) {
 			user, err := VerifyJWT(token)
 
 			if err != nil {
-				s.Close()
+				//s.Close()
+				return
 				panic(err)
 			}
 

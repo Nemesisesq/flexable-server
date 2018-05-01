@@ -18,6 +18,8 @@ import (
 	"github.com/plivo/plivo-go/plivo"
 	"github.com/satori/go.uuid"
 	log "github.com/sirupsen/logrus"
+	"time"
+	"github.com/mitchellh/hashstructure"
 )
 
 func OpenShiftHandler(s socketio.Conn, _ interface{}) {
@@ -26,20 +28,48 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 	ctx := s.Context().(context.Context)
 	user := ctx.Value("user").(account.User);
 	var query bson.M
-	//var user account.User
-	//if !ok {
-	//	fmt.Println("something is not ok")
-	//}
-	
 	if user.Profile.Company.UUID == "" {
 		user.Profile.Company.UUID = "123"
 	}
 	query = bson.M{"company.uuid": user.Profile.Company.UUID}
-	shift_list := shifts.GetAllShifts(query)
+	
+	ticker := time.NewTicker(time.Second * 2)
+	timeout := time.NewTimer(time.Minute)
+	var currentShiftState uint64
+	go func() {
 
-	s.Emit(constructSocketID(OPEN_SHIFTS), shift_list, func(so socketio.Conn, data string) {
-		log.Println("Client ACK with data: ", data)
-	})
+	L:
+		for {
+			shiftList := []shifts.Shift{}
+			select {
+			case <-ticker.C:
+				shiftList = shifts.GetAllShifts(query)
+				shift_list_hash, err := hashstructure.Hash(&shiftList, nil)
+
+				if err != nil {
+					panic(err)
+				}
+
+				if currentShiftState != shift_list_hash {
+					currentShiftState = shift_list_hash
+					s.Emit(constructSocketID(OPEN_SHIFTS), shiftList)
+					timeout = time.NewTimer(time.Minute)
+				}
+
+			case <-ctx.Done():
+				ticker.Stop()
+				log.Info("I'm stopping the ticker")
+				break L
+
+			case <-timeout.C:
+				log.Info("I'm closing out the channel")
+				s.Close()
+				cancel := ctx.Value("cancel").(context.CancelFunc)
+				cancel()
+			}
+		}
+		log.Info("exiting go routine")
+	}()
 }
 
 const NEW_SHIFT_TITLE = "There's a new shift!!!!"
@@ -218,7 +248,7 @@ func SelectVolunteer(s socketio.Conn, data interface{}) interface{} {
 	return nil
 }
 
-func GetAvailableEmployees(s socketio.Conn, data interface{})  {
+func GetAvailableEmployees(s socketio.Conn, data interface{}) {
 
 	log.Info("Getting Available Employees")
 	fake, err := faker.New("en")

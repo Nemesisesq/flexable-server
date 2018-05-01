@@ -17,7 +17,7 @@ func InitWatchers(socket socketio.Conn) {
 
 	func() {
 
-		go CheckOpenShifts(socket)
+		//go CheckOpenShifts(socket)
 
 		//TestPushNotifications(socket)
 	}()
@@ -46,17 +46,18 @@ func TestPushNotifications(s socketio.Conn) {
 
 func CheckOpenShifts(s socketio.Conn) {
 	ctx := s.Context().(context.Context)
+	user := ctx.Value("user").(account.User)
+
 
 	ticker := time.NewTicker(time.Second * 2)
 	timeout := time.NewTimer(time.Minute)
-	companyId := "123"
 	var currentShiftState uint64
 L:
 	for {
 		shiftList := []shifts.Shift{}
 		select {
 		case <-ticker.C:
-			shiftList = shifts.GetAllShifts(bson.M{"company.uuid": companyId})
+			shiftList = shifts.GetAllShifts(bson.M{"company.uuid": user.Profile.Company.UUID})
 			shift_list_hash, err := hashstructure.Hash(&shiftList, nil)
 
 			if err != nil {
