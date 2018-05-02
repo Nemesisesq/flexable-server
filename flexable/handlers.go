@@ -32,7 +32,7 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 		user.Profile.Company.UUID = "123"
 	}
 	query = bson.M{"company.uuid": user.Profile.Company.UUID}
-	
+
 	ticker := time.NewTicker(time.Second * 2)
 	timeout := time.NewTimer(time.Minute)
 	var currentShiftState uint64
@@ -132,10 +132,10 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) {
 	shift.Save()
 
 	templateString := `
-Hey There is an open shift from {{.StartTime }} to {{.EndTime}}
-On {{.Date }}. Reply "1" if you would like to pick up this shift. Skip the text messages and download the Flexable app in the Apple App store
-or the Google play store.
-`
+		Hey There is an open shift from {{.StartTime }} to {{.EndTime}}
+		On {{.Date }}. Reply "1" if you would like to pick up this shift. Skip the text messages and download the Flexable app in the Apple App store
+		or the Google play store.
+		`
 	// The New Implementation
 	users, err := account.FindAll(bson.M{"user.profile.company.uuid": shift.Company.UUID})
 	buf, err := CreateTextMessageString(templateString, shift)
@@ -144,10 +144,10 @@ or the Google play store.
 	}
 
 	// The old implementation
-	plivoClient.SendMessages(shift.PhoneNumber, "12165346715<16142881847", buf.String())
-	if err != nil {
-		panic(err)
-	}
+	//plivoClient.SendMessages(shift.PhoneNumber, "12165346715<16142881847", buf.String())
+	//if err != nil {
+	//	panic(err)
+	//}
 }
 func CreateTextMessageString(templateString string, shift shifts.Shift) (bytes.Buffer, error) {
 	messageTemplate, err := template.New("test").Parse(templateString)

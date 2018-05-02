@@ -64,6 +64,8 @@ func SocketServerConnections(server socketio.Server, namespace string) {
 
 			ctx := s.Context().(context.Context)
 			ctx = context.WithValue(ctx, "user", user)
+			InitWatchers(s)
+
 
 			s.SetContext(ctx)
 
@@ -82,7 +84,6 @@ func SocketServerConnections(server socketio.Server, namespace string) {
 		//ctx = SetMongoSession(ctx)
 
 		s.SetContext(ctx)
-		InitWatchers(s)
 
 		log.WithFields(log.Fields{
 			"namespace": s.Namespace(),

@@ -19,7 +19,7 @@ func InitWatchers(socket socketio.Conn) {
 
 		//go CheckOpenShifts(socket)
 
-		//TestPushNotifications(socket)
+		//go TestPushNotifications(socket)
 	}()
 
 }
@@ -29,7 +29,7 @@ func TestPushNotifications(s socketio.Conn) {
 	ctx := s.Context().(context.Context)
 
 	user := ctx.Value("user").(account.User);
-	ticker := time.NewTicker(time.Hour * 2)
+	ticker := time.NewTicker(time.Second * 30)
 
 	tickerChan := ticker.C
 

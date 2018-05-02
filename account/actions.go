@@ -29,7 +29,7 @@ func (u *User) Push(message, title string) (apiRes expo.PushNotificationResult, 
 			To:    u.PushToken,
 			Title: title,
 			Body:  message,
-			Data:  struct{ Value string }{"mydata"},
+			Data:  struct{ Value string }{message},
 			TTL:300,
 			Priority: "high",
 
