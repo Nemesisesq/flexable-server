@@ -57,9 +57,9 @@ func SocketServerConnections(server socketio.Server, namespace string) {
 			user, err := VerifyJWT(token)
 
 			if err != nil {
-				//s.Close()
+				s.Close()
+				log.Error(err)
 				return
-				panic(err)
 			}
 
 			ctx := s.Context().(context.Context)
