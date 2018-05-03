@@ -30,9 +30,11 @@ func TestPushNotifications(s socketio.Conn) {
 
 	user := ctx.Value("user").(account.User);
 	ticker := time.NewTicker(time.Second * 30)
+	timeOut := time.NewTimer(time.Second * 60)
 
 	tickerChan := ticker.C
 
+Test:
 	for {
 		select {
 		case <-tickerChan:
@@ -40,6 +42,9 @@ func TestPushNotifications(s socketio.Conn) {
 			log.Debug("Firing off!! ")
 			log.Info("sending push message")
 			user.Notify("This is a test message welcome to the family", "Test title", shifts.Shift{}.PhoneNumber)
+		case <-timeOut.C:
+			break Test
+			return
 		}
 	}
 }
