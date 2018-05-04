@@ -20,6 +20,8 @@ func (u User) Notify(messages []string, title string, to string) {
 		u.Text(messages[0], title, to)
 	}
 
+	//TODO save notifications
+
 }
 
 func (u *User) Push(message, title string) (apiRes expo.PushNotificationResult, apiErr expo.PushNotificationError) {
