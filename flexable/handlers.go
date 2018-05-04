@@ -131,24 +131,29 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) {
 
 	shift.Save()
 
-	templateString := `
-		Hey There is an open shift from {{.StartTime }} to {{.EndTime}}
-		On {{.Date }}. Reply "1" if you would like to pick up this shift. Skip the text messages and download the Flexable app in the Apple App store
-		or the Google play store.
-		`
-	// The New Implementation
-	users, err := account.FindAll(bson.M{"user.profile.company.uuid": shift.Company.UUID})
-	buf, err := CreateTextMessageString(templateString, shift)
-	for _, user := range users {
-		user.Notify(buf.String(), NEW_SHIFT_TITLE, shift.PhoneNumber)
+	templateStrings := []string{
+		`Hey There is an open shift from {{.StartTime }} to {{.EndTime}} On {{.Date }}. Reply "1" if you would like to pick up this shift. Skip the text messages and download the Flexable app in the Apple App store or the Google play store.`,
+		`Hey There is an new shift from {{.StartTime }} to {{.EndTime}} On {{.Date }}. Check it out in your dashboard!`,
 	}
 
-	// The old implementation
-	//plivoClient.SendMessages(shift.PhoneNumber, "12165346715<16142881847", buf.String())
-	//if err != nil {
-	//	panic(err)
-	//}
+	// The New Implementation
+	users, err := account.FindAll(bson.M{"profile.company.uuid": shift.Company.UUID})
+
+	for k, v := range templateStrings {
+		
+	buf, err := CreateTextMessageString(v, shift)
+
+		if err != nil {
+			panic(err)
+		}
+
+		templateStrings[k] = buf.String()
+	}
+	for _, user := range users {
+		user.Notify(templateStrings, NEW_SHIFT_TITLE, shift.PhoneNumber)
+	}
 }
+
 func CreateTextMessageString(templateString string, shift shifts.Shift) (bytes.Buffer, error) {
 	messageTemplate, err := template.New("test").Parse(templateString)
 	if err != nil {

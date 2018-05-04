@@ -8,6 +8,8 @@ import (
 	"github.com/nemesisesq/flexable/account"
 	"net/http"
 	"encoding/json"
+	"bytes"
+	"text/template"
 )
 
 func UpdateShiftWithSmsID(smsId string, payload map[string]string) *messaging.Response {
@@ -61,21 +63,46 @@ func SelectVolunteer (request *http.Request) (e error) {
 	shift.Chosen = payload.Volunteer
 
 
-	t := `
-				Awesome!!! You've picked up a shift!
+	t := []string{
+	`				Awesome!!! You've picked up a shift!
 				Details:
-
 				Location : {{.Location}}
 				Date: {{.Date}}
 				Start Time : {{.StartTime}}
 				End Time : {{.EndTime }}
-				`
+				`,
 
+		`Awesome!!! You've picked up a shift! Details: Location : {{.Location}} Date: {{.Date}} Start Time : {{.StartTime}} End Time : {{.EndTime }}
+				`,
+	}
 
+	for k, v := range t {
+
+		buf, err := CreateTextMessageString(v, shift)
+
+		if err != nil {
+			panic(err)
+		}
+
+		t[k] = buf.String()
+	}
 
 	shift.Save()
 
 	payload.Volunteer.Notify(t, "You've picked up shift", shift.PhoneNumber)
 
 	return nil
+}
+
+func CreateTextMessageString(templateString string, shift Shift) (bytes.Buffer, error) {
+	messageTemplate, err := template.New("test").Parse(templateString)
+	if err != nil {
+		panic(err)
+	}
+	buf := bytes.Buffer{}
+	err = messageTemplate.Execute(&buf, shift)
+	if err != nil {
+		panic(err)
+	}
+	return buf, err
 }

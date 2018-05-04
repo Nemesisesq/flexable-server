@@ -9,15 +9,15 @@ import (
 
 )
 
-func (u User) Notify(message, title string, to string) {
+func (u User) Notify(messages []string, title string, to string) {
 
-	apiRes, apiErr := u.Push(message, title)
+	apiRes, apiErr := u.Push(messages[1], title)
 
 	log.Info(apiRes, "apiRes")
 	log.Info(apiErr, "apiErr")
 	if &apiErr != nil {
 		//TODO
-		//u.Text(message, title, to)
+		u.Text(messages[0], title, to)
 	}
 
 }
@@ -29,7 +29,7 @@ func (u *User) Push(message, title string) (apiRes expo.PushNotificationResult, 
 			To:    u.PushToken,
 			Title: title,
 			Body:  message,
-			Data:  struct{ Value string }{message},
+			Data:  struct{ Value string `json:"value"`}{message},
 			TTL:300,
 			Priority: "high",
 
