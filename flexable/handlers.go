@@ -154,6 +154,30 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) {
 	}
 }
 
+func CloseoutShift(s socketio.Conn, data interface{}){
+	log.Info("Finding a shift replacement")
+	payload := data.(map[string]interface{})["payload"]
+
+	tmp, err := json.Marshal(payload)
+	if err != nil {
+		panic(err)
+	}
+
+	ctx := s.Context().(context.Context)
+	user := ctx.Value("user").(account.User)
+
+	var shift shifts.Shift
+	err = json.Unmarshal(tmp, &shift)
+
+	shift.ClosedOut.Signor = user
+	shift.ClosedOut.Closed = true
+
+	shift.Save()
+
+
+}
+
+
 func CreateTextMessageString(templateString string, shift shifts.Shift) (bytes.Buffer, error) {
 	messageTemplate, err := template.New("test").Parse(templateString)
 	if err != nil {

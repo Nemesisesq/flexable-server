@@ -44,9 +44,13 @@ func GetAllShifts(query bson.M) (result []Shift) {
 		//log.Info(then.Hour(), then.Minute())
 
 		_ = now.Before(then)
-		if true {
+		if v.ClosedOut.Closed != true{
 			out = append(out, v)
 		}
+
+	//	Filter closed sessions
+
+		
 
 	}
 

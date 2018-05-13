@@ -38,6 +38,10 @@ type Shift struct {
 	PhoneNumber  string                  `json:"phone_number"`
 	Chosen       account.User            `json:"chosen"`
 	V            int                     `json:"__v"`
+	ClosedOut	struct{
+		Signor  account.User
+		Closed bool
+	}
 }
 
 func (s Shift) String() {

@@ -68,6 +68,11 @@ func main() {
 
 	m.Handle("/socket.io/", server)
 
+	m.HandleFunc(fmt.Sprintf("/profile/%d", flexable.SET_PROFILE),
+		func(writer http.ResponseWriter, request *http.Request) {
+
+	})
+
 	selectVolunteerEndpoint := fmt.Sprintf("/manager/%d", flexable.SELECT_VOLUNTEER)
 	m.HandleFunc(selectVolunteerEndpoint,
 		func(writer http.ResponseWriter, request *http.Request) {

@@ -19,6 +19,7 @@ const (
 	EMPLOYEE_LIST           = payload.Payload_EMPLOYEE_LIST
 	SELECT_VOLUNTEER        = payload.Payload_SELECT_VOLUNTEER
 	UPDATE_NOTIFICATIONS    = payload.Payload_UPDATE_NOTIFICATIONS
+	CLOSEOUT_SHIFT          = payload.Payload_CLOSEOUT_SHIFT
 )
 
 //Employee Constants
@@ -72,13 +73,13 @@ var messageTypes = []SocketMessageType{
 	{CALL_OFF_SHIFT, CallOfShift, EMPLOYEE},
 	{SET_PROFILE, UpdateProfile, EMPLOYEE},
 	{UPDATE_NOTIFICATIONS, UpdateNotifications, EMPLOYEE},
+	{CLOSEOUT_SHIFT, CloseoutShift, MANAGER},
 }
 
 func constructSocketID(payload_type ProtoBuffer) string {
 	return fmt.Sprintf("socket%d", payload_type)
 
 }
-
 
 var HttpTypes = []HTTPMessageType{
 	{GET_JOBS, GetPositionsHttp, MANAGER},

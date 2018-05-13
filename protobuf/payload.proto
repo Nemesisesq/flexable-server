@@ -20,6 +20,7 @@ message Payload {
         USER_PROFILE_UPDATED = 14;
         SET_PROFILE = 15;
         UPDATE_NOTIFICATIONS = 16;
+        CLOSEOUT_SHIFT= 17;
     };
 
     Type type = 1;
