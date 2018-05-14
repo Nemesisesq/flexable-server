@@ -50,7 +50,7 @@ func GetAllShifts(query bson.M) (result []Shift) {
 
 	//	Filter closed sessions
 
-		
+
 
 	}
 
