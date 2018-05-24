@@ -11,6 +11,7 @@ import (
 	"context"
 	"github.com/nemesisesq/flexable/account"
 	"github.com/mitchellh/hashstructure"
+	"fmt"
 )
 
 type EmployeeData struct {
@@ -44,7 +45,7 @@ func PickUpShift(s socketio.Conn, data interface{}) {
 
 	//	Notify Manager
 
-	template := `Hey There is an new volunteer fo the shift from {{.StartTime }} to {{.EndTime}} On {{.Date }}!`
+	template := `Hey There is an new volunteer for the shift from {{.StartTime }} to {{.EndTime}} On {{.Date }}!`
 
 	buf, err := CreateTextMessageString(template, shift)
 
@@ -114,6 +115,22 @@ func CallOfShift(s socketio.Conn, data interface{}) {
 		shift.Chosen = account.User{}
 	}
 	shift.Save()
+
+	// Notify manager that the person chosen for this shift has called off
+	template := fmt.Sprintf(`Uh Oh the shift from {{.StartTime }} to {{.EndTime}} On {{.Date }} has been called off by %v %v (%v)`, user.Profile.FirstName, user.Profile.LastName, user.Profile.Email)
+
+
+	buf, err := CreateTextMessageString(template, shift)
+
+	if err != nil {
+		panic(err)
+	}
+
+	flexableAdmin := account.User{Email:"admin@myflexable.com", Role:"admin"}
+
+	shift.Manager.Notify([]string{buf.String(),buf.String()}, "Someone Called Off!", shift.PhoneNumber, flexableAdmin)
+
+
 }
 
 func GetOpenShifts(s socketio.Conn, data interface{}) {
