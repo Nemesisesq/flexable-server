@@ -16,7 +16,7 @@ import (
 type EmployeeData struct {
 }
 
-func PickUpShift(s socketio.Conn, data interface{})  {
+func PickUpShift(s socketio.Conn, data interface{}) {
 
 	log.Info("Picking up  a shift")
 	payload := data.(map[string]interface{})["payload"]
@@ -41,6 +41,20 @@ func PickUpShift(s socketio.Conn, data interface{})  {
 	shift.Volunteers = append(shift.Volunteers, emp)
 
 	shift.Save()
+
+	//	Notify Manager
+
+	template := `Hey There is an new volunteer fo the shift from {{.StartTime }} to {{.EndTime}} On {{.Date }}!`
+
+	buf, err := CreateTextMessageString(template, shift)
+
+	if err != nil {
+		panic(err)
+	}
+
+	flexableAdmin := account.User{Email:"admin@myflexable.com", Role:"admin"}
+
+	shift.Manager.Notify([]string{buf.String(),buf.String()}, "Someone Volunteered for the shift you created!", shift.PhoneNumber, flexableAdmin)
 
 }
 
@@ -149,7 +163,7 @@ func GetOpenShifts(s socketio.Conn, data interface{}) {
 			}
 		}
 	}()
-		log.Info("Exiting go loop")
+	log.Info("Exiting go loop")
 }
 
 func UpdateNotifications(s socketio.Conn, data interface{}) {
