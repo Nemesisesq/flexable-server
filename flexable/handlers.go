@@ -51,7 +51,9 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 				}
 
 				if currentShiftState != shift_list_hash {
+					log.Info(currentShiftState, shift_list_hash)
 					currentShiftState = shift_list_hash
+
 					s.Emit(constructSocketID(OPEN_SHIFTS), shiftList)
 					timeout = time.NewTimer(time.Minute)
 				}

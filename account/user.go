@@ -25,6 +25,7 @@ type Profile struct {
 	FirstName   string          `json:"first_name" bson:"first_name"`
 	LastName    string          `json:"last_name" bson:"last_name"`
 	ImageUrl    string          `json:"image_url" bson:"image_url"`
+	Available   bool            `json:"available" bson:"available"`
 }
 
 type CognitoData struct {
