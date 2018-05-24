@@ -89,7 +89,7 @@ func SelectVolunteer (request *http.Request) (e error) {
 
 	shift.Save()
 
-	payload.Volunteer.Notify(t, "You've picked up shift", shift.PhoneNumber)
+	payload.Volunteer.Notify(t, "You've picked up shift", shift.PhoneNumber, shift.Manager)
 
 	return nil
 }

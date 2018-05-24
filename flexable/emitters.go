@@ -41,7 +41,8 @@ Test:
 
 			log.Debug("Firing off!! ")
 			log.Info("sending push message")
-			user.Notify([]string{"This is a test message welcome to the family"}, "Test title", shifts.Shift{}.PhoneNumber)
+			shift := shifts.Shift{}
+			user.Notify([]string{"This is a test message welcome to the family"}, "Test title", shift.PhoneNumber, shift.Manager)
 		case <-timeOut.C:
 			break Test
 			return

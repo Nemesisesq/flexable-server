@@ -56,6 +56,7 @@ type User struct {
 }
 
 type Notification struct {
+	ID            bson.ObjectId          `json:"_id,omitempty" bson:"_id,omitempty"`
 	Sender  User      `json:"sender" bson:"sender"`
 	Date    time.Time `json:"date" bson:"date"`
 	Message string    `json:"message" bson:"message"`

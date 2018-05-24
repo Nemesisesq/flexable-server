@@ -37,9 +37,10 @@ type Shift struct {
 	Application  application.Application `json:"application"`
 	PhoneNumber  string                  `json:"phone_number"`
 	Chosen       account.User            `json:"chosen"`
+	Manager      account.User            `json:"manager"`
 	V            int                     `json:"__v"`
-	ClosedOut	struct{
-		Signor  account.User
+	ClosedOut struct {
+		Signor account.User
 		Closed bool
 	}
 }

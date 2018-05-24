@@ -98,6 +98,7 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) {
 	shift.SmsID = uuid.NewV4().String()
 
 	shift.Company = user.Profile.Company
+	shift.Manager = user
 
 	plivoClient, err := PlivoClient.NewClient()
 
@@ -152,7 +153,7 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) {
 		templateStrings[k] = buf.String()
 	}
 	for _, user := range users {
-		user.Notify(templateStrings, NEW_SHIFT_TITLE, shift.PhoneNumber)
+		user.Notify(templateStrings, NEW_SHIFT_TITLE, shift.PhoneNumber, shift.Manager)
 	}
 }
 
@@ -303,7 +304,7 @@ func GetAvailableEmployees(s socketio.Conn, data interface{}) {
 			//	num = "16142881847"
 			//}
 
-			x := account.User{
+			user := account.User{
 				ID: bson.NewObjectId(),
 				//Name:   fake.Name(),
 				//Number: num,
@@ -321,8 +322,8 @@ func GetAvailableEmployees(s socketio.Conn, data interface{}) {
 				},
 			}
 
-			x.Upsert(bson.M{"_id": x.ID})
-			empList = append(empList, x)
+			user.Upsert(bson.M{"_id": user.ID})
+			empList = append(empList, user)
 
 		}
 	}

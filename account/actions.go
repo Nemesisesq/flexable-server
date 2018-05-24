@@ -6,21 +6,29 @@ import (
 	"github.com/oxequa/grace"
 	log "github.com/sirupsen/logrus"
 	PlivoClient "github.com/nemesisesq/flexable/plivio/client"
-
+	"github.com/globalsign/mgo/bson"
+	"time"
 )
 
-func (u User) Notify(messages []string, title string, to string) {
+func (u User) Notify(messages []string, title string, to string, sender User) {
 
-	apiRes, apiErr := u.Push(messages[1], title)
+	if u.Profile.Available {
 
-	log.Info(apiRes, "apiRes")
-	log.Info(apiErr, "apiErr")
-	if apiErr.Code != "" {
-		//TODO
-		u.Text(messages[0], title, to)
+		apiRes, apiErr := u.Push(messages[1], title)
+
+		log.Info(apiRes, "apiRes")
+		log.Info(apiErr, "apiErr")
+		if apiErr.Code != "" {
+			//TODO
+			u.Text(messages[0], title, to)
+		}
 	}
 
-	//TODO save notifications
+	n := Notification{bson.NewObjectId(),sender, time.Now(), messages[1], false}
+
+	u.Notifications = append(u.Notifications, n)
+
+	u.Save()
 
 }
 
@@ -28,15 +36,13 @@ func (u *User) Push(message, title string) (apiRes expo.PushNotificationResult, 
 	if expo.IsExpoPushToken(u.PushToken) {
 		log.Debug("Sending push")
 		message := expo.PushMessage{
-			To:    u.PushToken,
-			Title: title,
-			Body:  message,
-			Data:  struct{ Value string `json:"value"`}{message},
-			TTL:300,
+			To:       u.PushToken,
+			Title:    title,
+			Body:     message,
+			Data:     struct{ Value string `json:"value"` }{message},
+			TTL:      300,
 			Priority: "high",
-
 		}
-
 
 		apiRes, apiErr, err := message.Send()
 		if err != nil {

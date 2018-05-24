@@ -64,6 +64,10 @@ func (user *User) Upsert(query bson.M) {
 		grace.Recover(&err)
 	}
 }
+
+func (user *User) Save() {
+	user.Upsert(bson.M{"_id": user.ID})
+}
 func SavePushToken(r http.Request) error {
 	tmp := map[string]interface{}{}
 	decoder := json.NewDecoder(r.Body)
