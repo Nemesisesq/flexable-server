@@ -40,6 +40,7 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 
 	L:
 		for {
+			user = *user.Find(bson.M{"_id" : user.ID})
 			shiftList := []shifts.Shift{}
 			select {
 			case <-ticker.C:

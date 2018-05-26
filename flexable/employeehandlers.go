@@ -85,7 +85,7 @@ func UpdateProfile(s socketio.Conn, data interface{}) {
 
 func CallOfShift(s socketio.Conn, data interface{}) {
 
-	log.Info("CAlling off shift")
+	log.Info("Calling off shift")
 	payload := data.(map[string]interface{})["payload"]
 
 	tmp, err := json.Marshal(payload)
@@ -146,6 +146,7 @@ func GetOpenShifts(s socketio.Conn, data interface{}) {
 	//<-tickerChan
 	go func() {
 		for {
+			user = *user.Find(bson.M{"_id" : user.ID})
 			shiftList := []shifts.Shift{}
 			select {
 			case <-tickerChan:
