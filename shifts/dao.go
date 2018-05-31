@@ -28,29 +28,30 @@ func GetAllShifts(query bson.M) (result []Shift) {
 	}()
 
 	out := []Shift{}
+	layout := "2006-01-02T15:04:05.000Z"
 	for _, v := range result {
-		layout := "2006-01-02T15:04:05.000Z"
 
-		then, err := time.Parse(layout, v.RawEndTime)
+		end, err := time.Parse(layout, v.RawEndTime)
 		if err != nil {
 			log.Error(err)
 		}
 
-		//log.Info(then.String())
 		now := time.Now()
+		//log.Info(now.Format(layout))
 		//log.Info(now.String())
 
-		//log.Info(now.Hour(), now.Minute())
+		//log.Info(now.Hour(), now.Minute())1
 		//log.Info(then.Hour(), then.Minute())
 
-		_ = now.Before(then)
+
+		_ = now.Before(end)
+
+
 		if v.ClosedOut.Closed != true{
 			out = append(out, v)
 		}
 
-	//	Filter closed sessions
-
-
+		//	Filter closed sessions
 
 	}
 

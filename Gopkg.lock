@@ -8,6 +8,12 @@
   revision = "5576f70f355dc9ea0a4a54fc9692bbca9bf128b1"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/buger/goterm"
+  packages = ["."]
+  revision = "6d19e6a8df12fdfc44a90a24b677a6d04a80b91f"
+
+[[projects]]
   name = "github.com/davecgh/go-spew"
   packages = ["spew"]
   revision = "346938d642f2ec3594ed81d874461961cd0faa76"
@@ -184,6 +190,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "0c18214046ff675638035e7eb14da659a82f671065de9fdc9bcee927a568e341"
+  inputs-digest = "8e12578c7c6c2e7d6312326e3bcdedfda3a0ac49db1d4ab0c37e40170aea1182"
   solver-name = "gps-cdcl"
   solver-version = 1

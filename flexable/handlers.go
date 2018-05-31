@@ -38,8 +38,17 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 	var currentShiftState uint64
 	go func() {
 
+		//start := time.Now()
 	L:
+
 		for {
+
+			//tm.MoveCursor(1,1)
+
+			//fmt.Println("Sending Open shifts for:", time.Now().Sub(start).Seconds())
+
+			 // Call it every time at the end of rendering
+
 			user = *user.Find(bson.M{"_id" : user.ID})
 			shiftList := []shifts.Shift{}
 			select {
@@ -70,6 +79,7 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 				cancel := ctx.Value("cancel").(context.CancelFunc)
 				cancel()
 			}
+			//tm.Flush()
 		}
 		log.Info("exiting go routine")
 	}()

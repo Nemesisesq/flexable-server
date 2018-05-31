@@ -67,7 +67,9 @@ func SocketServerConnections(server socketio.Server, namespace string) {
 			InitWatchers(s)
 
 
+
 			s.SetContext(ctx)
+			OpenShiftHandler(s, nil)
 
 		}
 	})
