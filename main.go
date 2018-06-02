@@ -108,7 +108,7 @@ func main() {
 		role, profile := account.UserRole(*request)
 
 		r.JSON(writer, http.StatusOK, map[string]interface{}{"role": role, "profile": profile})
-		return 
+		return
 	})
 
 	m.HandleFunc("/sms/incoming/{smsId}", func(writer http.ResponseWriter, request *http.Request) {
