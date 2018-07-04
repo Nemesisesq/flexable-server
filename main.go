@@ -105,9 +105,9 @@ func main() {
 	m.HandleFunc("/users/verify", func(writer http.ResponseWriter, request *http.Request) {
 
 		log.Info("registerng user")
-		role, profile := account.UserRole(*request)
+		user := account.UserRole(*request)
 
-		r.JSON(writer, http.StatusOK, map[string]interface{}{"role": role, "profile": profile})
+		r.JSON(writer, http.StatusOK, map[string]interface{}{"role": user.Role, "profile": user.Profile, "is_admin": user.IsAdmin})
 		return
 	})
 

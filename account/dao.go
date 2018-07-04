@@ -12,7 +12,7 @@ import (
 	"github.com/nemesisesq/flexable/db"
 )
 
-func UserRole(r http.Request) (string, interface{}) {
+func UserRole(r http.Request) User {
 	tmp := map[string]interface{}{}
 	decoder := json.NewDecoder(r.Body)
 	err := decoder.Decode(&tmp)
@@ -32,7 +32,7 @@ func UserRole(r http.Request) (string, interface{}) {
 	user.Profile.PhoneNumber = user.CognitoData["phone_number"].(string)
 	user.Profile.Email = tmp["email"].(string)
 	user.Upsert(bson.M{"_id": user.ID})
-	return user.Role, user.Profile
+	return user
 }
 func GetUser(query bson.M) User {
 	session := db.GetMgoSession()
