@@ -53,6 +53,7 @@ type User struct {
 	PushToken     string                 `json:"push_token" bson:"push_token"`
 	Position      position.Position      `json:"position" bson:"position"`
 	Notifications []Notification         `json:"notifications" bson:"notifications"`
+	IsAdmin		 bool					`json:"is_admin" bson:"is_admin"`
 }
 
 type Notification struct {
