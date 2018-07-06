@@ -11,8 +11,11 @@ import (
 )
 
 func (u User) Notify(messages []string, title string, to string, sender User) {
+	now := time.Now()
+	avl := time.Unix(u.Profile.AvailableAt, 0)
 
-	if u.Profile.Available {
+	elapsed :=  now.Sub(avl)
+	if elapsed < 14000 {
 
 		apiRes, apiErr := u.Push(messages[1], title)
 

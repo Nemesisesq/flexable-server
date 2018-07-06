@@ -25,7 +25,7 @@ type Profile struct {
 	FirstName   string          `json:"first_name" bson:"first_name"`
 	LastName    string          `json:"last_name" bson:"last_name"`
 	ImageUrl    string          `json:"image_url" bson:"image_url"`
-	Available   bool            `json:"available" bson:"available"`
+	AvailableAt int64             `json:"available_at" bson:"available_at"`
 }
 
 type CognitoData struct {
@@ -53,15 +53,15 @@ type User struct {
 	PushToken     string                 `json:"push_token" bson:"push_token"`
 	Position      position.Position      `json:"position" bson:"position"`
 	Notifications []Notification         `json:"notifications" bson:"notifications"`
-	IsAdmin		 bool					`json:"is_admin" bson:"is_admin"`
+	IsAdmin       bool                   `json:"is_admin" bson:"is_admin"`
 }
 
 type Notification struct {
-	ID            bson.ObjectId          `json:"_id,omitempty" bson:"_id,omitempty"`
-	Sender  User      `json:"sender" bson:"sender"`
-	Date    time.Time `json:"date" bson:"date"`
-	Message string    `json:"message" bson:"message"`
-	Read    bool      `json:"read" bson:"read"`
+	ID      bson.ObjectId `json:"_id,omitempty" bson:"_id,omitempty"`
+	Sender  User          `json:"sender" bson:"sender"`
+	Date    time.Time     `json:"date" bson:"date"`
+	Message string        `json:"message" bson:"message"`
+	Read    bool          `json:"read" bson:"read"`
 }
 
 type GeoLocation struct {
