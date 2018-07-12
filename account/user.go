@@ -13,19 +13,24 @@ type Permission struct {
 type Group struct {
 }
 
-type Jobs struct {
+type Job struct {
+	Title string `json:"title"`
+	Company string `json:"company"`
+	Start string `json:"startDate"`
+	End string  `json:"endDate"`
+	Location string `json:"location"`
 }
 
 type Profile struct {
 	Email       string          `json:"email" bson:"email"`
 	Company     company.Company `json:"company" bson:"company"`
-	JobHistory  []Jobs          `json:"job_history" bson:"job_history"`
+	JobHistory  []Job           `json:"job_history" bson:"job_history"`
 	PhoneNumber string          `json:"phone_number" bson:"phone_number"`
 	Location    GeoLocation     `json:"location" bson:"location"`
 	FirstName   string          `json:"first_name" bson:"first_name"`
 	LastName    string          `json:"last_name" bson:"last_name"`
 	ImageUrl    string          `json:"image_url" bson:"image_url"`
-	AvailableAt int64             `json:"available_at" bson:"available_at"`
+	AvailableAt int64           `json:"available_at" bson:"available_at"`
 }
 
 type CognitoData struct {
