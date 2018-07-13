@@ -14,10 +14,10 @@ type Group struct {
 }
 
 type Job struct {
-	Title string `json:"title"`
-	Company string `json:"company"`
-	Start string `json:"startDate"`
-	End string  `json:"endDate"`
+	Title    string `json:"title"`
+	Company  string `json:"company"`
+	Start    string `json:"startDate"`
+	End      string `json:"endDate"`
 	Location string `json:"location"`
 }
 
@@ -59,6 +59,7 @@ type User struct {
 	Position      position.Position      `json:"position" bson:"position"`
 	Notifications []Notification         `json:"notifications" bson:"notifications"`
 	IsAdmin       bool                   `json:"is_admin" bson:"is_admin"`
+	Rating        int                    `json:"rating" bson:"rating"`
 }
 
 type Notification struct {
