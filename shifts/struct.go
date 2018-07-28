@@ -40,9 +40,29 @@ type Shift struct {
 	Manager      account.User            `json:"manager"`
 	V            int                     `json:"__v"`
 	ClosedOut struct {
-		Signor account.User
-		Closed bool
-	}
+		Signor account.User `json:"signor"`
+		Closed bool `json:"closed"`
+	} `json:"closed_out"`
+	Details struct {
+		PositionName string `json:"position_name"`
+		SkillsRequested []string `json:"skills_requested"`
+		Address Address `json:"address"`
+		Contact struct{
+			Name string `json:"name"`
+			PhoneNumber string `json:"phone_number"`
+		} `json:"contact"`
+		Pay string `json:"pay"`
+
+	} `json:"details"`
+}
+
+type Address struct {
+	Name string `json:"name"`
+	Addr1 string `json:"addr_1"`
+	Addr2 string `json:"addr_2"`
+	City string `json:"city"`
+	State string `json:"state"`
+	ZipCode string `json:"zip_code"`
 }
 
 func (s Shift) String() {
