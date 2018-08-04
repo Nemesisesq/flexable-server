@@ -12,6 +12,7 @@ import (
 	"github.com/nemesisesq/flexable/account"
 	"github.com/mitchellh/hashstructure"
 	"fmt"
+	"github.com/jinzhu/now"
 )
 
 type EmployeeData struct {
@@ -53,9 +54,9 @@ func PickUpShift(s socketio.Conn, data interface{}) {
 		panic(err)
 	}
 
-	flexableAdmin := account.User{Email:"admin@myflexable.com", Role:"admin"}
+	flexableAdmin := account.User{Email: "admin@myflexable.com", Role: "admin"}
 
-	shift.Manager.Notify([]string{buf.String(),buf.String()}, "Someone Volunteered for the shift you created!", shift.PhoneNumber, flexableAdmin)
+	shift.Manager.Notify([]string{buf.String(), buf.String()}, "Someone Volunteered for the shift you created!", shift.PhoneNumber, flexableAdmin)
 
 }
 
@@ -119,17 +120,15 @@ func CallOfShift(s socketio.Conn, data interface{}) {
 	// Notify manager that the person chosen for this shift has called off
 	template := fmt.Sprintf(`Uh Oh the shift from {{.StartTime }} to {{.EndTime}} On {{.Date }} has been called off by %v %v (%v)`, user.Profile.FirstName, user.Profile.LastName, user.Profile.Email)
 
-
 	buf, err := CreateTextMessageString(template, shift)
 
 	if err != nil {
 		panic(err)
 	}
 
-	flexableAdmin := account.User{Email:"admin@myflexable.com", Role:"admin"}
+	flexableAdmin := account.User{Email: "admin@myflexable.com", Role: "admin"}
 
-	shift.Manager.Notify([]string{buf.String(),buf.String()}, "Someone Called Off!", shift.PhoneNumber, flexableAdmin)
-
+	shift.Manager.Notify([]string{buf.String(), buf.String()}, "Someone Called Off!", shift.PhoneNumber, flexableAdmin)
 
 }
 
@@ -139,36 +138,20 @@ func GetOpenShifts(s socketio.Conn, data interface{}) {
 	ctx := s.Context().(context.Context)
 	user := ctx.Value("user").(account.User);
 	ticker := time.NewTicker(time.Second)
-	timeout := time.NewTicker(time.Minute)
+	timeout := time.NewTimer(time.Minute)
 
 	tickerChan := ticker.C
 	var currentShiftState uint64
-	//<-tickerChan
+
 	go func() {
+		shiftList := []shifts.Shift{}
+		user = *user.Find(bson.M{"_id": user.ID})
+		_, currentShiftState = emitShifts(user, shiftList, currentShiftState, timeout, s)
 		for {
-			user = *user.Find(bson.M{"_id" : user.ID})
 			shiftList := []shifts.Shift{}
 			select {
 			case <-tickerChan:
-				var query bson.M
-				if user.Profile.Company.UUID == "" {
-					user.Profile.Company.UUID = "123"
-				}
-				query = bson.M{"company.uuid": user.Profile.Company.UUID}
-				shiftList = shifts.GetAllShifts(query)
-				shift_list_hash, err := hashstructure.Hash(&shiftList, nil)
-
-				if err != nil {
-					panic(err)
-				}
-				//println(shift_list_hash)
-				if currentShiftState != shift_list_hash {
-					log.Info("Employee shifts are updating ")
-					currentShiftState = shift_list_hash
-					s.Emit(constructSocketID(GET_OPEN_SHIFTS), shiftList, func(so socketio.Conn, data string) {
-						log.Println("Client ACK with data: ", data)
-					})
-				}
+				timeout, currentShiftState = emitShifts(user, shiftList, currentShiftState, timeout, s)
 
 			case <-ctx.Done():
 				ticker.Stop()
@@ -182,6 +165,40 @@ func GetOpenShifts(s socketio.Conn, data interface{}) {
 		}
 	}()
 	log.Info("Exiting go loop")
+}
+
+func emitShifts(user account.User, shiftList []shifts.Shift, currentShiftState uint64, timeout *time.Timer, s socketio.Conn) (*time.Timer, uint64) {
+	var query bson.M
+	if user.Profile.Company.UUID == "" {
+		user.Profile.Company.UUID = "123"
+	}
+	query = bson.M{"company.uuid": user.Profile.Company.UUID}
+	shiftList = shifts.GetAllShifts(query)
+	cleaned_shift_list := []shifts.Shift{}
+	for _, v := range shiftList {
+		present := time.Now()
+		date := now.MustParse(v.Date)
+
+		if present.Before(date) {
+			cleaned_shift_list = append(cleaned_shift_list, v)
+		}
+
+	}
+	shift_list_hash, err := hashstructure.Hash(&cleaned_shift_list, nil)
+	if err != nil {
+		panic(err)
+	}
+	//println(shift_list_hash)
+	if currentShiftState != shift_list_hash {
+		log.Info("Employee shifts are updating ")
+		currentShiftState = shift_list_hash
+		s.Emit(constructSocketID(GET_OPEN_SHIFTS), cleaned_shift_list, func(so socketio.Conn, data string) {
+			log.Println("Client ACK with data: ", data)
+		})
+		timeout = time.NewTimer(time.Minute)
+	}
+
+	return timeout, currentShiftState
 }
 
 func UpdateNotifications(s socketio.Conn, data interface{}) {

@@ -20,6 +20,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"time"
 	"github.com/mitchellh/hashstructure"
+	"github.com/jinzhu/now"
 )
 
 func OpenShiftHandler(s socketio.Conn, _ interface{}) {
@@ -37,36 +38,18 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 	timeout := time.NewTimer(time.Minute)
 	var currentShiftState uint64
 	go func() {
+		shiftList := []shifts.Shift{}
 
-		//start := time.Now()
+		timeout, currentShiftState = emitCurrentShifts(shiftList, query, currentShiftState, s, timeout)
 	L:
 
 		for {
-
-			//tm.MoveCursor(1,1)
-
-			//fmt.Println("Sending Open shifts for:", time.Now().Sub(start).Seconds())
-
-			 // Call it every time at the end of rendering
 
 			user = *user.Find(bson.M{"_id" : user.ID})
 			shiftList := []shifts.Shift{}
 			select {
 			case <-ticker.C:
-				shiftList = shifts.GetAllShifts(query)
-				shift_list_hash, err := hashstructure.Hash(&shiftList, nil)
-
-				if err != nil {
-					panic(err)
-				}
-
-				if currentShiftState != shift_list_hash {
-					log.Info(currentShiftState, shift_list_hash)
-					currentShiftState = shift_list_hash
-
-					s.Emit(constructSocketID(OPEN_SHIFTS), shiftList)
-					timeout = time.NewTimer(time.Minute)
-				}
+				timeout, currentShiftState = emitCurrentShifts (shiftList, query, currentShiftState, s, timeout)
 
 			case <-ctx.Done():
 				ticker.Stop()
@@ -83,6 +66,32 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 		}
 		log.Info("exiting go routine")
 	}()
+}
+
+func emitCurrentShifts (shiftList []shifts.Shift, query bson.M, currentShiftState uint64, s socketio.Conn, timeout *time.Timer) (*time.Timer, uint64) {
+	shiftList = shifts.GetAllShifts(query)
+	cleaned_shift_list := []shifts.Shift{}
+	for _, v := range shiftList {
+		present := time.Now()
+		date := now.MustParse(v.Date)
+
+		if present.Before(date) {
+			cleaned_shift_list = append(cleaned_shift_list, v)
+		}
+
+	}
+	shift_list_hash, err := hashstructure.Hash(&cleaned_shift_list, nil)
+	if err != nil {
+		panic(err)
+	}
+	if currentShiftState != shift_list_hash {
+		log.Info(currentShiftState, shift_list_hash)
+		currentShiftState = shift_list_hash
+
+		s.Emit(constructSocketID(OPEN_SHIFTS), cleaned_shift_list)
+		timeout = time.NewTimer(time.Minute)
+	}
+	return timeout, currentShiftState
 }
 
 const NEW_SHIFT_TITLE = "There's a new shift!!!!"
