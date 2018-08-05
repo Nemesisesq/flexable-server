@@ -34,36 +34,36 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 	}
 	query = bson.M{"company.uuid": user.Profile.Company.UUID}
 
-	ticker := time.NewTicker(time.Second * 2)
+	//ticker := time.NewTicker(time.Second * 2)
 	timeout := time.NewTimer(time.Minute)
 	var currentShiftState uint64
 	go func() {
 		shiftList := []shifts.Shift{}
 
 		timeout, currentShiftState = emitCurrentShifts(shiftList, query, currentShiftState, s, timeout)
-	L:
+	//L:
 
-		for {
-
-			user = *user.Find(bson.M{"_id" : user.ID})
-			shiftList := []shifts.Shift{}
-			select {
-			case <-ticker.C:
-				timeout, currentShiftState = emitCurrentShifts (shiftList, query, currentShiftState, s, timeout)
-
-			case <-ctx.Done():
-				ticker.Stop()
-				log.Info("I'm stopping the ticker")
-				break L
-
-			case <-timeout.C:
-				log.Info("I'm closing out the channel")
-				s.Close()
-				cancel := ctx.Value("cancel").(context.CancelFunc)
-				cancel()
-			}
-			//tm.Flush()
-		}
+		//for {
+		//
+		//	user = *user.Find(bson.M{"_id" : user.ID})
+		//	shiftList := []shifts.Shift{}
+		//	select {
+		//	case <-ticker.C:
+		//		timeout, currentShiftState = emitCurrentShifts (shiftList, query, currentShiftState, s, timeout)
+		//
+		//	case <-ctx.Done():
+		//		ticker.Stop()
+		//		log.Info("I'm stopping the ticker")
+		//		break L
+		//
+		//	case <-timeout.C:
+		//		log.Info("I'm closing out the channel")
+		//		s.Close()
+		//		cancel := ctx.Value("cancel").(context.CancelFunc)
+		//		cancel()
+		//	}
+		//	//tm.Flush()
+		//}
 		log.Info("exiting go routine")
 	}()
 }

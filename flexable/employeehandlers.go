@@ -137,32 +137,32 @@ func GetOpenShifts(s socketio.Conn, data interface{}) {
 
 	ctx := s.Context().(context.Context)
 	user := ctx.Value("user").(account.User);
-	ticker := time.NewTicker(time.Second)
+	//ticker := time.NewTicker(time.Second)
 	timeout := time.NewTimer(time.Minute)
 
-	tickerChan := ticker.C
+	//tickerChan := ticker.C
 	var currentShiftState uint64
 
 	go func() {
 		shiftList := []shifts.Shift{}
 		user = *user.Find(bson.M{"_id": user.ID})
 		_, currentShiftState = emitShifts(user, shiftList, currentShiftState, timeout, s)
-		for {
-			shiftList := []shifts.Shift{}
-			select {
-			case <-tickerChan:
-				timeout, currentShiftState = emitShifts(user, shiftList, currentShiftState, timeout, s)
-
-			case <-ctx.Done():
-				ticker.Stop()
-				return
-			case <-timeout.C:
-				log.Info("I'm closing out the channel")
-				cancel := ctx.Value("cancel").(context.CancelFunc)
-				cancel()
-				s.Close()
-			}
-		}
+		//for {
+		//	shiftList := []shifts.Shift{}
+		//	select {
+		//	case <-tickerChan:
+		//		timeout, currentShiftState = emitShifts(user, shiftList, currentShiftState, timeout, s)
+		//
+		//	case <-ctx.Done():
+		//		ticker.Stop()
+		//		return
+		//	case <-timeout.C:
+		//		log.Info("I'm closing out the channel")
+		//		cancel := ctx.Value("cancel").(context.CancelFunc)
+		//		cancel()
+		//		s.Close()
+		//	}
+		//}
 	}()
 	log.Info("Exiting go loop")
 }
