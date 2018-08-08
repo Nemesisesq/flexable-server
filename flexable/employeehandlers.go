@@ -133,36 +133,39 @@ func CallOfShift(s socketio.Conn, data interface{}) {
 }
 
 func GetOpenShifts(s socketio.Conn, data interface{}) {
-	log.Info("Returning  employee openshifts")
+	//log.Info("Returning  employee openshifts")
 
 	ctx := s.Context().(context.Context)
 	user := ctx.Value("user").(account.User);
-	//ticker := time.NewTicker(time.Second)
+	ticker := time.NewTicker(time.Second)
 	timeout := time.NewTimer(time.Minute)
 
-	//tickerChan := ticker.C
+	tickerChan := ticker.C
 	var currentShiftState uint64
 
 	go func() {
 		shiftList := []shifts.Shift{}
 		user = *user.Find(bson.M{"_id": user.ID})
 		_, currentShiftState = emitShifts(user, shiftList, currentShiftState, timeout, s)
-		//for {
-		//	shiftList := []shifts.Shift{}
-		//	select {
-		//	case <-tickerChan:
-		//		timeout, currentShiftState = emitShifts(user, shiftList, currentShiftState, timeout, s)
-		//
-		//	case <-ctx.Done():
-		//		ticker.Stop()
-		//		return
-		//	case <-timeout.C:
-		//		log.Info("I'm closing out the channel")
-		//		cancel := ctx.Value("cancel").(context.CancelFunc)
-		//		cancel()
-		//		s.Close()
-		//	}
-		//}
+	L:
+		for {
+			shiftList := []shifts.Shift{}
+			select {
+			case <-tickerChan:
+				timeout, currentShiftState = emitShifts(user, shiftList, currentShiftState, timeout, s)
+
+			case <-ctx.Done():
+				ticker.Stop()
+			break L
+				return
+			case <-timeout.C:
+				log.Info("I'm closing out the channel")
+				cancel := ctx.Value("cancel").(context.CancelFunc)
+				cancel()
+				s.Close()
+				break L
+			}
+		}
 	}()
 	log.Info("Exiting go loop")
 }
@@ -190,7 +193,7 @@ func emitShifts(user account.User, shiftList []shifts.Shift, currentShiftState u
 	}
 	//println(shift_list_hash)
 	if currentShiftState != shift_list_hash {
-		log.Info("Employee shifts are updating ")
+		//log.Info("Employee shifts are updating ")
 		currentShiftState = shift_list_hash
 		s.Emit(constructSocketID(GET_OPEN_SHIFTS), cleaned_shift_list, func(so socketio.Conn, data string) {
 			log.Println("Client ACK with data: ", data)
@@ -206,48 +209,32 @@ func UpdateNotifications(s socketio.Conn, data interface{}) {
 
 	ctx := s.Context().(context.Context)
 	user := ctx.Value("user").(account.User);
-	ticker := time.NewTicker(time.Second)
 	timeout := time.NewTimer(time.Minute)
 	var currentNotificationState uint64
 	//<-tickerChan
 	go func() {
-	L:
-		for {
-			select {
-			case <-ticker.C:
-				var query bson.M
-				query = bson.M{"_id": user.ID}
-				out := user.Find(query)
 
-				notifications := out.Notifications
-				notifications_hash, err := hashstructure.Hash(&notifications, nil)
+		var query bson.M
+		query = bson.M{"_id": user.ID}
+		out := user.Find(query)
 
-				if err != nil {
-					panic(err)
-				}
-				//println(shift_list_hash)
-				if currentNotificationState != notifications_hash {
-					log.Info("notifications are updating ")
-					currentNotificationState = notifications_hash
-					s.Emit(constructSocketID(UPDATE_NOTIFICATIONS), notifications, func(so socketio.Conn, data string) {
-						log.Println("Client ACK with data: ", data)
+		notifications := out.Notifications
+		notifications_hash, err := hashstructure.Hash(&notifications, nil)
 
-					})
-					timeout = time.NewTimer(time.Minute)
-				}
-
-			case <-ctx.Done():
-				ticker.Stop()
-				log.Info("I'm stopping the ticker now")
-				break L
-
-			case <-timeout.C:
-				log.Info("I'm closing out the channel")
-				cancel := ctx.Value("cancel").(context.CancelFunc)
-				cancel()
-				s.Close()
-			}
+		if err != nil {
+			panic(err)
 		}
+		//println(shift_list_hash)
+		if currentNotificationState != notifications_hash {
+			log.Info("notifications are updating ")
+			currentNotificationState = notifications_hash
+			s.Emit(constructSocketID(UPDATE_NOTIFICATIONS), notifications, func(so socketio.Conn, data string) {
+				log.Println("Client ACK with data: ", data)
+
+			})
+			timeout = time.NewTimer(time.Minute)
+		}
+
 		log.Info("Exiting go loop")
 	}()
 }
