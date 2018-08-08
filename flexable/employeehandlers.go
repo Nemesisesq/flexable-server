@@ -137,7 +137,7 @@ func GetOpenShifts(s socketio.Conn, data interface{}) {
 
 	ctx := s.Context().(context.Context)
 	user := ctx.Value("user").(account.User);
-	ticker := time.NewTicker(time.Second* 5)
+	ticker := time.NewTicker(time.Second)
 	timeout := time.NewTimer(time.Minute)
 
 	tickerChan := ticker.C
