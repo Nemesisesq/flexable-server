@@ -87,8 +87,11 @@ func emitCurrentShifts (shiftList []shifts.Shift, query bson.M, currentShiftStat
 	if currentShiftState != shift_list_hash {
 		log.Info(currentShiftState, shift_list_hash)
 		currentShiftState = shift_list_hash
+		for _, v := range cleaned_shift_list {
+			
+		s.Emit(constructSocketID(OPEN_SHIFTS), v)
+		}
 
-		s.Emit(constructSocketID(OPEN_SHIFTS), cleaned_shift_list)
 		timeout = time.NewTimer(time.Minute)
 	}
 	return timeout, currentShiftState
