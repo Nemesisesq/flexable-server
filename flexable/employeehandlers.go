@@ -179,7 +179,7 @@ func emitShifts(user account.User, shiftList []shifts.Shift, currentShiftState u
 	shiftList = shifts.GetAllShifts(query)
 	cleaned_shift_list := []shifts.Shift{}
 	for _, v := range shiftList {
-		present := time.Now()
+		present := time.Now().AddDate(0,0, -7)
 		date := now.MustParse(v.Date)
 
 		if present.Before(date) {
