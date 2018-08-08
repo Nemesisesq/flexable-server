@@ -88,7 +88,7 @@ func emitCurrentShifts (shiftList []shifts.Shift, query bson.M, currentShiftStat
 		log.Info(currentShiftState, shift_list_hash)
 		currentShiftState = shift_list_hash
 		for _, v := range cleaned_shift_list {
-			
+
 		s.Emit(constructSocketID(OPEN_SHIFTS), v)
 		}
 

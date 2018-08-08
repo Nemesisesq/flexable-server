@@ -195,9 +195,11 @@ func emitShifts(user account.User, shiftList []shifts.Shift, currentShiftState u
 	if currentShiftState != shift_list_hash {
 		//log.Info("Employee shifts are updating ")
 		currentShiftState = shift_list_hash
-		s.Emit(constructSocketID(GET_OPEN_SHIFTS), cleaned_shift_list, func(so socketio.Conn, data string) {
-			log.Println("Client ACK with data: ", data)
-		})
+		for _, v := range cleaned_shift_list {
+			s.Emit(constructSocketID(GET_OPEN_SHIFTS), v, func(so socketio.Conn, data string) {
+				log.Println("Client ACK with data: ", data)
+			})
+		}
 		timeout = time.NewTimer(time.Minute)
 	}
 
