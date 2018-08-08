@@ -34,7 +34,7 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 	}
 	query = bson.M{"company.uuid": user.Profile.Company.UUID}
 
-	ticker := time.NewTicker(time.Second * 2)
+	ticker := time.NewTicker(time.Second * 5)
 	timeout := time.NewTimer(time.Minute)
 	var currentShiftState uint64
 	go func() {
