@@ -61,6 +61,7 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 				s.Close()
 				cancel := ctx.Value("cancel").(context.CancelFunc)
 				cancel()
+				break L
 			}
 			//tm.Flush()
 		}
@@ -72,7 +73,7 @@ func emitCurrentShifts (shiftList []shifts.Shift, query bson.M, currentShiftStat
 	shiftList = shifts.GetAllShifts(query)
 	cleaned_shift_list := []shifts.Shift{}
 	for _, v := range shiftList {
-		present := time.Now()
+		present := time.Now().AddDate(0,0, -7)
 		date := now.MustParse(v.Date)
 
 		if present.Before(date) {

@@ -147,6 +147,7 @@ func GetOpenShifts(s socketio.Conn, data interface{}) {
 		shiftList := []shifts.Shift{}
 		user = *user.Find(bson.M{"_id": user.ID})
 		_, currentShiftState = emitShifts(user, shiftList, currentShiftState, timeout, s)
+	L:
 		for {
 			shiftList := []shifts.Shift{}
 			select {
@@ -155,12 +156,15 @@ func GetOpenShifts(s socketio.Conn, data interface{}) {
 
 			case <-ctx.Done():
 				ticker.Stop()
+				break L
 				return
 			case <-timeout.C:
 				log.Info("I'm closing out the channel")
 				cancel := ctx.Value("cancel").(context.CancelFunc)
 				cancel()
 				s.Close()
+				break L
+				return
 			}
 		}
 	}()
