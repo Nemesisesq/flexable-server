@@ -140,7 +140,7 @@ func GetOpenShifts(s socketio.Conn, data interface{}) {
 	ticker := time.NewTicker(time.Second)
 	timeout := time.NewTimer(time.Minute)
 
-	//tickerChan := ticker.C
+	tickerChan := ticker.C
 	var currentShiftState uint64
 
 	go func() {
@@ -149,10 +149,10 @@ func GetOpenShifts(s socketio.Conn, data interface{}) {
 		_, currentShiftState = emitShifts(user, shiftList, currentShiftState, timeout, s)
 	L:
 		for {
-			//shiftList := []shifts.Shift{}
+			shiftList := []shifts.Shift{}
 			select {
-			//case <-tickerChan:
-			//	timeout, currentShiftState = emitShifts(user, shiftList, currentShiftState, timeout, s)
+			case <-tickerChan:
+				timeout, currentShiftState = emitShifts(user, shiftList, currentShiftState, timeout, s)
 
 			case <-ctx.Done():
 				ticker.Stop()

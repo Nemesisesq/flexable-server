@@ -47,8 +47,8 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 
 			//shiftList := []shifts.Shift{}
 			select {
-			//case <-ticker.C:
-			//	timeout, currentShiftState = emitCurrentShifts (shiftList, query, currentShiftState, s, timeout)
+			case <-ticker.C:
+				timeout, currentShiftState = emitCurrentShifts (shiftList, query, currentShiftState, s, timeout)
 
 			case <-ctx.Done():
 				ticker.Stop()
