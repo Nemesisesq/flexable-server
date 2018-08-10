@@ -23,7 +23,10 @@ import (
 	"github.com/jinzhu/now"
 )
 
+var st time.Time
+
 func OpenShiftHandler(s socketio.Conn, _ interface{}) {
+	st = time.Now()
 	log.Info("Returning openshifts")
 
 	ctx := s.Context().(context.Context)
@@ -45,27 +48,22 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 
 		for {
 
-			user = *user.Find(bson.M{"_id" : user.ID})
+			user = *user.Find(bson.M{"_id": user.ID})
 			shiftList := []shifts.Shift{}
 			select {
 			case <-ticker.C:
-				timeout, currentShiftState = emitCurrentShifts (shiftList, query, currentShiftState, s, timeout)
+				timeout, currentShiftState = emitCurrentShifts(shiftList, query, currentShiftState, s, timeout)
 
 			case <-ctx.Done():
 				ticker.Stop()
-				log.Info("I'm stopping the ticker")
 				break L
 
 			case <-timeout.C:
-				log.Info("I'm closing out the channel")
 				s.Close()
 				cancel := ctx.Value("cancel").(context.CancelFunc)
 				cancel()
-				break L
 			}
-			//tm.Flush()
 		}
-		log.Info("exiting go routine")
 	}()
 }
 
@@ -90,6 +88,11 @@ func emitCurrentShifts (shiftList []shifts.Shift, query bson.M, currentShiftStat
 		currentShiftState = shift_list_hash
 
 		s.Emit(constructSocketID(OPEN_SHIFTS), cleaned_shift_list)
+		finished := time.Now()
+
+		elapsed := st.Sub(finished)
+
+		log.WithField("elapsed_time ", elapsed.Seconds()).Info("open shift")
 		timeout = time.NewTimer(time.Minute)
 	}
 	return timeout, currentShiftState
