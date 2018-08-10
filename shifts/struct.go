@@ -57,6 +57,7 @@ type Shift struct {
 
 type SkinnyShift struct {
 	ID         bson.ObjectId     `json:"_id,omitempty" bson:"_id,omitempty"`
+	Name       string            `json:"name"`
 	Job        position.Position `json:"job"`
 	Date       string            `json:"date"`
 	StartTime  string            `json:"start"`

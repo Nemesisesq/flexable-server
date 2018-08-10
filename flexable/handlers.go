@@ -23,7 +23,10 @@ import (
 	"github.com/jinzhu/now"
 )
 
+var st time.Time
+
 func OpenShiftHandler(s socketio.Conn, _ interface{}) {
+	st = time.Now()
 	log.Info("Returning openshifts")
 
 	ctx := s.Context().(context.Context)
@@ -53,19 +56,15 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 
 			case <-ctx.Done():
 				ticker.Stop()
-				log.Info("I'm stopping the ticker")
 				break L
 
 			case <-timeout.C:
-				log.Info("I'm closing out the channel")
 				s.Close()
 				cancel := ctx.Value("cancel").(context.CancelFunc)
 				cancel()
 				break L
 			}
-			//tm.Flush()
 		}
-		log.Info("exiting go routine")
 	}()
 }
 
@@ -80,6 +79,7 @@ func emitCurrentShifts(shiftList []shifts.Shift, query bson.M, currentShiftState
 			x := &shifts.SkinnyShift{}
 
 			x.ID = v.ID
+			x.Name = v.Name
 			x.Job = v.Job
 			x.Date = v.Date
 			x.StartTime = v.StartTime
@@ -91,7 +91,6 @@ func emitCurrentShifts(shiftList []shifts.Shift, query bson.M, currentShiftState
 			}
 			cleaned_shift_list = append(cleaned_shift_list, *x)
 		}
-
 	}
 	shift_list_hash, err := hashstructure.Hash(&cleaned_shift_list, nil)
 	if err != nil {
@@ -102,12 +101,35 @@ func emitCurrentShifts(shiftList []shifts.Shift, query bson.M, currentShiftState
 		currentShiftState = shift_list_hash
 
 		s.Emit(constructSocketID(OPEN_SHIFTS), cleaned_shift_list)
+		finished := time.Now()
+
+		elapsed := st.Sub(finished)
+
+		log.WithField("elapsed_time ", elapsed.Seconds()).Info("open shift")
 		timeout = time.NewTimer(time.Minute)
 	}
 	return timeout, currentShiftState
 }
 
 const NEW_SHIFT_TITLE = "There's a new shift!!!!"
+
+
+func GetShiftDetail(s socketio.Conn, data interface{}){
+	log.Info("Finding a shift details")
+	payload := data.(map[string]interface{})["payload"]
+
+	tmp, err := json.Marshal(payload)
+	if err != nil {
+		panic(err)
+	}
+
+	var shift shifts.Shift
+	err = json.Unmarshal(tmp, &shift)
+
+	shift = shifts.GetOneShift(bson.M{"_id": shift.ID})
+
+	s.Emit(constructSocketID(SHIFT_DETAILS), shift)
+}
 
 func FindShiftReplacementHandler(s socketio.Conn, data interface{}) {
 	log.Info("Finding a shift replacement")
