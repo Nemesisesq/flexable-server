@@ -59,7 +59,7 @@ type HTTPMessageType struct {
 
 var messageTypes = []SocketMessageType{
 	{OPEN_SHIFTS, OpenShiftHandler, MANAGER},
-	{SHIFT_DETAILS, nil, MANAGER},
+	{SHIFT_DETAILS, GetShiftDetail, MANAGER},
 	{ACCEPT_SHIFT_SUBSTITUE, nil, MANAGER},
 	{DENY_SHIFT_SUBSTITUTE, nil, MANAGER},
 	{FIND_SHIFT_SUBSTITUTE, FindShiftReplacementHandler, MANAGER},

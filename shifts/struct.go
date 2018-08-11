@@ -41,27 +41,37 @@ type Shift struct {
 	V            int                     `json:"__v"`
 	ClosedOut struct {
 		Signor account.User `json:"signor"`
-		Closed bool `json:"closed"`
+		Closed bool         `json:"closed"`
 	} `json:"closed_out"`
 	Details struct {
-		PositionName string `json:"position_name"`
+		PositionName    string   `json:"position_name"`
 		SkillsRequested []string `json:"skills_requested"`
-		Address Address `json:"address"`
-		Contact struct{
-			Name string `json:"name"`
+		Address         Address  `json:"address"`
+		Contact struct {
+			Name        string `json:"name"`
 			PhoneNumber string `json:"phone_number"`
 		} `json:"contact"`
 		Pay string `json:"pay"`
-
 	} `json:"details"`
 }
 
+type SkinnyShift struct {
+	ID         bson.ObjectId     `json:"_id,omitempty" bson:"_id,omitempty"`
+	Name       string            `json:"name"`
+	Job        position.Position `json:"job"`
+	Date       string            `json:"date"`
+	StartTime  string            `json:"start"`
+	EndTime    string            `json:"end"`
+	Volunteers int               `json:"volunteers"`
+	Chosen     bool              `json:"chosen"`
+}
+
 type Address struct {
-	Name string `json:"name"`
-	Addr1 string `json:"addr_1"`
-	Addr2 string `json:"addr_2"`
-	City string `json:"city"`
-	State string `json:"state"`
+	Name    string `json:"name"`
+	Addr1   string `json:"addr_1"`
+	Addr2   string `json:"addr_2"`
+	City    string `json:"city"`
+	State   string `json:"state"`
 	ZipCode string `json:"zip_code"`
 }
 
