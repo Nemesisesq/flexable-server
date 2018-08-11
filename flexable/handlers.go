@@ -67,17 +67,29 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 	}()
 }
 
-func emitCurrentShifts (shiftList []shifts.Shift, query bson.M, currentShiftState uint64, s socketio.Conn, timeout *time.Timer) (*time.Timer, uint64) {
+func emitCurrentShifts(shiftList []shifts.Shift, query bson.M, currentShiftState uint64, s socketio.Conn, timeout *time.Timer) (*time.Timer, uint64) {
 	shiftList = shifts.GetAllShifts(query)
-	cleaned_shift_list := []shifts.Shift{}
+	cleaned_shift_list := []shifts.SkinnyShift{}
 	for _, v := range shiftList {
-		present := time.Now().AddDate(0,0, -7)
+		present := time.Now().AddDate(0, 0, -7)
 		date := now.MustParse(v.Date)
 
 		if present.Before(date) {
-			cleaned_shift_list = append(cleaned_shift_list, v)
-		}
+			x := &shifts.SkinnyShift{}
 
+			x.ID = v.ID
+			x.Name = v.Name
+			x.Job = v.Job
+			x.Date = v.Date
+			x.StartTime = v.StartTime
+			x.EndTime = v.EndTime
+			x.Volunteers = len(v.Volunteers)
+			if v.Chosen.Profile.Email != "" {
+
+				x.Chosen = true
+			}
+			cleaned_shift_list = append(cleaned_shift_list, *x)
+		}
 	}
 	shift_list_hash, err := hashstructure.Hash(&cleaned_shift_list, nil)
 	if err != nil {
@@ -99,6 +111,24 @@ func emitCurrentShifts (shiftList []shifts.Shift, query bson.M, currentShiftStat
 }
 
 const NEW_SHIFT_TITLE = "There's a new shift!!!!"
+
+
+func GetShiftDetail(s socketio.Conn, data interface{}){
+	log.Info("Finding a shift details")
+	payload := data.(map[string]interface{})["payload"]
+
+	tmp, err := json.Marshal(payload)
+	if err != nil {
+		panic(err)
+	}
+
+	var shift shifts.Shift
+	err = json.Unmarshal(tmp, &shift)
+
+	shift = shifts.GetOneShift(bson.M{"_id": shift.ID})
+
+	s.Emit(constructSocketID(SHIFT_DETAILS), shift)
+}
 
 func FindShiftReplacementHandler(s socketio.Conn, data interface{}) {
 	log.Info("Finding a shift replacement")
