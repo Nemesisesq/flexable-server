@@ -7,7 +7,6 @@ import (
 	"github.com/nemesisesq/flexable/company"
 	"github.com/nemesisesq/flexable/plivio/application"
 	"github.com/nemesisesq/flexable/position"
-	"github.com/nemesisesq/flexable/account"
 )
 
 type Job struct {
@@ -24,7 +23,7 @@ type Shift struct {
 	ID           bson.ObjectId           `json:"_id,omitempty" bson:"_id,omitempty"`
 	SmsID        string                  `json:"sms_id" bson:"sms_id"`
 	Name         string                  `json:"name"`
-	AbsentWorker account.User            `json:"absentWorker" bson:"absentWorker"`
+	AbsentWorker bson.ObjectId           `json:"absentWorker" bson:"absentWorker"`
 	Job          position.Position       `json:"job"`
 	Location     string                  `json:"location"`
 	Date         string                  `json:"date"`
@@ -32,15 +31,15 @@ type Shift struct {
 	RawStartTime string                  `json:"rawStart"`
 	EndTime      string                  `json:"end"`
 	RawEndTime   string                  `json:"rawEnd"`
-	Volunteers   []account.User          `json:"volunteers"`
+	Volunteers   []bson.ObjectId          `json:"volunteers"`
 	Company      company.Company         `json:"company"`
 	Application  application.Application `json:"application"`
 	PhoneNumber  string                  `json:"phone_number"`
-	Chosen       account.User            `json:"chosen"`
-	Manager      account.User            `json:"manager"`
+	Chosen       bson.ObjectId            `json:"chosen"`
+	Manager      bson.ObjectId            `json:"manager"`
 	V            int                     `json:"__v"`
 	ClosedOut struct {
-		Signor account.User `json:"signor"`
+		Signor bson.ObjectId `json:"signor"`
 		Closed bool         `json:"closed"`
 	} `json:"closed_out"`
 	Details struct {
@@ -56,14 +55,16 @@ type Shift struct {
 }
 
 type SkinnyShift struct {
-	ID         bson.ObjectId     `json:"_id,omitempty" bson:"_id,omitempty"`
-	Name       string            `json:"name"`
-	Job        position.Position `json:"job"`
-	Date       string            `json:"date"`
-	StartTime  string            `json:"start"`
-	EndTime    string            `json:"end"`
-	Volunteers int               `json:"volunteers"`
-	Chosen     bool              `json:"chosen"`
+	ID              bson.ObjectId     `json:"_id,omitempty" bson:"_id,omitempty"`
+	Name            string            `json:"name"`
+	Job             position.Position `json:"job"`
+	Date            string            `json:"date"`
+	StartTime       string            `json:"start"`
+	EndTime         string            `json:"end"`
+	Volunteers      int               `json:"volunteers"`
+	VolunteerEmails []string          `json:"volunteer_emails"`
+	Chosen          bool              `json:"chosen"`
+	ChosenEmail     string            `json:"chosen_email"`
 }
 
 type Address struct {

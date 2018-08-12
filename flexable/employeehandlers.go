@@ -13,6 +13,7 @@ import (
 	"github.com/mitchellh/hashstructure"
 	"fmt"
 	"github.com/jinzhu/now"
+	"github.com/nemesisesq/flexable/db"
 )
 
 type EmployeeData struct {
@@ -31,16 +32,19 @@ func PickUpShift(s socketio.Conn, data interface{}) {
 	ctx := s.Context().(context.Context)
 	user := ctx.Value("user").(account.User)
 
-	var shift shifts.Shift
-	err = json.Unmarshal(tmp, &shift)
+	var skinnyShift shifts.SkinnyShift
+	err = json.Unmarshal(tmp, &skinnyShift)
 
 	if err != nil {
 		panic(err)
 	}
 
+	shift := shifts.GetOneShift(bson.M{"_id": skinnyShift.ID})
+
 	emp := user
 
-	shift.Volunteers = append(shift.Volunteers, emp)
+	shift.Volunteers = append(shift.Volunteers, emp.ID)
+	shift.ID = skinnyShift.ID
 
 	shift.Save()
 
@@ -55,8 +59,8 @@ func PickUpShift(s socketio.Conn, data interface{}) {
 	}
 
 	flexableAdmin := account.User{Email: "admin@myflexable.com", Role: "admin"}
-
-	shift.Manager.Notify([]string{buf.String(), buf.String()}, "Someone Volunteered for the shift you created!", shift.PhoneNumber, flexableAdmin)
+	manager := account.GetUser(bson.M{"_id": shift.Manager})
+	manager.Notify([]string{buf.String(), buf.String()}, "Someone Volunteered for the shift you created!", shift.PhoneNumber, flexableAdmin)
 
 }
 
@@ -107,13 +111,14 @@ func CallOfShift(s socketio.Conn, data interface{}) {
 	emp := user
 
 	for k, v := range shift.Volunteers {
-		if v.Profile.Email == emp.Profile.Email {
+		vol := account.GetUser(bson.M{"_id": v})
+		if vol.Profile.Email == emp.Profile.Email {
 			shift.Volunteers = append(shift.Volunteers[:k], shift.Volunteers[k+1:]...)
 		}
 	}
-
-	if shift.Chosen.Profile.Email == emp.Profile.Email {
-		shift.Chosen = account.User{}
+	chosen := account.GetUser(bson.M{"_id": shift.Chosen})
+	if chosen.Profile.Email == emp.Profile.Email {
+		shift.Chosen = ""
 	}
 	shift.Save()
 
@@ -127,8 +132,8 @@ func CallOfShift(s socketio.Conn, data interface{}) {
 	}
 
 	flexableAdmin := account.User{Email: "admin@myflexable.com", Role: "admin"}
-
-	shift.Manager.Notify([]string{buf.String(), buf.String()}, "Someone Called Off!", shift.PhoneNumber, flexableAdmin)
+	manager := account.GetUser(bson.M{"_id": shift.Manager})
+	manager.Notify([]string{buf.String(), buf.String()}, "Someone Called Off!", shift.PhoneNumber, flexableAdmin)
 
 }
 
@@ -178,13 +183,41 @@ func emitShifts(user account.User, shiftList []shifts.Shift, currentShiftState u
 	}
 	query = bson.M{"company.uuid": user.Profile.Company.UUID}
 	shiftList = shifts.GetAllShifts(query)
-	cleaned_shift_list := []shifts.Shift{}
+	cleaned_shift_list := []shifts.SkinnyShift{}
 	for _, v := range shiftList {
 		present := time.Now()
 		date := now.MustParse(v.Date)
 
 		if present.Before(date) {
-			cleaned_shift_list = append(cleaned_shift_list, v)
+			x := &shifts.SkinnyShift{}
+
+			x.ID = v.ID
+			x.Name = v.Name
+			x.Job = v.Job
+			x.Date = v.Date
+			x.StartTime = v.StartTime
+			x.EndTime = v.EndTime
+
+			volEmails := []string{}
+			session := db.GetMgoSession()
+			defer session.Close()
+			c := session.DB("flexable").C("user")
+			c.Find(bson.M{
+				"_id": bson.M{"$in": v.Volunteers},
+			}).Select(bson.M{"profile.email": 1}).All(volEmails)
+			x.VolunteerEmails = volEmails
+			//for _, vol := range v.Volunteers {
+			//	vo:= account.GetUser(bson.M{"_id": shift.Manager})
+			//	x.VolunteerEmails = append(x.VolunteerEmails, vol.Profile.Email)
+			//
+			//}
+
+			var chosenEmail string
+			c.Find(bson.M{
+				"_id": v.Chosen,
+			}).Select(bson.M{"profile.email": 1}).One(chosenEmail)
+			x.ChosenEmail = chosenEmail
+			cleaned_shift_list = append(cleaned_shift_list, *x)
 		}
 
 	}

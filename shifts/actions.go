@@ -22,12 +22,12 @@ func UpdateShiftWithSmsID(smsId string, payload map[string]string) *messaging.Re
 
 	if payload["Text"] == "1" {
 		log.Info("got a voluteer!!!")
-		shift.Volunteers = append(shift.Volunteers, chosen)
+		shift.Volunteers = append(shift.Volunteers, chosen.ID)
 		log.Info("saving shift with new volunteer")
 		shift.Save()
 
 		response := messaging.Response{
-			messaging.Message{
+			Message: messaging.Message{
 				Dst:   payload["From"],
 				Type:  "sms",
 				Src:   payload["To"],
@@ -60,7 +60,7 @@ func SelectVolunteer (request *http.Request) (e error) {
 
 	shift := GetOneShift(bson.M{"_id": payload.Shift.ID})
 
-	shift.Chosen = payload.Volunteer
+	shift.Chosen = payload.Volunteer.ID
 
 
 	t := []string{
@@ -89,7 +89,9 @@ func SelectVolunteer (request *http.Request) (e error) {
 
 	shift.Save()
 
-	payload.Volunteer.Notify(t, "You've picked up shift", shift.PhoneNumber, shift.Manager)
+	user := account.GetUser(bson.M{"_id": shift.Manager})
+
+	payload.Volunteer.Notify(t, "You've picked up shift", shift.PhoneNumber, user)
 
 	return nil
 }

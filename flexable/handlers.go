@@ -21,6 +21,7 @@ import (
 	"time"
 	"github.com/mitchellh/hashstructure"
 	"github.com/jinzhu/now"
+	"github.com/nemesisesq/flexable/db"
 )
 
 var st time.Time
@@ -37,8 +38,8 @@ func OpenShiftHandler(s socketio.Conn, _ interface{}) {
 	}
 	query = bson.M{"company.uuid": user.Profile.Company.UUID}
 
-	ticker := time.NewTicker(time.Second * 2)
-	timeout := time.NewTimer(time.Minute)
+	ticker := time.NewTicker(time.Second * 10)
+	timeout := time.NewTimer(time.Minute * 2)
 	var currentShiftState uint64
 	go func() {
 		shiftList := []shifts.Shift{}
@@ -85,8 +86,7 @@ func emitCurrentShifts(shiftList []shifts.Shift, query bson.M, currentShiftState
 			x.StartTime = v.StartTime
 			x.EndTime = v.EndTime
 			x.Volunteers = len(v.Volunteers)
-			if v.Chosen.Profile.Email != "" {
-
+			if v.Chosen != "" {
 				x.Chosen = true
 			}
 			cleaned_shift_list = append(cleaned_shift_list, *x)
@@ -153,7 +153,7 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) {
 	shift.SmsID = uuid.NewV4().String()
 
 	shift.Company = user.Profile.Company
-	shift.Manager = user
+	shift.Manager = user.ID
 
 	plivoClient, err := PlivoClient.NewClient()
 
@@ -208,7 +208,8 @@ func FindShiftReplacementHandler(s socketio.Conn, data interface{}) {
 		templateStrings[k] = buf.String()
 	}
 	for _, user := range users {
-		user.Notify(templateStrings, NEW_SHIFT_TITLE, shift.PhoneNumber, shift.Manager)
+		manager := account.GetUser(bson.M{"_id": shift.Manager})
+		user.Notify(templateStrings, NEW_SHIFT_TITLE, shift.PhoneNumber, manager)
 	}
 }
 
@@ -227,7 +228,7 @@ func CloseoutShift(s socketio.Conn, data interface{}){
 	var shift shifts.Shift
 	err = json.Unmarshal(tmp, &shift)
 
-	shift.ClosedOut.Signor = user
+	shift.ClosedOut.Signor = user.ID
 	shift.ClosedOut.Closed = true
 
 	shift.Save()
@@ -301,7 +302,7 @@ func SelectVolunteer(s socketio.Conn, data interface{}) interface{} {
 	p := payload.Payload
 	shift := shifts.GetOneShift(bson.M{"sms_id": p.Shift.SmsID})
 
-	shift.Chosen = payload.Payload.Volunteer
+	shift.Chosen = payload.Payload.Volunteer.ID
 
 	plivoClient, err := PlivoClient.NewClient()
 
@@ -324,8 +325,15 @@ func SelectVolunteer(s socketio.Conn, data interface{}) interface{} {
 	if err != nil {
 		panic(err)
 	}
+	session := db.GetMgoSession()
+	defer session.Close()
+	c := session.DB("flexable").C("user")
 
-	err = plivoClient.SendMessages(shift.PhoneNumber, shift.Chosen.Profile.PhoneNumber, buf.String())
+	var choNum string
+	c.Find(bson.M{
+		"_id": shift.Chosen,
+	}).Select(bson.M{"profile.phone_number": 1}).All(&choNum)
+	err = plivoClient.SendMessages(shift.PhoneNumber, choNum, buf.String())
 	if err != nil {
 		panic(err)
 	}
