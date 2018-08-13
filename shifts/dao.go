@@ -7,6 +7,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/nemesisesq/flexable/db"
 	"github.com/oxequa/grace"
+	"github.com/nemesisesq/flexable/utils"
 )
 
 //Channel to close conections to Mongo from other methods that get  query
@@ -60,6 +61,7 @@ func GetAllShifts(query bson.M) (result []Shift) {
 }
 
 func GetOneShift(query bson.M) (result Shift) {
+	utils.TimeTrack(time.Now(), "Get One Shift Query")
 
 	session := db.GetMgoSession()
 	defer session.Close()

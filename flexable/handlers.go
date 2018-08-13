@@ -114,6 +114,8 @@ const NEW_SHIFT_TITLE = "There's a new shift!!!!"
 
 
 func GetShiftDetail(s socketio.Conn, data interface{}){
+	utils.TimeTrack(time.Now(), "Get Shift Details")
+
 	log.Info("Finding a shift details")
 	payload := data.(map[string]interface{})["payload"]
 
@@ -121,11 +123,16 @@ func GetShiftDetail(s socketio.Conn, data interface{}){
 	if err != nil {
 		panic(err)
 	}
-
 	var shift shifts.Shift
 	err = json.Unmarshal(tmp, &shift)
 
 	shift = shifts.GetOneShift(bson.M{"_id": shift.ID})
+
+	for k, v := range shift.Volunteers {
+		v.Notifications = nil
+		v.CognitoData = nil
+		shift.Volunteers[k] = v
+	}
 
 	s.Emit(constructSocketID(SHIFT_DETAILS), shift)
 }
