@@ -8,6 +8,7 @@ import (
 	PlivoClient "github.com/nemesisesq/flexable/plivio/client"
 	"github.com/globalsign/mgo/bson"
 	"time"
+	"github.com/nemesisesq/flexable/models"
 )
 
 func (u User) Notify(messages []string, title string, to string, sender User) {
@@ -27,11 +28,11 @@ func (u User) Notify(messages []string, title string, to string, sender User) {
 		}
 	}
 
-	n := Notification{bson.NewObjectId(),sender, time.Now(), messages[1], false}
+	n := models.Notification{bson.NewObjectId(),sender.ID, time.Now(), messages[1], false, u.ID}
 
-	u.Notifications = append(u.Notifications, n)
+	 n.Save()
 
-	u.Save()
+
 
 }
 
