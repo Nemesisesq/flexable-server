@@ -16,11 +16,12 @@ type Notification struct {
 	Read    bool          `json:"read" bson:"read"`
 	UserId  bson.ObjectId `json:"user_id" bson:"user_id"`
 }
+type Notifications []Notification
 
 func (n *Notification) Upsert(query bson.M) {
 	session := db.GetMgoSession()
 	db := session.DB(db.FLEXABLE)
-	collection := db.C("user")
+	collection := db.C("notifications")
 
 	id, err := collection.Upsert(query, &n)
 	if err != nil {
@@ -37,4 +38,20 @@ func (n *Notification) Save() {
 		n.ID = bson.NewObjectId()
 	}
 	n.Upsert(bson.M{"_id": n.ID})
+}
+
+
+func (n Notifications) FindAll(query bson.M) (err error) {
+	session := db.GetMgoSession()
+	defer session.Close()
+	if err != nil {
+		grace.Recover(&err)
+	}
+	db := session.DB(db.FLEXABLE)
+	collection := db.C("notifications")
+	err = collection.Find(query).All(&n)
+	if err != nil {
+		grace.Recover(&err)
+	}
+	return err
 }

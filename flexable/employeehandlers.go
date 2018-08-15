@@ -13,6 +13,7 @@ import (
 	"github.com/mitchellh/hashstructure"
 	"fmt"
 	"github.com/jinzhu/now"
+	"github.com/nemesisesq/flexable/models"
 )
 
 type EmployeeData struct {
@@ -220,10 +221,10 @@ func UpdateNotifications(s socketio.Conn, data interface{}) {
 			select {
 			case <-ticker.C:
 				var query bson.M
-				query = bson.M{"_id": user.ID}
-				out := user.Find(query)
+				query = bson.M{"user_id": user.ID}
+				notifications := &models.Notifications{}
+				err := notifications.FindAll(query)
 
-				notifications := out.Notifications
 				notifications_hash, err := hashstructure.Hash(&notifications, nil)
 
 				if err != nil {
