@@ -3,7 +3,7 @@ package models
 import (
 	"github.com/globalsign/mgo/bson"
 	"time"
-	"github.com/nemesisesq/flexable/db"
+	"github.com/nemesisesq/flexable-server/db"
 	"github.com/oxequa/grace"
 	log "github.com/sirupsen/logrus"
 )

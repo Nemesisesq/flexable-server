@@ -2,10 +2,10 @@ package shifts
 
 import (
 	"github.com/globalsign/mgo/bson"
-	//"github.com/nemesisesq/flexable/employee"
-	"github.com/nemesisesq/flexable/plivio/messaging"
+	//"github.com/nemesisesq/flexable-server/employee"
+	"github.com/nemesisesq/flexable-server/plivio/messaging"
 	log "github.com/sirupsen/logrus"
-	"github.com/nemesisesq/flexable/account"
+	"github.com/nemesisesq/flexable-server/account"
 	"net/http"
 	"encoding/json"
 	"bytes"

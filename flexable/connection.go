@@ -6,7 +6,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/globalsign/mgo/bson"
 	"github.com/mitchellh/mapstructure"
-	"github.com/nemesisesq/flexable/account"
+	"github.com/nemesisesq/flexable-server/account"
 	"github.com/odknt/go-socket.io"
 	log "github.com/sirupsen/logrus"
 )

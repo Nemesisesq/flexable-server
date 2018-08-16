@@ -4,7 +4,7 @@ import (
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
 	log "github.com/sirupsen/logrus"
-	"github.com/nemesisesq/flexable/db"
+	"github.com/nemesisesq/flexable-server/db"
 )
 
 const COLLECTION = "job"

@@ -2,8 +2,8 @@ package account
 
 import (
 	"github.com/globalsign/mgo/bson"
-	"github.com/nemesisesq/flexable/company"
-	"github.com/nemesisesq/flexable/position"
+	"github.com/nemesisesq/flexable-server/company"
+	"github.com/nemesisesq/flexable-server/position"
 	"time"
 )
 

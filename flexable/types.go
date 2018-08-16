@@ -3,7 +3,7 @@ package flexable
 import (
 	"fmt"
 
-	"github.com/nemesisesq/flexable/protobuf"
+	"github.com/nemesisesq/flexable-server/protobuf"
 	"github.com/odknt/go-socket.io"
 	"net/http"
 )

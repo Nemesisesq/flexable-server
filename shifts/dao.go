@@ -5,9 +5,9 @@ import (
 
 	"github.com/globalsign/mgo/bson"
 	log "github.com/sirupsen/logrus"
-	"github.com/nemesisesq/flexable/db"
+	"github.com/nemesisesq/flexable-server/db"
 	"github.com/oxequa/grace"
-	"github.com/nemesisesq/flexable/utils"
+	"github.com/nemesisesq/flexable-server/utils"
 )
 
 //Channel to close conections to Mongo from other methods that get  query

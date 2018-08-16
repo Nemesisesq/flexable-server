@@ -5,8 +5,8 @@ import (
 	"os"
 	"regexp"
 
-	application2 "github.com/nemesisesq/flexable/plivio/application"
-	"github.com/nemesisesq/flexable/plivio/phonenumber"
+	application2 "github.com/nemesisesq/flexable-server/plivio/application"
+	"github.com/nemesisesq/flexable-server/plivio/phonenumber"
 	"github.com/plivo/plivo-go/plivo"
 	"github.com/satori/go.uuid"
 	"errors"

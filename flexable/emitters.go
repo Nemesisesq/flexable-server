@@ -5,11 +5,11 @@ import (
 	"time"
 
 	"github.com/mitchellh/hashstructure"
-	"github.com/nemesisesq/flexable/shifts"
+	"github.com/nemesisesq/flexable-server/shifts"
 	"github.com/odknt/go-socket.io"
 	//log "github.com/sirupsen/logrus"
 	"github.com/globalsign/mgo/bson"
-	"github.com/nemesisesq/flexable/account"
+	"github.com/nemesisesq/flexable-server/account"
 	log "github.com/sirupsen/logrus"
 )
 

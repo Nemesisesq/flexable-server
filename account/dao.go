@@ -9,7 +9,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"fmt"
 	"github.com/oxequa/grace"
-	"github.com/nemesisesq/flexable/db"
+	"github.com/nemesisesq/flexable-server/db"
 )
 
 func UserRole(r http.Request) User {

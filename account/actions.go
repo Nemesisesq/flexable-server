@@ -5,10 +5,10 @@ import (
 	"github.com/Terminux/exponent-server-sdk-go"
 	"github.com/oxequa/grace"
 	log "github.com/sirupsen/logrus"
-	PlivoClient "github.com/nemesisesq/flexable/plivio/client"
+	PlivoClient "github.com/nemesisesq/flexable-server/plivio/client"
 	"github.com/globalsign/mgo/bson"
 	"time"
-	"github.com/nemesisesq/flexable/models"
+	"github.com/nemesisesq/flexable-server/models"
 )
 
 func (u User) Notify(messages []string, title string, to string, sender User) {

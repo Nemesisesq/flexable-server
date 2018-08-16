@@ -4,10 +4,10 @@ import (
 	"fmt"
 
 	"github.com/globalsign/mgo/bson"
-	"github.com/nemesisesq/flexable/company"
-	"github.com/nemesisesq/flexable/plivio/application"
-	"github.com/nemesisesq/flexable/position"
-	"github.com/nemesisesq/flexable/account"
+	"github.com/nemesisesq/flexable-server/company"
+	"github.com/nemesisesq/flexable-server/plivio/application"
+	"github.com/nemesisesq/flexable-server/position"
+	"github.com/nemesisesq/flexable-server/account"
 )
 
 type Job struct {

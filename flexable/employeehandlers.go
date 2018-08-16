@@ -5,15 +5,15 @@ import (
 	"time"
 
 	"github.com/globalsign/mgo/bson"
-	"github.com/nemesisesq/flexable/shifts"
+	"github.com/nemesisesq/flexable-server/shifts"
 	"github.com/odknt/go-socket.io"
 	log "github.com/sirupsen/logrus"
 	"context"
-	"github.com/nemesisesq/flexable/account"
+	"github.com/nemesisesq/flexable-server/account"
 	"github.com/mitchellh/hashstructure"
 	"fmt"
 	"github.com/jinzhu/now"
-	"github.com/nemesisesq/flexable/models"
+	"github.com/nemesisesq/flexable-server/models"
 )
 
 type EmployeeData struct {
