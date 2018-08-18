@@ -1,1 +1,1 @@
-web: flexable
+web: flexable-server
