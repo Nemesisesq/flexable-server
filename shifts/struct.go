@@ -47,6 +47,7 @@ type Shift struct {
 		PositionName    string   `json:"position_name"`
 		SkillsRequested []string `json:"skills_requested"`
 		Address         Address  `json:"address"`
+		ShiftDetails    string   `json:"shift_details"`
 		Contact struct {
 			Name        string `json:"name"`
 			PhoneNumber string `json:"phone_number"`

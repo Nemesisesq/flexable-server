@@ -57,11 +57,11 @@ func (user *User) Upsert(query bson.M) {
 
 	id, err := collection.Upsert(query, &user)
 	if err != nil {
-		grace.Recover(&err)
+		panic(err)
 	}
 	log.Info(id)
 	if err != nil {
-		grace.Recover(&err)
+		panic(err)
 	}
 }
 

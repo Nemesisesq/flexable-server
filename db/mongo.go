@@ -7,7 +7,7 @@ import (
 )
 
 
-var FLEXABLE string = ""
+var FLEXABLE string
 
 
 var session *mgo.Session
