@@ -19,7 +19,8 @@ payload.Payload.Type = {
     USER_PROFILE_UPDATED: 14,
     SET_PROFILE: 15,
     UPDATE_NOTIFICATIONS: 16,
-    CLOSEOUT_SHIFT: 17
+    CLOSEOUT_SHIFT: 17,
+    GET_COMPANY_LIST: 18,
 };
 module.exports = {
     payload: payload,

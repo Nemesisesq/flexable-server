@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"github.com/gobuffalo/envy"
 	"encoding/json"
+	log"github.com/sirupsen/logrus"
 )
 func randomString(l int) string {
 	bytes := make([]byte, l)
@@ -20,9 +21,9 @@ func randInt(min int, max int) int {
 
 type rpcAction string
 
-type rpcMessage struct {
+type RpcMessage struct {
 	Action rpcAction
-	Payload map[string]interface{}
+	Payload interface{}
 }
 
 type rpcClient struct {
@@ -36,7 +37,7 @@ func NewRpcCient(q_name RabbitQueue, callback CallBackFunc) *rpcClient {
 	return &rpcClient{f, callback, q_name}
 }
 
-type CallBackFunc func(rpcMessage) interface{}
+type CallBackFunc func(*RpcMessage) interface{}
 
 type RabbitQueue string
 type RabbitRoutingKey string
@@ -46,7 +47,7 @@ const (
 	COMPANY_RPI_QUEUE RabbitQueue = "COMPANY_RPC_QUEUE"
 )
 
-func (client rpcClient) Request(rpcm rpcMessage) (res int, err error) {
+func (client rpcClient) Request(rpcm RpcMessage) (res int, err error) {
 	var rabbit_mq_uri = envy.Get("RABBITMQ_BIGWIG_URL", "amqp://guest:guest@localhost:5672/")
 	conn, err := amqp.Dial(rabbit_mq_uri)
 	failOnError(err, "Failed to connect to RabbitMQ")
@@ -98,12 +99,13 @@ func (client rpcClient) Request(rpcm rpcMessage) (res int, err error) {
 
 	for d := range msgs {
 		if corrId == d.CorrelationId {
-			response := &rpcMessage{}
+			log.Info("Got Return mMessage")
+			response := &RpcMessage{}
 
 			err := json.Unmarshal(d.Body, &response)
 			failOnError(err, "Failed to convert body to integer")
 
-			client.callback(*response)
+			client.callback(response)
 			break
 		}
 	}
