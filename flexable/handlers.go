@@ -123,7 +123,7 @@ func GetCompanyList(s socketio.Conn, data interface{}){
 
 	// place
 
-	rpc.Request(messaging.RpcMessage{})
+	rpc.Request(messaging.RpcMessage{messaging.LIST, nil})
 }
 
 func GetShiftDetail(s socketio.Conn, data interface{}){

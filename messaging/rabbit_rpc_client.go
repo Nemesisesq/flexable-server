@@ -21,6 +21,10 @@ func randInt(min int, max int) int {
 
 type rpcAction string
 
+const (
+	LIST rpcAction = "LIST"
+)
+
 type RpcMessage struct {
 	Action rpcAction
 	Payload interface{}
@@ -46,6 +50,8 @@ const (
 	USER_RPC_QUEUE    RabbitQueue = "USER_RPC_QUEUE"
 	COMPANY_RPI_QUEUE RabbitQueue = "COMPANY_RPC_QUEUE"
 )
+
+
 
 func (client rpcClient) Request(rpcm RpcMessage) (res int, err error) {
 	var rabbit_mq_uri = envy.Get("RABBITMQ_BIGWIG_URL", "amqp://guest:guest@localhost:5672/")
