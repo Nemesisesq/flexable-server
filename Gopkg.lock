@@ -26,6 +26,12 @@
   revision = "baa28fcb8e7d5dfab92026c0920cb6c9ae72faa2"
 
 [[projects]]
+  name = "github.com/gobuffalo/envy"
+  packages = ["."]
+  revision = "3c96536452167a705ca5a70b831d3810e1e10452"
+  version = "v1.6.4"
+
+[[projects]]
   branch = "master"
   name = "github.com/golang/protobuf"
   packages = ["proto"]
@@ -72,6 +78,12 @@
   name = "github.com/jinzhu/now"
   packages = ["."]
   revision = "ed742868f2aebdb1c0c437bf4f7257f88834b66f"
+
+[[projects]]
+  name = "github.com/joho/godotenv"
+  packages = ["."]
+  revision = "a79fa1e548e2c689c241d10173efd51e5d689d5b"
+  version = "v1.2.0"
 
 [[projects]]
   branch = "master"
@@ -196,6 +208,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "e6ebc255b258d2f721d419b466d49abe54dcfab78f0eec87c93251894e943948"
+  inputs-digest = "c52e6a5ec42d2681ef30395ace7e64a7a922afc9ee65d1dd2740b1a240bd4b83"
   solver-name = "gps-cdcl"
   solver-version = 1
