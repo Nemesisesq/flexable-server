@@ -21,6 +21,7 @@ import (
 	"time"
 	"github.com/mitchellh/hashstructure"
 	"github.com/jinzhu/now"
+	"github.com/nemesisesq/flexable-server/messaging"
 )
 
 var st time.Time
@@ -112,6 +113,18 @@ func emitCurrentShifts(shiftList []shifts.Shift, query bson.M, currentShiftState
 
 const NEW_SHIFT_TITLE = "There's a new shift!!!!"
 
+func GetCompanyList(s socketio.Conn, data interface{}){
+	log.Info("Getting Company List")
+	rpc := messaging.NewRpcCient(messaging.COMPANY_RPI_QUEUE, func(message *messaging.RpcMessage) interface{} {
+		log.Info("Returning Payload ")
+		s.Emit(constructSocketID(GET_COMPANY_LIST), message.Payload)
+		return nil
+	})
+
+	// place
+
+	rpc.Request(messaging.RpcMessage{messaging.LIST, nil})
+}
 
 func GetShiftDetail(s socketio.Conn, data interface{}){
 	log.Info("Getting shift details!!!")

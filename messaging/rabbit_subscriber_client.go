@@ -1,4 +1,4 @@
-package flexable
+package messaging
 
 import (
 	"github.com/streadway/amqp"
