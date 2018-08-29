@@ -114,6 +114,7 @@ const NEW_SHIFT_TITLE = "There's a new shift!!!!"
 
 
 func GetShiftDetail(s socketio.Conn, data interface{}){
+	log.Info("Getting shift details!!!")
 	utils.TimeTrack(time.Now(), "Get Shift Details")
 
 	log.Info("Finding a shift details")
